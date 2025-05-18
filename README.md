@@ -13,17 +13,24 @@
 ### Functions
 #### `Function_name` 
 **Purpose:** 
+
 **Input:** 
+
 **Output:**   
+
 **Testing:** 
+
 
 ## Module 2: 
 ### Overview
 ### Functions
 #### `Function_name` 
 **Purpose:** 
+
 **Input:** 
+
 **Output:**   
+
 **Testing:** 
 
 ## Module 3:
@@ -31,8 +38,11 @@
 ### Functions
 #### `Function_name` 
 **Purpose:** 
+
 **Input:** 
+
 **Output:**   
+
 **Testing:** 
 
 
@@ -41,8 +51,11 @@
 ### Functions
 #### `Function_name` 
 **Purpose:** 
+
 **Input:** 
+
 **Output:**   
+
 **Testing:** 
 
 ## Module 5: 
@@ -50,8 +63,11 @@
 ### Functions
 #### `Function_name` 
 **Purpose:** 
+
 **Input:** 
+
 **Output:**   
+
 **Testing:** 
 
 ## Module 6: 
@@ -59,9 +75,11 @@
 ### Functions
 #### `Function_name` 
 **Purpose:** 
-**Input:** 
-**Output:**   
-**Testing:** 
 
+**Input:** 
+
+**Output:**   
+
+**Testing:** 
 
 
