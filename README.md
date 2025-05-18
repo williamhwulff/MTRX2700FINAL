@@ -59,6 +59,21 @@ Level 3: Dead Man's Isle Detonation Dash (Minefield)}
 
 ## Module 4: PWM RGB LED (Audrey)
 ### Overview
+- Minefield
+- Circuit components: 4x Limit Switch, 4x RGB LED (anode/cathode), Resistors
+- PWM connection to Red, Green and Blue terminals. The duty cycle is changed in order to generate non-primary colours.
+- Two different sequences are created; Gold shimmering LED's to represent the treasure, and flashing Red/Black LED's to represent bombs
+- Each limit switch is connected to either the Gold (Win) or the Bomb (Lose) trigger
+- When a limit switch is pressed, the following will occur:
+    - Gold:
+      - A win message is printed to the user
+      - Yellow lights flash in succession in a circle on the board 
+      - If the user is not at the highest level, the user proceeds to the next level, and will complete the course again at greater challenge difficulties 
+      - If the user is at the highest level, the servo motor will be triggered to open the treasure chest - the user has conquered the course!
+    - Bomb:
+      - A loser message is printed to the user
+      - Red and Black lights flash in succession in a circle on the board
+
 ### Functions
 #### `Function_name` 
 **Purpose:** 
