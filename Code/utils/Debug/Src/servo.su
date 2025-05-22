@@ -1,0 +1,4 @@
+../Src/servo.c:10:6:enableClocks	4	static
+../Src/servo.c:15:6:setupGPIOPinsTim2	4	static
+../Src/servo.c:26:6:setupTim2Pwm	4	static
+../Src/servo.c:53:6:servoAngle	24	static
