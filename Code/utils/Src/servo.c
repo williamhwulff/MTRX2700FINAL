@@ -51,7 +51,7 @@ void setupTim2Pwm(void) {
 
 void servoAngle(uint8_t channel, uint8_t degree) {
 	// Calculate the pulse width
-    uint16_t pulse = (uint16_t)(0 + (20000 * degree)/90);
+    uint16_t pulse = (uint16_t)(1000 + (1000 * degree)/90);
 
     // Apply to the given channel
     switch (channel) {
