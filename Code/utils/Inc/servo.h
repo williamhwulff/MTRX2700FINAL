@@ -14,7 +14,7 @@ void setupGPIOPinsTim2(void);
 
 void setupTim2Pwm(void);
 
-void servoAngle(uint8_t channel, float degree);
+void servoAngle(uint8_t channel, uint8_t degree);
 
 
 #endif /* SERVO_H_ */

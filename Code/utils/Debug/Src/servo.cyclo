@@ -1,4 +1,4 @@
 ../Src/servo.c:10:6:enableClocks	1
 ../Src/servo.c:15:6:setupGPIOPinsTim2	1
-../Src/servo.c:26:6:setupTim2Pwm	1
-../Src/servo.c:53:6:servoAngle	5
+../Src/servo.c:25:6:setupTim2Pwm	1
+../Src/servo.c:52:6:servoAngle	5

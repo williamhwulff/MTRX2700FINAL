@@ -14,7 +14,6 @@ void enableClocks(void) {
 
 void setupGPIOPinsTim2(void) {
 	// Setup GPIO for PWM output
-	GPIOA->MODER = 0;
 	GPIOA->MODER |= (0x2 << (15 * 2)) | (0x2 << (1 * 2)); // Alternate function mode for pins 15, 1 CH(1, 2)
 	GPIOA->MODER |= (0x2 << (2 * 2)) | (0x2 << (3 * 2)); // Alternate function mode for pins 2, 3 CH(3, 4)
 
@@ -50,9 +49,9 @@ void setupTim2Pwm(void) {
 }
 
 
-void servoAngle(uint8_t channel, float degree) {
+void servoAngle(uint8_t channel, uint8_t degree) {
 	// Calculate the pulse width
-    uint16_t pulse = (uint16_t)(1000 + 1000 * (degree / 90.0f));
+    uint16_t pulse = (uint16_t)(0 + (20000 * degree)/90);
 
     // Apply to the given channel
     switch (channel) {

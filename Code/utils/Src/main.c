@@ -19,28 +19,34 @@
 #include <stdint.h>
 #include "main.h"
 
+
 #if !defined(__SOFT_FP__) && defined(__ARM_FP)
   #warning "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use."
 #endif
 
 int main(void)
 {
+
 	// Begin initialisation
 	enableClocks();
 	setupGPIOPinsTim2();
 	setupTim2Pwm();
 
 	// Set servo angle
-	//servoAngle(2, 70.0);
+	while(1) {
+		for(uint8_t angle = 0; angle < 91; angle++) {
+			servoAngle(2, angle);
+			angle++;
 
-	TIM2->CCR1 = 20000;
-	TIM2->CCR2 = 20000;
-	TIM2->CCR3 = 20000;
-	TIM2->CCR4 = 20000;
+			// Delay
+			for(uint32_t i = 0; i < 0xFFFF; i++) {
+			    asm("nop");
+			}
+		}
+	}
 
 
 
 	/* Loop forever */
-	while(1) {
-	}
+	for(;;);
 }
