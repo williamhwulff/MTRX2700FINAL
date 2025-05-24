@@ -26,6 +26,9 @@ uint16_t pack_buffer(uint8_t *buffer, MessageType message_type, Data *data) {
         case BUTTON_PRESS:
             data_length = sizeof(data->button_press_data);
             break;
+        case MORSE_MESSAGE:
+            data_length = sizeof(data->morse_message_data);
+            break;
         default:
             return 0;  // unknown message type
     }
@@ -51,6 +54,10 @@ uint16_t pack_buffer(uint8_t *buffer, MessageType message_type, Data *data) {
     } else if (message_type == BUTTON_PRESS) {
         memcpy(buffer + buffer_idx,
                &data->button_press_data,
+               data_length);
+    } else if (message_type == MORSE_MESSAGE) {
+        memcpy(buffer + buffer_idx,
+               &data->morse_message_data,
                data_length);
     }
 
@@ -103,6 +110,11 @@ bool unpack_buffer(const uint8_t *buffer,
                    payload,
                    sizeof(output_data->button_press_data));
             break;
+        
+        case MORSE_MESSAGE:
+            memcpy(&output_data->morse_message_data,
+                   payload,
+                   sizeof(output_data->morse_message_data));
 
         default:
             return false;
