@@ -103,7 +103,16 @@ void initialiseMorse(void) {
 	    strcat((char*)strings.levelDisplay[i + 1], "\r\n");  // End the line
 	}
 
+
+	// Display levels message
+	for (uint8_t i = 0; i < morseLevels.numLevels + 1; i++) {
+		SerialOutputTest(strings.levelDisplay[i], &USART1_PORT);
+	}
+
 	// Create other messages
+	strings.newline = (uint8_t*)arrAlloc(2, sizeof(uint8_t)); // Allocate memory for newline message
+	sprintf((char*)strings.newline, "\r\n"); // Newline message
+
 	strings.fail = (uint8_t*)arrAlloc(39, sizeof(uint8_t)); // Allocate memory for fail message
 	sprintf((char*)strings.fail, "\r\nLevel failed, please try again!\r\n"); // Fail message
 
@@ -115,25 +124,27 @@ void initialiseMorse(void) {
 
 	// Setup arrays for the morse input messages
 	strings.morseInput = (uint8_t**)arrAlloc(2, sizeof(uint8_t*));
-	strings.morseInput[0] = (uint8_t*)arrAlloc(17, sizeof(uint8_t));
-	strings.morseInput[1] = (uint8_t*)arrAlloc(18, sizeof(uint8_t));
+	strings.morseInput[0] = (uint8_t*)arrAlloc(15, sizeof(uint8_t));
+	strings.morseInput[1] = (uint8_t*)arrAlloc(16, sizeof(uint8_t));
 
-	sprintf((char*)strings.morseInput[0], "\r\nEntered: dot\r\n"); // Dot input message
-	sprintf((char*)strings.morseInput[1], "\r\nEntered: dash\r\n"); // Dash input message
+	sprintf((char*)strings.morseInput[0], "Entered: dot\r\n"); // Dot input message
+	sprintf((char*)strings.morseInput[1], "Entered: dash\r\n"); // Dash input message
 
-
+	SerialOutputTest(strings.newline, &USART1_PORT); // Output newline message
 }
 
 
-void initialiseLevelCompleteFlag (void) {
+void initialiseLevelCompleteFlag(void) {
 	levelCompleteFlag = 0;
 }
+
+
 
 
 void assignMorse(uint8_t dotDash) {
 
 	// User-provided input values
-	uint8_t level = morseLog.currentLevel; // set index for current level
+	uint8_t level = morseLog.currentLevel; // Set index for current level
 	uint8_t index = morseLog.index[level]; // Set index for length of level code
 	uint8_t withinLetterIndex = morseLog.letterIndex; // Set index for current position in letter
 
@@ -143,14 +154,66 @@ void assignMorse(uint8_t dotDash) {
 	uint8_t letter = morseLevels.levels[level][index].letter; // ASCII value of letter
 
 	// Declare letter message
-	strings.letter = (uint8_t*)arrAlloc(26, sizeof(uint8_t)); // Allocate memory for letter completed message
-	sprintf((char*)strings.letter, "\r\nLetter completed: %c\r\n", letter); // Letter completed message
+	strings.letter = (uint8_t*)arrAlloc(24, sizeof(uint8_t)); // Allocate memory for letter completed message
+	sprintf((char*)strings.letter, "Letter completed: %c\r\n", letter); // Letter completed message
 
 	morseLog.letter[withinLetterIndex] = dotDash; // 0 for dot, 1 for dash
 
+
+
+
+	// Create singular strings for ease of transmission
+
+	// Fail message
+	// Compute required size
+	size_t lenFail = strlen((char*)strings.fail)
+			+ strlen((char*)strings.newline)
+			+ strlen((char*)strings.levelDisplay[level + 1])
+			+ strlen((char*)strings.newline)
+			+ 1; // For null terminator
+
+	// Allocate memory
+	uint8_t* failString = (uint8_t*)arrAlloc(lenFail, sizeof(uint8_t));
+
+	// Start with a copy of strings.fail
+	strcpy((char*)failString, (char*)strings.fail);
+
+	// Concatenate the rest
+	strcat((char*)failString, (char*)strings.newline);
+	strcat((char*)failString, (char*)strings.levelDisplay[level + 1]);
+	strcat((char*)failString, (char*)strings.newline);
+
+
+
+
+	// Level complete message
+	// Compute required size
+	size_t lenLevelComplete = strlen((char*)strings.completeLevel)
+			+ strlen((char*)strings.newline)
+			+ strlen((char*)strings.levelDisplay[level + 2])
+			+ strlen((char*)strings.newline)
+			+ 1; // For null terminator
+
+	// Allocate memory
+	uint8_t* levelCompleteString = (uint8_t*)arrAlloc(lenLevelComplete, sizeof(uint8_t));
+
+	// Start with a copy of strings.fail
+	strcpy((char*)levelCompleteString, (char*)strings.completeLevel);
+
+	// Concatenate the rest
+	strcat((char*)levelCompleteString, (char*)strings.newline);
+	strcat((char*)levelCompleteString, (char*)strings.levelDisplay[level + 2]);
+	strcat((char*)levelCompleteString, (char*)strings.newline);
+
+
+
+
 	// Check if the correct input provided
 	if (dotDash != ((letterCode >> ((letterLength - 1) - withinLetterIndex)) & 1)) {
-		SerialOutputChar('F', &USART1_PORT); // Output the fail code on the USART line
+
+		SerialOutputTest(failString, &USART1_PORT); // Output the fail code on the USART line
+		free(failString); // Free dynamically allocated memory
+
 		morseLog.index[level] = 0;
 		morseLog.letterIndex = 0;
 		return;
@@ -164,27 +227,35 @@ void assignMorse(uint8_t dotDash) {
 	}
 
 
-	SerialOutputChar(dotDash, &USART1_PORT); // Output the code on the USART line
+	SerialOutputTest(strings.morseInput[dotDash], &USART1_PORT); // Output whether dot/dash
 
 	// Check if full letter matches the provided value
 	if ((fullLetter == letterCode) && (withinLetterIndex == (letterLength - 1))) {
 
-		SerialOutputChar(letter, &USART1_PORT); // Output code for letter
+		SerialOutputTest(strings.letter, &USART1_PORT); // Output letter
+		free(strings.letter); // Free dynamically allocated memory
 
 		morseLog.letterIndex = 0; // Index back to the start of a new letter
 		morseLog.index[level]++; // Increase the index variable for a new letter
 
 
 		// Check if letter is the last in the level
-		if (index == (morseLevels.size[level] - 1)) {
-			SerialOutputChar('Y', &USART1_PORT); // Output the fail code on the USART line
+		if (index == (morseLevels.size[level] - 1) && (level != (morseLevels.numLevels - 1))) {
+
+			SerialOutputTest(levelCompleteString, &USART1_PORT); // Output level complete message
+			free(levelCompleteString); // Free dynamically allocated memory
+
+
 			morseLog.currentLevel++; // Increase the level number
 			morseLog.index[level] = 0; // Reset the letter index
 		}
 
 		// Check if all levels are complete
-		if (level == (morseLevels.numLevels - 1)) {
-			SerialOutputChar('W', &USART1_PORT); // Output the fail code on the USART line
+		if ((level == (morseLevels.numLevels - 1)) && (index == (morseLevels.size[level] - 1))) {
+			SerialOutputTest(strings.completeGame, &USART1_PORT); // Output game complete message
+
+			// Stop button presses - wait for USART receive interrupt to finish program
+	        EXTI->IMR &= ~EXTI_IMR_MR0; // Disable EXTI0 interrupt
 		}
 
 		return;
@@ -194,6 +265,7 @@ void assignMorse(uint8_t dotDash) {
 
 	morseLog.letterIndex++; // Increase index for dot/dash within the letter
 }
+
 
 void delayMiliSec(uint16_t ms) {
 	volatile uint32_t* timerCnt = &(TIM4->CNT);
@@ -236,13 +308,22 @@ void setLevelCompleteFlag(void) {
 }
 
 void levelCompleteProcedure(void) {
-	TIM2->CCR2 = 2000; // Set final servo position (let ball slide through)
+
+	servoAngle(2, 150); // Set final servo angle
 
 	// Free all dynamically allocated memory
 	freeMatrix((void**)morseLevels.levels, morseLevels.numLevels);
 	free(morseLevels.size);
 	free(morseLog.index);
 	free(morseLog.letter);
+
+	freeMatrix((void**)strings.levelDisplay, (morseLevels.numLevels + 1));
+	freeMatrix((void**)strings.morseInput, 2);
+	free(strings.fail);
+	free(strings.completeLevel);
+	free(strings.completeGame);
+
+
 	while(1) {
 		setLedState(0b01010101);
 		delayMiliSec(1000); // 1000 ms delay

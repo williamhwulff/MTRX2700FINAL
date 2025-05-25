@@ -32,14 +32,21 @@ extern "C" {
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "memory.h"
-#include "utils.h"
+#include "morse.h"
+#include "callbacks.h"
 #include "serial.h"
 #include "stm32f303xc.h"
 #include "stm32f3xx_it.h"
-#include "callbacks.h"
+#include "serialise.h"
+#include "servo.h"
+
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
+#include <stdint.h>
+#include <stddef.h>
+#include <stdbool.h>
+#include <string.h>
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
@@ -127,7 +134,6 @@ void Error_Handler(void);
 #define MEMS_INT2_GPIO_Port GPIOE
 
 /* USER CODE BEGIN Private defines */
-extern uint8_t messageSent;
 
 
 /* USER CODE END Private defines */

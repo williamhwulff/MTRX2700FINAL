@@ -45,6 +45,7 @@ typedef struct {
     uint8_t *letter;          // Stores letter message
     uint8_t *completeLevel;   // Stores level complete message
     uint8_t *completeGame;    // Stores game complete message
+    uint8_t *newline;         // Stores newline message
 } Strings;
 
 

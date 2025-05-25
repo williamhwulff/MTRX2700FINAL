@@ -1,9 +1,0 @@
-../Core/Src/utils.c:40:6:initialiseMorse	3
-../Core/Src/utils.c:128:6:initialiseLevelCompleteFlag	1
-../Core/Src/utils.c:133:6:assignMorse	7
-../Core/Src/utils.c:198:6:delayMiliSec	2
-../Core/Src/utils.c:213:9:getLedState	1
-../Core/Src/utils.c:222:6:setLedState	1
-../Core/Src/utils.c:230:9:getLevelCompleteFlag	1
-../Core/Src/utils.c:234:6:setLevelCompleteFlag	1
-../Core/Src/utils.c:238:6:levelCompleteProcedure	1

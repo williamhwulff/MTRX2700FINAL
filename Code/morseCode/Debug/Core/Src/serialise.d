@@ -1,4 +1,4 @@
-Core/Src/utils.o: ../Core/Src/utils.c ../Core/Inc/main.h \
+Core/Src/serialise.o: ../Core/Src/serialise.c ../Core/Inc/main.h \
  ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal.h \
  ../Core/Inc/stm32f3xx_hal_conf.h \
  ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_rcc.h \
@@ -30,9 +30,9 @@ Core/Src/utils.o: ../Core/Src/utils.c ../Core/Inc/main.h \
  ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_spi_ex.h \
  ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_tim.h \
  ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_tim_ex.h \
- ../Core/Inc/memory.h ../Core/Inc/utils.h ../Core/Inc/serial.h \
- ../Core/Inc/stm32f303xc.h ../Core/Inc/stm32f3xx_it.h \
- ../Core/Inc/callbacks.h
+ ../Core/Inc/memory.h ../Core/Inc/morse.h ../Core/Inc/callbacks.h \
+ ../Core/Inc/serial.h ../Core/Inc/stm32f303xc.h \
+ ../Core/Inc/stm32f3xx_it.h ../Core/Inc/serialise.h ../Core/Inc/servo.h
 ../Core/Inc/main.h:
 ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal.h:
 ../Core/Inc/stm32f3xx_hal_conf.h:
@@ -68,8 +68,10 @@ Core/Src/utils.o: ../Core/Src/utils.c ../Core/Inc/main.h \
 ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_tim.h:
 ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_tim_ex.h:
 ../Core/Inc/memory.h:
-../Core/Inc/utils.h:
+../Core/Inc/morse.h:
+../Core/Inc/callbacks.h:
 ../Core/Inc/serial.h:
 ../Core/Inc/stm32f303xc.h:
 ../Core/Inc/stm32f3xx_it.h:
-../Core/Inc/callbacks.h:
+../Core/Inc/serialise.h:
+../Core/Inc/servo.h:

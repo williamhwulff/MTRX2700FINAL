@@ -117,10 +117,8 @@ int main(void)
   TIM4_Init(); // Enable timer interrupts
   LED_Init(); // Enable LEDs
 
-  initialiseMorse(); // Initialise the struct to store morse code values
-  initialiseLevelCompleteFlag(); // Initialise the challenge as incomplete
-
   SerialInitialise(BAUD_115200, &USART1_PORT, &finishedTransmissionCallback); // Initialise UART
+
 
   /* USER CODE END 2 */
 
@@ -131,7 +129,15 @@ int main(void)
   HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_2);
   HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_3);
 
-  TIM2->CCR2 = 1000; // Set initial servo position
+  // Enable PWM for timer 8 + set initial servo angle
+  setupGPIOPinsTim8();
+  setupTim8Pwm();
+  servoAngle(2, 60); // Set initial servo position
+
+  // Initialise morse code module
+  delayMiliSec(1000); // Add delay for startup
+  initialiseMorse(); // Initialise the struct to store morse code values
+  initialiseLevelCompleteFlag(); // Initialise the challenge as incomplete
 
 
   while (1)

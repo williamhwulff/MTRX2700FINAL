@@ -8,7 +8,7 @@ void finishedTransmissionCallback(void) {
     TIM2->CCR1 = 0; // Red on 0
     TIM2->CCR3 = 0; // Green on full
 
-    delayMiliSec(100); // 100 ms delay
+    delayMiliSec(10); // 10 ms delay
 
 }
 

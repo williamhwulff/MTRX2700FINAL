@@ -1,0 +1,9 @@
+../Core/Src/morse.c:40:6:initialiseMorse	24	static
+../Core/Src/morse.c:137:6:initialiseLevelCompleteFlag	4	static
+../Core/Src/morse.c:144:6:assignMorse	48	static
+../Core/Src/morse.c:270:6:delayMiliSec	24	static
+../Core/Src/morse.c:285:9:getLedState	16	static
+../Core/Src/morse.c:294:6:setLedState	24	static
+../Core/Src/morse.c:302:9:getLevelCompleteFlag	4	static
+../Core/Src/morse.c:306:6:setLevelCompleteFlag	4	static
+../Core/Src/morse.c:310:6:levelCompleteProcedure	8	static

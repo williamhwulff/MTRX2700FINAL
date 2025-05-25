@@ -36,10 +36,9 @@ void SerialInitialise(uint32_t baudRate, SerialPort *serial_port, void (*complet
 void SerialOutputChar(uint8_t data, SerialPort *serial_port);
  
 
-// SerialOutputString - output a # TERMINATED string to the serial port
-// Input: pointer to a #-TERMINATED string (if not # terminated, there will be problems)
-void SerialOutputString(uint8_t *pt, SerialPort *serial_port, uint8_t terminator);
-
+// SerialOutputString - output a NULL-TERMINATED string to the serial port
+// Input: pointer to a NULL-TERMINATED string (if not NULL terminated, there will be problems)
+void SerialOutputTest(uint8_t* string, SerialPort *serial_port);
 
 // 
 uint8_t SerialInputChar(SerialPort* serial_port);

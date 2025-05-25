@@ -103,10 +103,19 @@ void SerialOutputChar(uint8_t data, SerialPort *serial_port) {
 	}
 
 	serial_port->UART->TDR = data;
+}
+
+void SerialOutputTest(uint8_t* string, SerialPort *serial_port) {
+
+	uint8_t counter = 0;
+	while(*string != '\0') {
+		SerialOutputChar(*string, serial_port);
+		counter++;
+		string++;
+	}
 
 	serial_port->completion_function();
 }
-
 
 uint8_t SerialInputChar(SerialPort* serial_port) {
 
