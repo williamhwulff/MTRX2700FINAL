@@ -14,7 +14,8 @@ typedef enum {
     STRING_PACKET = 0,
     STREAK_DATA   = 1,
     BEEP_EVENT    = 2,
-    BUTTON_PRESS  = 3
+    BUTTON_PRESS  = 3,
+    MORSE_MESSAGE = 4
 } MessageType;
 
 // --- 2) Define the payloads you’ll send ---
@@ -35,12 +36,17 @@ typedef struct {
     uint32_t timestamp;   // HAL_GetTick() value
 } ButtonPressData;
 
+typedef struct {
+    uint8_t *morseString;
+} MorseMessageData;
+
 // --- 3) A union of all possible payloads ---
 typedef union {
     StringPacket  string_packet;  // for STRING_PACKET
     StreakData    streak_data;    // for STREAK_DATA
     BeepData     beep_data;
     ButtonPressData   button_press_data;
+    MorseMessageData  morse_message_data;
 } Data;
 
 // --- 4) Packet header (always 6 bytes) ---
