@@ -1,0 +1,5 @@
+../Core/Src/memory.c:4:7:arrAlloc	1
+../Core/Src/memory.c:13:8:matrixAlloc	2
+../Core/Src/memory.c:26:7:arrRealloc	1
+../Core/Src/memory.c:35:8:matrixRealloc	2
+../Core/Src/memory.c:48:6:freeMatrix	3
