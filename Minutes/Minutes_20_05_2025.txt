@@ -1,0 +1,63 @@
+==============================
+        MEETING MINUTES
+==============================
+
+Meeting Title   : Meeting 5
+Date            : 20/05/2025
+Time            : 14:00
+Location        : MTRX Lab
+Facilitator     : All
+Minute Taker    : William Wulff
+Attendees       : Audrey Soo, William Wulff, Willem Rumi, Kelian Landry
+Absentees       : Jiaming Hu, Aviral Kunsh Rana
+
+------------------------------
+1. AGENDA ITEMS
+------------------------------
+
+#1. Topic       : Demonstration of code
+    Presenter   : All attendees
+    Summary     : Presented code completed thus far 
+
+#2. Topic       : Planning integration of modules
+    Presenter   : All attendees
+    Summary     : Planning how modules will fit together
+
+#3. Topic       : Testing 3D printed components
+    Presenter   : All attendees
+    Summary     : Testing if actuators perform as required (support the weight/ fit in place)
+
+------------------------------
+2. DECISIONS MADE
+------------------------------
+- All members to continue coding
+- Current modules consist of:
+      - Minefield using PTU, controlled by board gyros
+      - Sound synchronisation game interfacing with PC using serialisation
+      - Morse code module interfacing with PC
+      - Colour matching module
+
+------------------------------
+3. ACTION ITEMS
+------------------------------
+Task                            | Responsible       | Deadline
+---------------------------------------------------------------
+ Continue minefield logic       | Audrey            | 22/05/2025
+ Continue PTU interfacing       | Willem, Jiaming   | 22/05/2025
+ Continue with sound-sensing    | Kelian            | 22/05/2025
+ Continue morse interrupts      | William           | 22/05/2025
+ Continue on colour match logic | Kunsh             | 22/05/2025
+ Building extra components      | Kelian, Audrey    | 22/05/2025
+
+------------------------------
+4. NOTES / OTHER BUSINESS
+------------------------------
+- None
+
+------------------------------
+5. NEXT MEETING
+------------------------------
+Date            : 22/05/2025
+Time            : 20:00
+Location        : Kelian's House
+Prelim Agenda   : Integration implementation
