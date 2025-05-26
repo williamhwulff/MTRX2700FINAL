@@ -144,10 +144,10 @@ This adventure is powered by:
 ### Final Stage: Blackbeard's Treasure 💰
 > *"The treasure be within reach, but Blackbeard's final trap awaits!"*
 
-**The Reward**: Upon successfully landing the marble in the correct hole, a pressure sensor detects the marble's presence and triggers the final servo mechanism. The legendary treasure chest opens to reveal **Blackbeard's Eternal Life Potion**!
+**The Reward**: Upon successfully landing the marble in the correct hole, a limit switch detects the marble's presence and triggers the final servo mechanism. The legendary treasure chest opens to reveal **Blackbeard's Eternal Life Potion**!
 
 **Technical Implementation**:
-- **Pressure Sensor**: Detects marble arrival in winning hole
+- **Limit Switch**: Detects marble arrival in winning hole
 - **Final Servo**: Chest-opening mechanism activation
 - **Treasure Reveal**: Physical treasure chest with the coveted potion
 - **Victory Celebration**: LED and audio feedback for successful completion
@@ -166,8 +166,8 @@ To set up this legendary treasure hunt experience:
 - **1x Pan-Tilt Unit (PTU)** with dual servo motors
 - **1x Gyroscope Module** (IMU with 3-axis sensing)
 - **4x Servo Motors** (trap door and chest mechanisms)
-- **1x Pressure Sensor** (marble detection)
-- **4x LEDs** (red x3, green x1 for minefield)
+- **4x PLimit Switches** (marble detection)
+- **4x RGB LEDs** (Gold, Red, and green colours used)
 - **1x Speaker** (Pirates theme song playback)
 - **1x Push Button** (rhythm challenge input)
 - **Connecting Wires** (GPIO inter-board communication)
@@ -194,7 +194,7 @@ To set up this legendary treasure hunt experience:
    • Wire GPIO pins for inter-board communication (Boards 1→2→3)
    • Set up Pan-Tilt Unit with gyroscope (Board 4 - independent)
    • Install servo mechanisms for trap doors and treasure chest
-   • Position LEDs and pressure sensor in minefield area
+   • Position LEDs and limit switches in minefield area
    ```
 
 3. **Load the ship's manifest** (flash firmware)
@@ -275,7 +275,7 @@ To set up this legendary treasure hunt experience:
 |-------|----------|----------------|---------------|
 | **STM32 #1** | Pirates Jingle Challenge | Button, Speaker, Audio Processing, Servo | → GPIO to Board #2 |
 | **STM32 #2** | Morse Code Riddle | Serial Interface, Decryption Engine, Servo | ← GPIO from Board #1, → GPIO to Board #3 |
-| **STM32 #3** | Minefield Control & Treasure | LEDs, Pressure Sensor, Treasure Servo | ← GPIO from Board #2 |
+| **STM32 #3** | Minefield Control & Treasure | LEDs, Limit Switches, Treasure Servo | ← GPIO from Board #2 |
 | **STM32 #4** | Pan-Tilt Controller | Gyroscope, Dual Servos, Motion Processing | Independent System |
 
 ### ⚙️ Servo Mechanisms
@@ -287,7 +287,7 @@ To set up this legendary treasure hunt experience:
 ### 🔧 Sensor Array
 - **Push Button**: Rhythm input detection (debounced, interrupt-driven)
 - **Gyroscope (3-axis)**: Motion sensing for marble control
-- **Pressure Sensor**: Marble arrival detection in winning hole
+- **Limit Switch**: Marble arrival detection in winning hole
 - **Audio Input**: Microphone for potential future enhancements
 
 ### 💡 Visual Feedback System
