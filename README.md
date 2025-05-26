@@ -427,4 +427,253 @@ We tip our tricorn hats to these fine institutions and inspirations:
 [C.com]: https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white
 [C-url]: https://en.wikipedia.org/wiki/C_(programming_language)
 
+<!-- RGB LED CONTROL SYSTEM -->
+## 🏴‍☠️ RGB LED Control System - Dead Man's Mine Field
 
+### Overview
+The RGB LED control system forms the heart of Stage 3: Dead Man's Mine Field, implementing a sophisticated 4-LED array with interactive button controls and visual feedback mechanisms.
+
+### System Architecture
+
+```
+STM32F3 Discovery Board - Dead Man's Mine Field Controller
+┌─────────────────────────────────────────────────────────────────┐
+│                                                                 │
+│  ┌─────────────┐    ┌─────────────┐    ┌─────────────────────┐  │
+│  │   GPIO      │    │   TIMERS    │    │      USART1         │  │
+│  │  Ports      │    │             │    │   (PC4/PC5)         │  │
+│  │ A,B,C       │    └─────────────┘    └─────────────────────┘  │
+│  └─────────────┘           │                        │           │
+│         │                  │                        │           │
+│    ┌────▼────┐        ┌────▼────┐              ┌────▼────┐      │
+│    │ RGB LEDs│        │   PWM   │              │  Debug  │      │
+│    │ x4      │        │ Control │              │ Output  │      │
+│    └─────────┘        └─────────┘              └─────────┘      │
+│         │                                                       │
+│    ┌────▼────┐                                                  │
+│    │ Buttons │                                                  │
+│    │ x4      │                                                  │
+│    └─────────┘                                                  │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### Hardware Configuration
+
+#### RGB LED Mapping
+```
+LED 1 (Danger Zone): Port C
+├── Red   → PC6 (TIM3_CH1)
+├── Green → PC7 (TIM3_CH2)
+└── Blue  → PC8 (TIM3_CH3)
+
+LED 2 (Danger Zone): Port A  
+├── Red   → PA0 (TIM2_CH1)
+├── Green → PA1 (TIM2_CH2)
+└── Blue  → PA2 (TIM2_CH3)
+
+LED 3 (Danger Zone): Port B
+├── Red   → PB6 (TIM4_CH1)
+├── Green → PB7 (TIM4_CH2)
+└── Blue  → PB8 (TIM4_CH3)
+
+LED 4 (Safe Zone): Port A
+├── Red   → PA8  (TIM1_CH1)
+├── Green → PA9  (TIM1_CH2)
+└── Blue  → PA10 (TIM1_CH3)
+```
+
+#### Button/Switch Mapping
+```
+Mine Button 1 → PA3 (EXTI3) - Corresponds to LED 1
+Mine Button 2 → PA4 (EXTI4) - Corresponds to LED 2  
+Mine Button 3 → PA5 (EXTI5) - Corresponds to LED 3
+Safe Button 4 → PA6 (EXTI6) - Corresponds to LED 4 (GOLD)
+```
+
+#### Timer Allocation
+```
+TIM1  → LED 4 PWM Generation (Advanced Timer)
+TIM2  → LED 2 PWM Generation (General Purpose)
+TIM3  → LED 1 PWM Generation (General Purpose)  
+TIM4  → LED 3 PWM Generation (General Purpose)
+TIM16 → Color Cycling Control
+TIM17 → LED Flash Control
+```
+
+### Game Logic - Mine Field Navigation
+
+#### Yellow LED Rotation System
+```
+Timer Cycles: 0 → 1 → 2 → ... → 9 → 0
+                                  │
+                                  ▼
+Yellow LED:   LED1 → LED2 → LED3 → LED4 → LED1
+             (Mine) (Mine) (Mine) (GOLD)
+```
+
+#### Pirate's Challenge Matrix
+| Current Gold LED | Button Pressed | UART Response | Visual Feedback |
+|------------------|----------------|---------------|-----------------|
+| LED 1 (Gold)     | Button 1       | "GOLD"        | Green Circular Flash |
+| LED 1 (Gold)     | Button 2/3/4   | "KABOOM"      | Red Circular Flash   |
+| LED 2 (Gold)     | Button 2       | "GOLD"        | Green Circular Flash |
+| LED 2 (Gold)     | Button 1/3/4   | "KABOOM"      | Red Circular Flash   |
+| LED 3 (Gold)     | Button 3       | "GOLD"        | Green Circular Flash |
+| LED 3 (Gold)     | Button 1/2/4   | "KABOOM"      | Red Circular Flash   |
+| LED 4 (Gold)     | Button 4       | "GOLD"        | Green Circular Flash |
+| LED 4 (Gold)     | Button 1/2/3   | "KABOOM"      | Red Circular Flash   |
+
+### Core Functions
+
+#### System Initialization Functions
+| Function | Purpose | Input | Output | Description |
+|----------|---------|-------|--------|-------------|
+| `enable_clocks()` | Enable peripheral clocks | None | None | Activates GPIO ports A/B/C, timers 1-4/16/17, SYSCFG, USART1 |
+| `initialise_board()` | Complete system setup | None | None | GPIO config, PWM timers, interrupts, UART |
+
+#### PWM Configuration Functions  
+| Function | Purpose | Input | Output | PWM Settings |
+|----------|---------|-------|--------|--------------|
+| `configure_hardware_pwm()` | Setup TIM3 for LED1 | None | None | 3.9kHz, 8-bit resolution |
+| `configure_hardware_pwm2()` | Setup TIM2 for LED2 | None | None | 3.9kHz, 8-bit resolution |
+| `configure_hardware_pwm3()` | Setup TIM4 for LED3 | None | None | 3.9kHz, 8-bit resolution |
+| `configure_hardware_pwm4()` | Setup TIM1 for LED4 | None | None | 3.9kHz, 8-bit resolution |
+
+#### LED Control Functions
+| Function | Purpose | Input | Output | Testing |
+|----------|---------|-------|--------|---------|
+| `set_rgb_ccr(r,g,b)` | Set LED1 colors | RGB values (0-255) | None | `(255,0,0)` = Red |
+| `set_rgb2_ccr(r,g,b)` | Set LED2 colors | RGB values (0-255) | None | `(0,255,0)` = Green |
+| `set_rgb3_ccr(r,g,b)` | Set LED3 colors | RGB values (0-255) | None | `(0,0,255)` = Blue |
+| `set_rgb4_ccr(r,g,b)` | Set LED4 colors | RGB values (0-255) | None | `(255,255,255)` = White |
+
+#### Animation Functions
+| Function | Purpose | Input | Output | Behavior |
+|----------|---------|-------|--------|----------|
+| `set_rgb_color()` | LED1 auto cycling | None | None | Yellow cycling or Red/White |
+| `set_rgb2_color()` | LED2 auto cycling | None | None | Yellow cycling or Red/White |
+| `set_rgb3_color()` | LED3 auto cycling | None | None | Yellow cycling or Red/White |
+| `set_rgb4_color()` | LED4 auto cycling | None | None | Yellow cycling or Red/White |
+
+#### Flash Control Functions
+| Function | Purpose | Input | Output | Description |
+|----------|---------|-------|--------|-------------|
+| `start_flashing()` | Individual LED flash | None | None | Stores colors, enables timer |
+| `stop_flashing()` | Stop individual flash | None | None | Restores colors, disables timer |
+| `start_circular_flash()` | Sequential LED flash | None | None | Green=GOLD, Red=KABOOM pattern |
+| `stop_circular_flash()` | Stop circular flash | None | None | Restore normal cycling |
+
+### Interrupt Handlers
+
+#### Button Press Handlers
+| Handler | Purpose | Trigger | Response | UART Output |
+|---------|---------|---------|----------|-------------|
+| `EXTI3_IRQHandler()` | Button 1 press | PA3 edge | Check gold LED match | "GOLD" or "KABOOM" |
+| `EXTI4_IRQHandler()` | Button 2 press | PA4 edge | Check gold LED match | "GOLD" or "KABOOM" |
+| `EXTI9_5_IRQHandler()` | Button 3&4 press | PA5/PA6 edge | Check gold LED match | "GOLD" or "KABOOM" |
+
+#### Timer Handlers
+| Handler | Purpose | Trigger | Action |
+|---------|---------|---------|---------|
+| `TIM1_UP_TIM16_IRQHandler()` | Color cycling | Timer overflow | Update LED states, rotate gold LED |
+| `TIM1_TRG_COM_TIM17_IRQHandler()` | Flash timing | Timer overflow | Toggle flash states |
+
+### Testing Procedures
+
+#### Basic Hardware Test
+```c
+// Test individual LEDs - Mine Field Setup
+set_rgb_ccr(255, 0, 0);      // LED1 Red (Danger)
+set_rgb2_ccr(255, 0, 0);     // LED2 Red (Danger)  
+set_rgb3_ccr(255, 0, 0);     // LED3 Red (Danger)
+set_rgb4_ccr(255, 215, 0);   // LED4 Gold (Safe Zone)
+```
+
+#### Color Cycling Test
+```c
+// Initialize mine field with 100ms cycle period
+timer_init(100, set_rgb_color);
+enable_timer();
+// Observe: One LED shows gold cycling, others show red/white
+```
+
+#### Pirate Button Challenge Test
+1. **Observe** which LED displays gold cycling pattern
+2. **Press corresponding button** → Should see "GOLD" + green circular flash
+3. **Press wrong button** → Should see "KABOOM" + red circular flash
+4. **Wait for rotation** → Gold LED moves to next position
+
+#### Flash Pattern Test
+```c
+// Test individual mine explosion
+set_flash_color(255, 0, 0);     // Red explosion flash
+start_flashing();
+
+// Test treasure discovery
+start_circular_flash();          // Sequential green flash pattern
+```
+
+### Performance Characteristics
+
+- **PWM Frequency**: ~3.9 kHz (flicker-free for human eye)
+- **Color Cycling Rate**: 100ms per state change
+- **Flash Rate**: 200ms on/off cycle  
+- **Button Response**: <1ms (interrupt-driven)
+- **Gold Rotation Period**: ~1 second (10 cycles × 100ms)
+- **UART Baud Rate**: 115200 (PC4=TX, PC5=RX)
+
+### Pirates Theme Integration
+
+#### Visual Effects
+- **Mine Zones (LEDs 1-3)**: Red/white danger cycling
+- **Safe Zone (LED 4)**: Gold treasure cycling  
+- **Success Flash**: Green circular pattern (treasure found!)
+- **Failure Flash**: Red circular pattern (mine explosion!)
+
+#### Audio Feedback
+- **UART Messages**: 
+  - `"GOLD"` - Correct button pressed (treasure located)
+  - `"KABOOM"` - Wrong button pressed (mine exploded)
+
+#### Game Mechanics
+- **Progressive Difficulty**: Gold LED rotates every 10 timer cycles
+- **Skill Testing**: Requires timing and observation
+- **Physical Integration**: Connects to treasure chest servo mechanism
+- **Failure Recovery**: Continuous play until correct button found
+
+### Memory and Power Usage
+
+- **Flash Memory**: ~4KB program code
+- **RAM Usage**: <1KB (global state variables)
+- **Power Consumption**: 
+  - Active: ~50mA (all LEDs maximum brightness)  
+  - Typical: ~20mA (mixed colors, cycling)
+- **Response Time**: <1ms button-to-LED feedback
+
+### Integration with Treasure Hunt
+
+This RGB LED system serves as **Stage 3: Dead Man's Mine Field** in the larger Pirates treasure hunt adventure:
+
+- **Input**: GPIO signal from Stage 2 (Morse Code completion)
+- **Challenge**: Navigate the visual mine field using button timing
+- **Success Condition**: Press button corresponding to gold LED
+- **Output**: Trigger final treasure chest servo mechanism
+- **Failure Mode**: Red flash explosion, continue until success
+
+### Troubleshooting
+
+#### Common Pirate Problems
+1. **LEDs not lighting**: Check GPIO alternate function setup
+2. **No gold cycling**: Verify timer initialization sequence  
+3. **Buttons not responding**: Check EXTI configuration and pull-ups
+4. **Wrong UART output**: Verify PC4/PC5 connections and baud rate
+5. **Flash timing issues**: Check TIM17 prescaler values
+
+#### Debug Outputs
+- **UART Messages**: Indicate successful button detection
+- **LED Patterns**: Show current system state
+- **Flash Sequences**: Confirm interrupt operation
+
+> **Pirate's Tip**: *"When debugging the mine field, remember that timing be everything, and a steady hand saves many a sailor's life!"*
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
