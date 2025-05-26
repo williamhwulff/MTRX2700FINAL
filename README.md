@@ -550,10 +550,10 @@ Yellow LED:   LED1 → LED2 → LED3 → LED4 → LED1
 #### Animation Functions
 | Function | Purpose | Input | Output | Behavior |
 |----------|---------|-------|--------|----------|
-| `set_rgb_color()` | LED1 auto cycling | None | None | Yellow cycling or Red/White |
-| `set_rgb2_color()` | LED2 auto cycling | None | None | Yellow cycling or Red/White |
-| `set_rgb3_color()` | LED3 auto cycling | None | None | Yellow cycling or Red/White |
-| `set_rgb4_color()` | LED4 auto cycling | None | None | Yellow cycling or Red/White |
+| `set_rgb_color()` | LED1 auto cycling | None | None | Yellow cycling or Dim Red/Bright Red |
+| `set_rgb2_color()` | LED2 auto cycling | None | None | Yellow cycling or Dim Red/Bright Red |
+| `set_rgb3_color()` | LED3 auto cycling | None | None | Yellow cycling or Dim Red/Bright Red |
+| `set_rgb4_color()` | LED4 auto cycling | None | None | Yellow cycling or Dim Red/Bright Red |
 
 #### Flash Control Functions
 | Function | Purpose | Input | Output | Description |
