@@ -427,6 +427,79 @@ We tip our tricorn hats to these fine institutions and inspirations:
 [C.com]: https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white
 [C-url]: https://en.wikipedia.org/wiki/C_(programming_language)
 
+## Pirates Jingle
+
+### 🔧 Technical Implementation
+
+| Feature | Details |
+|--------|---------|
+| **Microcontroller** | STM32F3 Discovery (Board #1) |
+| **Button Input** | GPIO pin with EXTI interrupt |
+| **Audio Detection** | External audio triggers interrupt via GPIO |
+| **Timing Logic** | Beep and button timestamps evaluated using `HAL_GetTick()` |
+| **Feedback System** | 8 LEDs indicate current streak progress |
+| **Success Condition** | 5 accurate taps in a row |
+| **Servo Control** | Triggered via TIM2 PWM on successful rhythm completion |
+| **Communication** | UART packet stream to host (beep, press, and streak data) |
+
+### 📈 Game Logic
+
+- **Sound (Beep)**: Detected via falling edge interrupt on `PA2`
+- **Button Press**: Detected via rising edge interrupt on `PA0`
+- **Streak Handling**: 
+  - Press within ±500 ms of beep = increment streak
+  - Else = streak resets to 0
+- **Goal Score**: `5` consecutive accurate presses
+- **LED Feedback**:
+  - Up to 8 LEDs illuminate as streak increases
+- **Victory Condition**: 
+  - Upon reaching 5, servo opens trap door (Board #1 GPIO output triggers mechanism)
+
+### 📤 UART Packet Structure
+
+| Message Type | Description |
+|--------------|-------------|
+| `BEEP_EVENT` | Sent when beep is detected |
+| `BUTTON_PRESS` | Sent when button is pressed |
+| `STREAK_DATA` | Sent whenever streak is updated |
+
+All messages follow a framed structure with sentinel bytes, headers, and payloads, handled via `serialise.c`.
+
+### 🧪 Testing Instructions
+
+1. **Simulate Audio Beep** (trigger PA2 via external pulse)
+2. **Press Button** (on PA0) near the beep time
+3. **Observe LEDs**:
+   - LEDs light up with each successful streak increment
+   - All off if streak resets
+4. **Watch Servo**:
+   - After 5 correct presses, servo moves to unlock marble trap
+5. **Monitor UART Output**:
+   - Serial terminal at 115200 baud shows `BEEP`, `PRESS`, and `STREAK` messages
+
+### 🗂️ File Structure
+
+### ⚡ Performance Metrics
+
+| Metric | Value |
+|--------|-------|
+| **Beep/Button Response Time** | < 1 ms (interrupt-driven) |
+| **Timing Window** | ±500 ms around beep |
+| **LED Refresh Rate** | Immediate on streak change |
+| **Servo Response Time** | ~50 ms |
+| **UART Baud Rate** | 115200 |
+
+### 🧭 Integration with Treasure Hunt
+
+| Signal | Direction | Purpose |
+|--------|-----------|---------|
+| GPIO HIGH | Output to Board #2 | Indicates rhythm challenge complete |
+| UART Output | Host PC | Streams gameplay data for debugging and feedback |
+
+> *"Ye have the rhythm of the sea in yer veins. Onward to the next trial, matey!"*
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 <!-- RGB LED CONTROL SYSTEM -->
 ## 🏴‍☠️ RGB LED Control System - Dead Man's Mine Field
 
