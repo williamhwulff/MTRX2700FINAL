@@ -56,6 +56,9 @@ def main():
                 morse_complete = payload[-1]
                 print(f"{morse_str}")
 
+                if morse_complete == 1:
+                    ser.write(b'\x01')
+
 
 if __name__ == '__main__':
     main()
