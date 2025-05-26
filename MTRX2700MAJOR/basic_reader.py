@@ -4,12 +4,14 @@ import serial
 import struct
 
 # Configuration
-PORT        = '/dev/cu.usbmodem11303'  # ← your port
+PORT1       = '/dev/cu.usbmodem11303'  # ← your port
+PORT2       = 'COM3'
 BAUD        = 115200
 SENTINEL    = b'\xAA\x55'
 STREAK_TYPE = 1
 BEEP_TYPE   = 2
 BUTTON_PRESS = 3
+MORSE_MESSAGE = 4
 
 def read_packet(ser):
     """Read one framed packet or return None."""
@@ -28,7 +30,7 @@ def read_packet(ser):
 
 def main():
     print("Listening for packets…")
-    with serial.Serial(PORT, BAUD, timeout=1) as ser:
+    with serial.Serial(PORT2, BAUD, timeout=1) as ser:
         while True:
             pkt = read_packet(ser)
             if not pkt:
@@ -46,6 +48,14 @@ def main():
             elif msg_type == BUTTON_PRESS and len(payload) == 4:
                 timestamp, = struct.unpack('<I', payload)
                 print(f"[BUTTON] Timestamp = {timestamp} ms")
+            
+            elif msg_type == MORSE_MESSAGE and len(payload) >= 2:
+                # Assume the last byte is the morseComplete flag, rest is morse string
+                morse_str_bytes = payload[:-1]
+                morse_str = morse_str_bytes.decode('ascii', errors='ignore')  # or 'utf-8' if needed
+                morse_complete = payload[-1]
+                print(f"{morse_str}")
+
 
 if __name__ == '__main__':
     main()
