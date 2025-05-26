@@ -36,37 +36,37 @@ $(wildcard ../makefile.init) \
 $(wildcard ../makefile.targets) \
 
 
-BUILD_ARTIFACT_NAME := embedded sensors
+BUILD_ARTIFACT_NAME := embedded-sensors
 BUILD_ARTIFACT_EXTENSION := elf
 BUILD_ARTIFACT_PREFIX :=
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
-embedded\ sensors.elf \
+embedded-sensors.elf \
 
 MAP_FILES += \
-embedded\ sensors.map \
+embedded-sensors.map \
 
 SIZE_OUTPUT += \
 default.size.stdout \
 
 OBJDUMP_LIST += \
-embedded\ sensors.list \
+embedded-sensors.list \
 
 
 # All Target
 all: main-build
 
 # Main-build Target
-main-build: embedded\ sensors.elf secondary-outputs
+main-build: embedded-sensors.elf secondary-outputs
 
 dependents:
-	-cd C:/Users/willw/MTRX2700-2025/STMF3disco-BSP/Debug && $(MAKE) clean all
+	-cd /Users/willrumi/STM32CubeIDE/final/F3-components/Debug && $(MAKE) all
 
 # Tool invocations
-embedded\ sensors.elf embedded\ sensors.map: $(OBJS) $(USER_OBJS) C:/Users/willw/MTRX2700-2025/STMF3disco-BSP/Debug/libF3-components.a C:\Users\willw\STM32CubeIDE\workspace_1.17.0\embedded\ sensors\STM32F303VCTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "embedded sensors.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\willw\STM32CubeIDE\workspace_1.17.0\embedded sensors\STM32F303VCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="embedded sensors.map" -Wl,--gc-sections -static -L"C:\Users\willw\MTRX2700-2025\STMF3disco-BSP\Debug" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+embedded-sensors.elf embedded-sensors.map: $(OBJS) $(USER_OBJS) /Users/willrumi/STM32CubeIDE/final/F3-components/Debug/libF3-components.a /Users/willrumi/Desktop/MTRX2700FINAL/Code/gyroAccel/STM32F303VCTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "embedded-sensors.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"/Users/willrumi/Desktop/MTRX2700FINAL/Code/gyroAccel/STM32F303VCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="embedded-sensors.map" -Wl,--gc-sections -static -L"/Users/willrumi/STM32CubeIDE/final/F3-components/Debug" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -75,14 +75,14 @@ default.size.stdout: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-embedded\ sensors.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "embedded sensors.list"
+embedded-sensors.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "embedded-sensors.list"
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) default.size.stdout embedded\ sensors.elf embedded\ sensors.list embedded\ sensors.map embedded\\ sensors.elf
+	-$(RM) default.size.stdout embedded-sensors.elf embedded-sensors.list embedded-sensors.map
 	-@echo ' '
 
 secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST)
@@ -95,6 +95,6 @@ warn-no-linker-script-specified:
 	@echo 'Warning: No linker script specified. Check the linker settings in the build configuration.'
 
 .PHONY: all clean dependents main-build fail-specified-linker-script-missing warn-no-linker-script-specified
-C:/Users/willw/MTRX2700-2025/STMF3disco-BSP/Debug/libF3-components.a:
+/Users/willrumi/STM32CubeIDE/final/F3-components/Debug/libF3-components.a:
 
 -include ../makefile.targets

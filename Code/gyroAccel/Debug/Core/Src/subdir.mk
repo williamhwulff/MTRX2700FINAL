@@ -37,7 +37,7 @@ C_DEPS += \
 
 # Each subdirectory must supply rules for building sources it contributes
 Core/Src/%.o Core/Src/%.su Core/Src/%.cyclo: ../Core/Src/%.c Core/Src/subdir.mk
-	arm-none-eabi-gcc "$<" -mcpu=cortex-m4 -std=gnu11 -g3 -c -I"C:/Users/willw/MTRX2700-2025/STMF3disco-BSP" -I"C:/Users/willw/MTRX2700-2025/STMF3disco-BSP/Inc" -I"C:/Users/willw/MTRX2700-2025/STMF3disco-BSP/Src" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "$@"
+	arm-none-eabi-gcc "$<" -mcpu=cortex-m4 -std=gnu11 -g3 -D__UINT32_TYPE__ -D__INT32_TYPE__ -c -I"/Users/willrumi/STM32CubeIDE/final/F3-components" -I"/Users/willrumi/STM32CubeIDE/final/F3-components/Inc" -I"/Users/willrumi/STM32CubeIDE/final/F3-components/Src" -I"/Users/willrumi/Desktop/MTRX2700FINAL/Code/gyroAccel/Core/Inc" -I"/Users/willrumi/Desktop/MTRX2700FINAL/Code/gyroAccel/Drivers/STM32F3xx_HAL_Driver/Inc/Legacy" -I"/Users/willrumi/Desktop/MTRX2700FINAL/Code/gyroAccel/Drivers/CMSIS/Device/ST/STM32F3xx/Include" -I"/Users/willrumi/Desktop/MTRX2700FINAL/Code/gyroAccel/Drivers/CMSIS/Include" -I"/Users/willrumi/Desktop/MTRX2700FINAL/Code/gyroAccel/Drivers/STM32F3xx_HAL_Driver/Inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "$@"
 
 clean: clean-Core-2f-Src
 

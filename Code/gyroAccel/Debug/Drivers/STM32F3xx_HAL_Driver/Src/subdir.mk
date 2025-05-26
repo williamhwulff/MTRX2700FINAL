@@ -73,7 +73,7 @@ C_DEPS += \
 
 # Each subdirectory must supply rules for building sources it contributes
 Drivers/STM32F3xx_HAL_Driver/Src/%.o Drivers/STM32F3xx_HAL_Driver/Src/%.su Drivers/STM32F3xx_HAL_Driver/Src/%.cyclo: ../Drivers/STM32F3xx_HAL_Driver/Src/%.c Drivers/STM32F3xx_HAL_Driver/Src/subdir.mk
-	arm-none-eabi-gcc "$<" -mcpu=cortex-m4 -std=gnu11 -g3 -c -I"C:/Users/willw/MTRX2700-2025/STMF3disco-BSP" -I"C:/Users/willw/MTRX2700-2025/STMF3disco-BSP/Inc" -I"C:/Users/willw/MTRX2700-2025/STMF3disco-BSP/Src" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "$@"
+	arm-none-eabi-gcc "$<" -mcpu=cortex-m4 -std=gnu11 -g3 -D__UINT32_TYPE__ -D__INT32_TYPE__ -c -I"/Users/willrumi/STM32CubeIDE/final/F3-components" -I"/Users/willrumi/STM32CubeIDE/final/F3-components/Inc" -I"/Users/willrumi/STM32CubeIDE/final/F3-components/Src" -I/Users/willrumi/STM32Cube/Repository/STM32Cube_FW_F3_V1.11.5/Drivers/BSP/STM32F3-Discovery -I/Users/willrumi/Desktop/2025_subs/tron_two/MTRX2700-2025/W10-embedded-sensors/Drivers/STM32F3xx_HAL_Driver/Inc -I"/Users/willrumi/Desktop/MTRX2700FINAL/Code/gyroAccel/Core/Inc" -I/Users/willrumi/STM32Cube/Repository/STM32Cube_FW_F3_V1.11.5/Drivers/CMSIS/Device/ST/STM32F3xx/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "$@"
 
 clean: clean-Drivers-2f-STM32F3xx_HAL_Driver-2f-Src
 

@@ -191,6 +191,7 @@
 /* #define USE_FULL_ASSERT    1U */
 
 /* Includes ------------------------------------------------------------------*/
+#include "stdint.h"
 /**
   * @brief Include module's header file
   */
