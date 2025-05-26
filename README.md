@@ -583,10 +583,10 @@ Yellow LED:   LED1 → LED2 → LED3 → LED4 → LED1
 #### Basic Hardware Test
 ```c
 // Test individual LEDs - Mine Field Setup
-set_rgb_ccr(255, 0, 0);      // LED1 Red (Danger)
-set_rgb2_ccr(255, 0, 0);     // LED2 Red (Danger)  
-set_rgb3_ccr(255, 0, 0);     // LED3 Red (Danger)
-set_rgb4_ccr(255, 215, 0);   // LED4 Gold (Safe Zone)
+set_rgb_ccr(255, 0, 0);      // LED1 Red 
+set_rgb2_ccr(255, 0, 0);     // LED2 Red 
+set_rgb3_ccr(255, 0, 0);     // LED3 Red 
+set_rgb4_ccr(255, 215, 0);   // LED4 Gold 
 ```
 
 #### Color Cycling Test
@@ -625,7 +625,7 @@ start_circular_flash();          // Sequential green flash pattern
 ### Pirates Theme Integration
 
 #### Visual Effects
-- **Mine Zones (LEDs 1-3)**: Red/white danger cycling
+- **Mine Zones (LEDs 1-3)**: Dim Red/Bright Red danger cycling - to represent detonating bomb
 - **Safe Zone (LED 4)**: Gold treasure cycling  
 - **Success Flash**: Green circular pattern (treasure found!)
 - **Failure Flash**: Red circular pattern (mine explosion!)
