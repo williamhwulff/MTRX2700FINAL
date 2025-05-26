@@ -461,22 +461,22 @@ STM32F3 Discovery Board - Dead Man's Mine Field Controller
 
 #### RGB LED Mapping
 ```
-LED 1 (Danger Zone): Port C
+LED 1: Port C
 ├── Red   → PC6 (TIM3_CH1)
 ├── Green → PC7 (TIM3_CH2)
 └── Blue  → PC8 (TIM3_CH3)
 
-LED 2 (Danger Zone): Port A  
+LED 2: Port A  
 ├── Red   → PA0 (TIM2_CH1)
 ├── Green → PA1 (TIM2_CH2)
 └── Blue  → PA2 (TIM2_CH3)
 
-LED 3 (Danger Zone): Port B
+LED 3: Port B
 ├── Red   → PB6 (TIM4_CH1)
 ├── Green → PB7 (TIM4_CH2)
 └── Blue  → PB8 (TIM4_CH3)
 
-LED 4 (Safe Zone): Port A
+LED 4: Port A
 ├── Red   → PA8  (TIM1_CH1)
 ├── Green → PA9  (TIM1_CH2)
 └── Blue  → PA10 (TIM1_CH3)
@@ -487,7 +487,7 @@ LED 4 (Safe Zone): Port A
 Mine Button 1 → PA3 (EXTI3) - Corresponds to LED 1
 Mine Button 2 → PA4 (EXTI4) - Corresponds to LED 2  
 Mine Button 3 → PA5 (EXTI5) - Corresponds to LED 3
-Safe Button 4 → PA6 (EXTI6) - Corresponds to LED 4 (GOLD)
+Safe Button 4 → PA6 (EXTI6) - Corresponds to LED 4 
 ```
 
 #### Timer Allocation
@@ -496,8 +496,8 @@ TIM1  → LED 4 PWM Generation (Advanced Timer)
 TIM2  → LED 2 PWM Generation (General Purpose)
 TIM3  → LED 1 PWM Generation (General Purpose)  
 TIM4  → LED 3 PWM Generation (General Purpose)
-TIM16 → Color Cycling Control
-TIM17 → LED Flash Control
+TIM16 → Color Cycling Control (General Purpose)
+TIM17 → LED Flash Control (General Purpose)
 ```
 
 ### Game Logic - Mine Field Navigation
