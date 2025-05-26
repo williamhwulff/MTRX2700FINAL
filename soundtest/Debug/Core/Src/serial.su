@@ -1,0 +1,13 @@
+../Drivers/CMSIS/Include/core_cm4.h:1688:22:__NVIC_EnableIRQ	16	static
+../Drivers/CMSIS/Include/core_cm4.h:1816:22:__NVIC_SetPriority	16	static
+../Core/Src/serial.c:32:6:SerialOutputString	24	static
+../Core/Src/serial.c:55:6:SerialOutputBuffer	24	static
+../Core/Src/serial.c:83:13:isRxQueueFull	4	static
+../Core/Src/serial.c:90:13:isRxQueueEmpty	4	static
+../Core/Src/serial.c:97:6:Serial_IsQueueEmpty	8	static
+../Core/Src/serial.c:107:13:EnqueueRxMessage	24	static
+../Core/Src/serial.c:128:6:Serial_DequeueMessage	16	static
+../Core/Src/serial.c:144:6:Serial_GetNextMessage	24	static
+../Core/Src/serial.c:168:6:SerialInitialise	32	static
+../Core/Src/serial.c:211:6:Serial_WaitUntilTXComplete	4	static
+../Core/Src/serial.c:215:6:USART1_IRQHandler	24	static

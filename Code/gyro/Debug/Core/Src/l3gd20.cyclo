@@ -1,0 +1,5 @@
+../Core/Src/l3gd20.c:9:6:L3GD20_Write	1
+../Core/Src/l3gd20.c:16:9:L3GD20_Read	1
+../Core/Src/l3gd20.c:26:6:L3GD20_Init	1
+../Core/Src/l3gd20.c:31:9:L3GD20_ReadAxis	1
+../Core/Src/l3gd20.c:37:6:L3GD20_ReadXYZ	1

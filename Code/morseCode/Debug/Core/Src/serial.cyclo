@@ -1,0 +1,6 @@
+../Core/Inc/core_cm4.h:1688:22:__NVIC_EnableIRQ	2
+../Core/Inc/core_cm4.h:1816:22:__NVIC_SetPriority	2
+../Core/Src/serial.c:39:6:SerialInitialise	6
+../Core/Src/serial.c:100:6:SerialOutputChar	2
+../Core/Src/serial.c:108:6:SerialOutputTest	2
+../Core/Src/serial.c:120:9:SerialInputChar	3

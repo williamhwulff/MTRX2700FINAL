@@ -1,0 +1,64 @@
+==============================
+        MEETING MINUTES
+==============================
+
+Meeting Title   : Meeting 7
+Date            : 24/05/2025
+Time            : 20:00
+Location        : Kelian's House
+Facilitator     : All
+Minute Taker    : William Wulff
+Attendees       : Audrey Soo, Willem Rumi, Kelian Landry, William Wulff
+Absentees       : Jiaming Hu, Aviral Kunsh Rana
+
+------------------------------
+1. AGENDA ITEMS
+------------------------------
+
+#1. Topic       : Demonstration of code
+    Presenter   : All attendees
+    Summary     : Presented code completed thus far 
+
+#2. Topic       : Implementation of integration of modules
+    Presenter   : All attendees
+    Summary     : Working on fitting modules together
+
+#3. Topic       : Further testing 3D printed components
+    Presenter   : All attendees
+    Summary     : Testing if actuators perform as required (support the weight/ fit in place)
+
+------------------------------
+2. DECISIONS MADE
+------------------------------
+- All members to continue coding
+- Current modules consist of:
+      - Minefield using PTU, controlled by board gyros
+      - Sound synchronisation game interfacing with PC using serialisation
+      - Morse code module interfacing with PC using serialisation
+      - Colour matching module
+
+------------------------------
+3. ACTION ITEMS
+------------------------------
+Task                            | Responsible       | Deadline
+---------------------------------------------------------------
+ Continue minefield logic       | Audrey            | 26/05/2025
+ Continue PTU interfacing       | Willem, Jiaming   | 26/05/2025
+ Continue with sound-sensing    | Kelian            | 26/05/2025
+ Continue morse interrupts      | William           | 26/05/2025
+ Continue on colour match logic | Kunsh             | 26/05/2025
+ Building extra components      | Kelian, Audrey    | 26/05/2025
+ Integration of modules         | All               | 26/05/2025
+
+------------------------------
+4. NOTES / OTHER BUSINESS
+------------------------------
+- None
+
+------------------------------
+5. NEXT MEETING
+------------------------------
+Date            : 26/05/2025
+Time            : 10:30
+Location        : Kelian's House
+Prelim Agenda   : Integration implementation

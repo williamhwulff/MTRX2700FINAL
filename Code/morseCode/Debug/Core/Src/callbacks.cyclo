@@ -1,0 +1,3 @@
+../Core/Src/callbacks.c:7:6:finishedTransmissionCallback	1
+../Core/Src/callbacks.c:15:9:EXTI0Callback	6
+../Core/Src/callbacks.c:65:9:TIM3Callback	1

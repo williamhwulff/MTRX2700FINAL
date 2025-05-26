@@ -1,0 +1,62 @@
+==============================
+        MEETING MINUTES
+==============================
+
+Meeting Title   : Meeting 3
+Date            : 06/05/2025
+Time            : 14:00
+Location        : MTRX Lab
+Facilitator     : All
+Minute Taker    : William Wulff
+Attendees       : Audrey Soo, William Wulff, Aviral Kunsh Rana, Kelian Landry
+Absentees       : Willem Rumi, Jiaming Hu
+
+------------------------------
+1. AGENDA ITEMS
+------------------------------
+
+#1. Topic       : First demonstration of code
+    Presenter   : Audrey, William, Kelian
+    Summary     : Presented code completed thus far 
+
+#2. Topic       : Introduction to new member
+    Presenter   : Audrey, William, Kelian
+    Summary     : Described project and modules and formulated new module idea
+
+#3. Topic       : Refinement of maze idea
+    Presenter   : Audrey
+    Summary     : Potential use of a "minefield" in place of a maze, definite use of board gyros to control
+
+------------------------------
+2. DECISIONS MADE
+------------------------------
+- All members to begin/ continue coding
+- Current modules consist of:
+      - Maze/ minefield using PTU, controlled by board gyros
+      - Matching signal from sound sensor and pressure sensor in interactive synchronisation game
+      - Morse code module using LEDs as indicators
+      - Colour matching module
+
+------------------------------
+3. ACTION ITEMS
+------------------------------
+Task                            | Responsible       | Deadline
+---------------------------------------------------------------
+ Continue minefield logic       | Audrey            | 13/05/2025
+ Continue PTU interfacing       | Willem, Jiaming   | 13/05/2025
+ Continue with sound-sensing    | Kelian            | 13/05/2025
+ Continue morse interrupts      | William           | 13/05/2025
+ Begin on colour match logic    | Kunsh             | 13/05/2025
+
+------------------------------
+4. NOTES / OTHER BUSINESS
+------------------------------
+- None
+
+------------------------------
+5. NEXT MEETING
+------------------------------
+Date            : 13/05/2025
+Time            : 15:00
+Location        : MTRX Lab
+Prelim Agenda   : Code check-in

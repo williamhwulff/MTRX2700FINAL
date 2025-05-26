@@ -1,0 +1,55 @@
+==============================
+        MEETING MINUTES
+==============================
+
+Meeting Title   : Meeting 1
+Date            : 15/04/2025
+Time            : 16:00
+Location        : MTRX Lab
+Facilitator     : All
+Minute Taker    : William Wulff
+Attendees       : Audrey Soo, Jiaming Hu, Kelian Landry, Willem Rumi, William Wulff
+Absentees       : None
+
+------------------------------
+1. AGENDA ITEMS
+------------------------------
+
+#1. Topic       : Group formation
+    Presenter   : All
+    Summary     : Group was formed, materials received
+
+#2. Topic       : Initial planning
+    Presenter   : All
+    Summary     : Plans to use the PTU as a maze, using a joystick to control it - other modules to be determined
+
+#3. Topic       : Setup communication
+    Presenter   : Jiaming Hu
+    Summary     : Advocated for a WeChat group chat for communication
+
+------------------------------
+2. DECISIONS MADE
+------------------------------
+- All members to plan their modules over the holidays
+- Members should start some preliminary coding + familiarise themselves with HAL
+
+------------------------------
+3. ACTION ITEMS
+------------------------------
+Task                            | Responsible       | Deadline
+---------------------------------------------------------------
+ Start planning modules         | All               | 29/04/2025
+ Familiarise yourself with HAL  | All               | 29/04/2025
+
+------------------------------
+4. NOTES / OTHER BUSINESS
+------------------------------
+- None
+
+------------------------------
+5. NEXT MEETING
+------------------------------
+Date            : 29/04/2025
+Time            : 15:00
+Location        : MTRX Lab
+Prelim Agenda   : Finalise Planning

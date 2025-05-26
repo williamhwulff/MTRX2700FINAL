@@ -1,0 +1,56 @@
+==============================
+        MEETING MINUTES
+==============================
+
+Meeting Title   : Meeting 2
+Date            : 29/04/2025
+Time            : 15:00
+Location        : MTRX Lab
+Facilitator     : All
+Minute Taker    : William Wulff
+Attendees       : Audrey Soo, Jiaming Hu, Kelian Landry, Willem Rumi, William Wulff
+Absentees       : None
+
+------------------------------
+1. AGENDA ITEMS
+------------------------------
+
+#1. Topic       : Idea proposal and refinement
+    Presenter   : All
+    Summary     : Each member proposed their ideas from the break
+
+#2. Topic       : Tutor/ lecturer feedback
+    Presenter   : All
+    Summary     : Discussed ideas with Khit, Michael and Stephany - refined each (increased complexity)
+
+------------------------------
+2. DECISIONS MADE
+------------------------------
+- All members to begin/ continue coding, ensure HAL is working
+- Current modules consist of:
+      - Maze using PTU, controlled by joystick or by board gyros
+      - Matching signal from sound sensor and pressure sensor in interactive synchronisation game
+      - Morse code module potentially using LIDAR in some way
+
+------------------------------
+3. ACTION ITEMS
+------------------------------
+Task                            | Responsible       | Deadline
+---------------------------------------------------------------
+ Start maze module logic        | Audrey            | 06/05/2025
+ Start PTU interfacing for maze | Willem, Jiaming   | 06/05/2025
+ Continue with sound-sensing    | Kelian            | 06/05/2025
+ Establish morse code logic     | William           | 06/05/2025
+
+------------------------------
+4. NOTES / OTHER BUSINESS
+------------------------------
+- None
+
+------------------------------
+5. NEXT MEETING
+------------------------------
+Date            : 06/05/2025
+Time            : 14:00
+Location        : MTRX Lab
+Prelim Agenda   : Code check-in

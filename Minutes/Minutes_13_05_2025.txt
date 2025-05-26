@@ -1,0 +1,58 @@
+==============================
+        MEETING MINUTES
+==============================
+
+Meeting Title   : Meeting 4
+Date            : 13/05/2025
+Time            : 14:00 (moved forward from 15:00)
+Location        : MTRX Lab
+Facilitator     : All
+Minute Taker    : William Wulff
+Attendees       : Audrey Soo, William Wulff, Aviral Kunsh Rana, Jiaming Hu
+Absentees       : Kelian Landry, Willem Rumi
+
+------------------------------
+1. AGENDA ITEMS
+------------------------------
+
+#1. Topic       : Demonstration of code
+    Presenter   : All attendees
+    Summary     : Presented code completed thus far 
+
+#2. Topic       : Planning any extra hardware required
+    Presenter   : Audrey
+    Summary     : Reminded members to think about extra hardware
+
+------------------------------
+2. DECISIONS MADE
+------------------------------
+- All members to continue coding
+- Current modules consist of:
+      - Minefield using PTU, controlled by board gyros
+      - Sound synchronisation game interfacing with PC using serialisation
+      - Morse code module interfacing with PC
+      - Colour matching module
+
+------------------------------
+3. ACTION ITEMS
+------------------------------
+Task                            | Responsible       | Deadline
+---------------------------------------------------------------
+ Continue minefield logic       | Audrey            | 20/05/2025
+ Continue PTU interfacing       | Willem, Jiaming   | 20/05/2025
+ Continue with sound-sensing    | Kelian            | 20/05/2025
+ Continue morse interrupts      | William           | 20/05/2025
+ Continue on colour match logic | Kunsh             | 20/05/2025
+
+------------------------------
+4. NOTES / OTHER BUSINESS
+------------------------------
+- None
+
+------------------------------
+5. NEXT MEETING
+------------------------------
+Date            : 20/05/2025
+Time            : 14:00
+Location        : MTRX Lab
+Prelim Agenda   : Integration planning
