@@ -1,23 +1,16 @@
 # ⚓ Pirates of the Caribbean: Blackbeard's Treasure Hunt
 
 <div align="center">
-  <img src="MTRX2700MAJOR/logo.png" alt="Pirates Treasure Hunt" width="600">
+  <img src="images/logo.png" alt="Pirates Treasure Hunt" width="600">
 
   <h3 align="center">🏴‍☠️ Interactive Mechatronic Treasure Hunt Adventure</h3>
 
   <p align="center">
     <em>"Not all treasure is silver and gold, mate"</em>
     <br />
-    Embark on a thrilling 8-minute quest to claim Blackbeard's Eternal Life Potion
-    <br />
-    <a href="https://github.com/williamhwulff/MTRX2700FINAL"><strong>Explore the adventure »</strong></a>
-    <br />
+    Embark on a thrilling to claim Blackbeard's Eternal Life Potion
     <br />
     <a href="https://github.com/williamhwulff/MTRX2700FINAL">View Demo</a>
-    ·
-    <a href="https://github.com/williamhwulff/MTRX2700FINAL/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/williamhwulff/MTRX2700FINAL/issues">Request Feature</a>
   </p>
 </div>
 
@@ -378,35 +371,6 @@ src/
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- CONTRIBUTING -->
-## Contributing
-
-Ahoy! Want to join our crew and improve this treasure hunt? We welcome all contributions!
-
-### 🏴‍☠️ How to Contribute
-
-1. **Fork the treasure map** (Fork the Project)
-2. **Chart your course** (`git checkout -b feature/AmazingPirateFeature`)
-3. **Record your discoveries** (`git commit -m 'Add some AmazingPirateFeature'`)
-4. **Signal the fleet** (`git push origin feature/AmazingPirateFeature`)
-5. **Join the crew** (Open a Pull Request)
-
-### 🎯 Development Guidelines
-- Follow embedded C coding standards (no landlubber code!)
-- Test on actual hardware before submitting
-- Document all new features with pirate-themed comments
-- Ensure inter-board communication compatibility
-- Update wiring diagrams for hardware changes
-
-### 💡 Ideas for Future Enhancements
-- Additional treasure hunt themes
-- Multiplayer competitive modes  
-- Mobile app integration
-- Voice recognition challenges
-- Advanced motion tracking
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 <!-- CONTACT -->
 ## Contact
 
@@ -421,8 +385,6 @@ Ahoy! Want to join our crew and improve this treasure hunt? We welcome all contr
 - **Institution**: University of Sydney  
 - **Captain of Studies**: Dr. Stephany Berrio
 
-**🗺️ Treasure Map**: [https://github.com/williamhwulff/MTRX2700FINAL](https://github.com/williamhwulff/MTRX2700FINAL)
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- ACKNOWLEDGMENTS -->
@@ -432,11 +394,11 @@ We tip our tricorn hats to these fine institutions and inspirations:
 
 ### 🎓 Academic Support
 * **University of Sydney Engineering Faculty** - Providing the ship and supplies
-* **Sydney Robotics Hub** - Technical expertise and equipment
-* **Dr. Stephany Berrio & Stewart Worrall** - Our navigational guides
+* **Khit and Micahel** - Technical expertise, equipment and our navigational guides
+* **Dr. Stephany Berrio & Stewart Worrall** - For being Tron Masters
 
 ### ⚡ Technical Resources
-* **STMicroelectronics** - For the legendary STM32 microcontrollers
+* **STMicroelectronics** - For the STM32 microcontrollers
 * **Pirates of the Caribbean Soundtrack** - Hans Zimmer's epic compositions
 * **Morse Code Historical Society** - Cryptographic inspiration
 * **Open Source Embedded Community** - Sensor drivers and examples
