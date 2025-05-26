@@ -1,9 +1,7 @@
 # ⚓ Pirates of the Caribbean: Blackbeard's Treasure Hunt
 
 <div align="center">
-  <a href="https://github.com/williamhwulff/MTRX2700FINAL">
-    <img src="images/pirate_logo.png" alt="Pirate Logo" width="80" height="80">
-  </a>
+  <img src="MTRX2700MAJOR/your_image.png" alt="Pirates Treasure Hunt" width="600">
 
   <h3 align="center">🏴‍☠️ Interactive Mechatronic Treasure Hunt Adventure</h3>
 
@@ -88,7 +86,7 @@ Deep in the Caribbean, the infamous Blackbeard hid his most precious treasure - 
 
 ### Built With
 
-This swashbuckling adventure is powered by:
+This adventure is powered by:
 
 * [![STM32][STM32.com]][STM32-url]
 * [![C][C.com]][C-url]
