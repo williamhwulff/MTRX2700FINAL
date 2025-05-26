@@ -1,0 +1,4133 @@
+
+finalproject.elf:     file format elf32-littlearm
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .isr_vector   00000194  08000000  08000000  00001000  2**0
+                  CONTENTS, ALLOC, LOAD, READONLY, DATA
+  1 .text         00001a1c  08000194  08000194  00001194  2**2
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .rodata       00000010  08001bb0  08001bb0  00002bb0  2**2
+                  CONTENTS, ALLOC, LOAD, READONLY, DATA
+  3 .ARM.extab    00000000  08001bc0  08001bc0  00003018  2**0
+                  CONTENTS, READONLY
+  4 .ARM          00000000  08001bc0  08001bc0  00003018  2**0
+                  CONTENTS, READONLY
+  5 .preinit_array 00000000  08001bc0  08001bc0  00003018  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  6 .init_array   00000004  08001bc0  08001bc0  00002bc0  2**2
+                  CONTENTS, ALLOC, LOAD, READONLY, DATA
+  7 .fini_array   00000004  08001bc4  08001bc4  00002bc4  2**2
+                  CONTENTS, ALLOC, LOAD, READONLY, DATA
+  8 .data         00000018  20000000  08001bc8  00003000  2**2
+                  CONTENTS, ALLOC, LOAD, DATA
+  9 .ccmram       00000000  10000000  10000000  00003018  2**0
+                  CONTENTS
+ 10 .bss          00000054  20000018  20000018  00003018  2**2
+                  ALLOC
+ 11 ._user_heap_stack 00000604  2000006c  2000006c  00003018  2**0
+                  ALLOC
+ 12 .ARM.attributes 00000030  00000000  00000000  00003018  2**0
+                  CONTENTS, READONLY
+ 13 .debug_info   0000167c  00000000  00000000  00003048  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 14 .debug_abbrev 0000033d  00000000  00000000  000046c4  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 15 .debug_aranges 00000200  00000000  00000000  00004a08  2**3
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 16 .debug_rnglists 000001ad  00000000  00000000  00004c08  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 17 .debug_macro  00015de7  00000000  00000000  00004db5  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 18 .debug_line   00001ca7  00000000  00000000  0001ab9c  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 19 .debug_str    00076fc5  00000000  00000000  0001c843  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 20 .comment      00000043  00000000  00000000  00093808  2**0
+                  CONTENTS, READONLY
+ 21 .debug_frame  00000710  00000000  00000000  0009384c  2**2
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 22 .debug_line_str 00000068  00000000  00000000  00093f5c  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+
+Disassembly of section .text:
+
+08000194 <__do_global_dtors_aux>:
+ 8000194:	b510      	push	{r4, lr}
+ 8000196:	4c05      	ldr	r4, [pc, #20]	@ (80001ac <__do_global_dtors_aux+0x18>)
+ 8000198:	7823      	ldrb	r3, [r4, #0]
+ 800019a:	b933      	cbnz	r3, 80001aa <__do_global_dtors_aux+0x16>
+ 800019c:	4b04      	ldr	r3, [pc, #16]	@ (80001b0 <__do_global_dtors_aux+0x1c>)
+ 800019e:	b113      	cbz	r3, 80001a6 <__do_global_dtors_aux+0x12>
+ 80001a0:	4804      	ldr	r0, [pc, #16]	@ (80001b4 <__do_global_dtors_aux+0x20>)
+ 80001a2:	f3af 8000 	nop.w
+ 80001a6:	2301      	movs	r3, #1
+ 80001a8:	7023      	strb	r3, [r4, #0]
+ 80001aa:	bd10      	pop	{r4, pc}
+ 80001ac:	20000018 	.word	0x20000018
+ 80001b0:	00000000 	.word	0x00000000
+ 80001b4:	08001b98 	.word	0x08001b98
+
+080001b8 <frame_dummy>:
+ 80001b8:	b508      	push	{r3, lr}
+ 80001ba:	4b03      	ldr	r3, [pc, #12]	@ (80001c8 <frame_dummy+0x10>)
+ 80001bc:	b11b      	cbz	r3, 80001c6 <frame_dummy+0xe>
+ 80001be:	4903      	ldr	r1, [pc, #12]	@ (80001cc <frame_dummy+0x14>)
+ 80001c0:	4803      	ldr	r0, [pc, #12]	@ (80001d0 <frame_dummy+0x18>)
+ 80001c2:	f3af 8000 	nop.w
+ 80001c6:	bd08      	pop	{r3, pc}
+ 80001c8:	00000000 	.word	0x00000000
+ 80001cc:	2000001c 	.word	0x2000001c
+ 80001d0:	08001b98 	.word	0x08001b98
+
+080001d4 <__NVIC_EnableIRQ>:
+  \details Enables a device specific interrupt in the NVIC interrupt controller.
+  \param [in]      IRQn  Device specific interrupt number.
+  \note    IRQn must not be negative.
+ */
+__STATIC_INLINE void __NVIC_EnableIRQ(IRQn_Type IRQn)
+{
+ 80001d4:	b480      	push	{r7}
+ 80001d6:	b083      	sub	sp, #12
+ 80001d8:	af00      	add	r7, sp, #0
+ 80001da:	4603      	mov	r3, r0
+ 80001dc:	71fb      	strb	r3, [r7, #7]
+  if ((int32_t)(IRQn) >= 0)
+ 80001de:	f997 3007 	ldrsb.w	r3, [r7, #7]
+ 80001e2:	2b00      	cmp	r3, #0
+ 80001e4:	db0b      	blt.n	80001fe <__NVIC_EnableIRQ+0x2a>
+  {
+    NVIC->ISER[(((uint32_t)IRQn) >> 5UL)] = (uint32_t)(1UL << (((uint32_t)IRQn) & 0x1FUL));
+ 80001e6:	79fb      	ldrb	r3, [r7, #7]
+ 80001e8:	f003 021f 	and.w	r2, r3, #31
+ 80001ec:	4907      	ldr	r1, [pc, #28]	@ (800020c <__NVIC_EnableIRQ+0x38>)
+ 80001ee:	f997 3007 	ldrsb.w	r3, [r7, #7]
+ 80001f2:	095b      	lsrs	r3, r3, #5
+ 80001f4:	2001      	movs	r0, #1
+ 80001f6:	fa00 f202 	lsl.w	r2, r0, r2
+ 80001fa:	f841 2023 	str.w	r2, [r1, r3, lsl #2]
+  }
+}
+ 80001fe:	bf00      	nop
+ 8000200:	370c      	adds	r7, #12
+ 8000202:	46bd      	mov	sp, r7
+ 8000204:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 8000208:	4770      	bx	lr
+ 800020a:	bf00      	nop
+ 800020c:	e000e100 	.word	0xe000e100
+
+08000210 <__NVIC_DisableIRQ>:
+  \details Disables a device specific interrupt in the NVIC interrupt controller.
+  \param [in]      IRQn  Device specific interrupt number.
+  \note    IRQn must not be negative.
+ */
+__STATIC_INLINE void __NVIC_DisableIRQ(IRQn_Type IRQn)
+{
+ 8000210:	b480      	push	{r7}
+ 8000212:	b083      	sub	sp, #12
+ 8000214:	af00      	add	r7, sp, #0
+ 8000216:	4603      	mov	r3, r0
+ 8000218:	71fb      	strb	r3, [r7, #7]
+  if ((int32_t)(IRQn) >= 0)
+ 800021a:	f997 3007 	ldrsb.w	r3, [r7, #7]
+ 800021e:	2b00      	cmp	r3, #0
+ 8000220:	db12      	blt.n	8000248 <__NVIC_DisableIRQ+0x38>
+  {
+    NVIC->ICER[(((uint32_t)IRQn) >> 5UL)] = (uint32_t)(1UL << (((uint32_t)IRQn) & 0x1FUL));
+ 8000222:	79fb      	ldrb	r3, [r7, #7]
+ 8000224:	f003 021f 	and.w	r2, r3, #31
+ 8000228:	490a      	ldr	r1, [pc, #40]	@ (8000254 <__NVIC_DisableIRQ+0x44>)
+ 800022a:	f997 3007 	ldrsb.w	r3, [r7, #7]
+ 800022e:	095b      	lsrs	r3, r3, #5
+ 8000230:	2001      	movs	r0, #1
+ 8000232:	fa00 f202 	lsl.w	r2, r0, r2
+ 8000236:	3320      	adds	r3, #32
+ 8000238:	f841 2023 	str.w	r2, [r1, r3, lsl #2]
+  \details Acts as a special kind of Data Memory Barrier.
+           It completes when all explicit memory accesses before this instruction complete.
+ */
+__STATIC_FORCEINLINE void __DSB(void)
+{
+  __ASM volatile ("dsb 0xF":::"memory");
+ 800023c:	f3bf 8f4f 	dsb	sy
+}
+ 8000240:	bf00      	nop
+  __ASM volatile ("isb 0xF":::"memory");
+ 8000242:	f3bf 8f6f 	isb	sy
+}
+ 8000246:	bf00      	nop
+    __DSB();
+    __ISB();
+  }
+}
+ 8000248:	bf00      	nop
+ 800024a:	370c      	adds	r7, #12
+ 800024c:	46bd      	mov	sp, r7
+ 800024e:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 8000252:	4770      	bx	lr
+ 8000254:	e000e100 	.word	0xe000e100
+
+08000258 <__NVIC_ClearPendingIRQ>:
+  \details Clears the pending bit of a device specific interrupt in the NVIC pending register.
+  \param [in]      IRQn  Device specific interrupt number.
+  \note    IRQn must not be negative.
+ */
+__STATIC_INLINE void __NVIC_ClearPendingIRQ(IRQn_Type IRQn)
+{
+ 8000258:	b480      	push	{r7}
+ 800025a:	b083      	sub	sp, #12
+ 800025c:	af00      	add	r7, sp, #0
+ 800025e:	4603      	mov	r3, r0
+ 8000260:	71fb      	strb	r3, [r7, #7]
+  if ((int32_t)(IRQn) >= 0)
+ 8000262:	f997 3007 	ldrsb.w	r3, [r7, #7]
+ 8000266:	2b00      	cmp	r3, #0
+ 8000268:	db0c      	blt.n	8000284 <__NVIC_ClearPendingIRQ+0x2c>
+  {
+    NVIC->ICPR[(((uint32_t)IRQn) >> 5UL)] = (uint32_t)(1UL << (((uint32_t)IRQn) & 0x1FUL));
+ 800026a:	79fb      	ldrb	r3, [r7, #7]
+ 800026c:	f003 021f 	and.w	r2, r3, #31
+ 8000270:	4907      	ldr	r1, [pc, #28]	@ (8000290 <__NVIC_ClearPendingIRQ+0x38>)
+ 8000272:	f997 3007 	ldrsb.w	r3, [r7, #7]
+ 8000276:	095b      	lsrs	r3, r3, #5
+ 8000278:	2001      	movs	r0, #1
+ 800027a:	fa00 f202 	lsl.w	r2, r0, r2
+ 800027e:	3360      	adds	r3, #96	@ 0x60
+ 8000280:	f841 2023 	str.w	r2, [r1, r3, lsl #2]
+  }
+}
+ 8000284:	bf00      	nop
+ 8000286:	370c      	adds	r7, #12
+ 8000288:	46bd      	mov	sp, r7
+ 800028a:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 800028e:	4770      	bx	lr
+ 8000290:	e000e100 	.word	0xe000e100
+
+08000294 <__NVIC_SetPriority>:
+  \param [in]      IRQn  Interrupt number.
+  \param [in]  priority  Priority to set.
+  \note    The priority cannot be set for every processor exception.
+ */
+__STATIC_INLINE void __NVIC_SetPriority(IRQn_Type IRQn, uint32_t priority)
+{
+ 8000294:	b480      	push	{r7}
+ 8000296:	b083      	sub	sp, #12
+ 8000298:	af00      	add	r7, sp, #0
+ 800029a:	4603      	mov	r3, r0
+ 800029c:	6039      	str	r1, [r7, #0]
+ 800029e:	71fb      	strb	r3, [r7, #7]
+  if ((int32_t)(IRQn) >= 0)
+ 80002a0:	f997 3007 	ldrsb.w	r3, [r7, #7]
+ 80002a4:	2b00      	cmp	r3, #0
+ 80002a6:	db0a      	blt.n	80002be <__NVIC_SetPriority+0x2a>
+  {
+    NVIC->IP[((uint32_t)IRQn)]               = (uint8_t)((priority << (8U - __NVIC_PRIO_BITS)) & (uint32_t)0xFFUL);
+ 80002a8:	683b      	ldr	r3, [r7, #0]
+ 80002aa:	b2da      	uxtb	r2, r3
+ 80002ac:	490c      	ldr	r1, [pc, #48]	@ (80002e0 <__NVIC_SetPriority+0x4c>)
+ 80002ae:	f997 3007 	ldrsb.w	r3, [r7, #7]
+ 80002b2:	0112      	lsls	r2, r2, #4
+ 80002b4:	b2d2      	uxtb	r2, r2
+ 80002b6:	440b      	add	r3, r1
+ 80002b8:	f883 2300 	strb.w	r2, [r3, #768]	@ 0x300
+  }
+  else
+  {
+    SCB->SHP[(((uint32_t)IRQn) & 0xFUL)-4UL] = (uint8_t)((priority << (8U - __NVIC_PRIO_BITS)) & (uint32_t)0xFFUL);
+  }
+}
+ 80002bc:	e00a      	b.n	80002d4 <__NVIC_SetPriority+0x40>
+    SCB->SHP[(((uint32_t)IRQn) & 0xFUL)-4UL] = (uint8_t)((priority << (8U - __NVIC_PRIO_BITS)) & (uint32_t)0xFFUL);
+ 80002be:	683b      	ldr	r3, [r7, #0]
+ 80002c0:	b2da      	uxtb	r2, r3
+ 80002c2:	4908      	ldr	r1, [pc, #32]	@ (80002e4 <__NVIC_SetPriority+0x50>)
+ 80002c4:	79fb      	ldrb	r3, [r7, #7]
+ 80002c6:	f003 030f 	and.w	r3, r3, #15
+ 80002ca:	3b04      	subs	r3, #4
+ 80002cc:	0112      	lsls	r2, r2, #4
+ 80002ce:	b2d2      	uxtb	r2, r2
+ 80002d0:	440b      	add	r3, r1
+ 80002d2:	761a      	strb	r2, [r3, #24]
+}
+ 80002d4:	bf00      	nop
+ 80002d6:	370c      	adds	r7, #12
+ 80002d8:	46bd      	mov	sp, r7
+ 80002da:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 80002de:	4770      	bx	lr
+ 80002e0:	e000e100 	.word	0xe000e100
+ 80002e4:	e000ed00 	.word	0xe000ed00
+
+080002e8 <enable_clocks>:
+void start_circular_flash(void);
+void stop_circular_flash(void);
+void circular_flash_callback(void);
+
+// Enable the clocks for desired peripherals
+void enable_clocks() {
+ 80002e8:	b480      	push	{r7}
+ 80002ea:	af00      	add	r7, sp, #0
+    // Enable the clock for GPIO port C (for RGB LED 1)
+    RCC->AHBENR |= RCC_AHBENR_GPIOCEN;
+ 80002ec:	4b23      	ldr	r3, [pc, #140]	@ (800037c <enable_clocks+0x94>)
+ 80002ee:	695b      	ldr	r3, [r3, #20]
+ 80002f0:	4a22      	ldr	r2, [pc, #136]	@ (800037c <enable_clocks+0x94>)
+ 80002f2:	f443 2300 	orr.w	r3, r3, #524288	@ 0x80000
+ 80002f6:	6153      	str	r3, [r2, #20]
+
+    // Enable the clock for GPIO port A (for RGB LED 2 and limit switches)
+    RCC->AHBENR |= RCC_AHBENR_GPIOAEN;
+ 80002f8:	4b20      	ldr	r3, [pc, #128]	@ (800037c <enable_clocks+0x94>)
+ 80002fa:	695b      	ldr	r3, [r3, #20]
+ 80002fc:	4a1f      	ldr	r2, [pc, #124]	@ (800037c <enable_clocks+0x94>)
+ 80002fe:	f443 3300 	orr.w	r3, r3, #131072	@ 0x20000
+ 8000302:	6153      	str	r3, [r2, #20]
+
+    // Enable the clock for GPIO port B (for RGB LED 3)
+    RCC->AHBENR |= RCC_AHBENR_GPIOBEN;
+ 8000304:	4b1d      	ldr	r3, [pc, #116]	@ (800037c <enable_clocks+0x94>)
+ 8000306:	695b      	ldr	r3, [r3, #20]
+ 8000308:	4a1c      	ldr	r2, [pc, #112]	@ (800037c <enable_clocks+0x94>)
+ 800030a:	f443 2380 	orr.w	r3, r3, #262144	@ 0x40000
+ 800030e:	6153      	str	r3, [r2, #20]
+
+
+    // Enable the peripheral clock for timer 16 (color cycling) - APB2 timer
+    RCC->APB2ENR |= RCC_APB2ENR_TIM16EN;
+ 8000310:	4b1a      	ldr	r3, [pc, #104]	@ (800037c <enable_clocks+0x94>)
+ 8000312:	699b      	ldr	r3, [r3, #24]
+ 8000314:	4a19      	ldr	r2, [pc, #100]	@ (800037c <enable_clocks+0x94>)
+ 8000316:	f443 3300 	orr.w	r3, r3, #131072	@ 0x20000
+ 800031a:	6193      	str	r3, [r2, #24]
+
+    // Enable the peripheral clock for timer 3 (PWM generation for RGB1)
+    RCC->APB1ENR |= RCC_APB1ENR_TIM3EN;
+ 800031c:	4b17      	ldr	r3, [pc, #92]	@ (800037c <enable_clocks+0x94>)
+ 800031e:	69db      	ldr	r3, [r3, #28]
+ 8000320:	4a16      	ldr	r2, [pc, #88]	@ (800037c <enable_clocks+0x94>)
+ 8000322:	f043 0302 	orr.w	r3, r3, #2
+ 8000326:	61d3      	str	r3, [r2, #28]
+
+    // Enable the peripheral clock for timer 2 (PWM generation for RGB2)
+    RCC->APB1ENR |= RCC_APB1ENR_TIM2EN;
+ 8000328:	4b14      	ldr	r3, [pc, #80]	@ (800037c <enable_clocks+0x94>)
+ 800032a:	69db      	ldr	r3, [r3, #28]
+ 800032c:	4a13      	ldr	r2, [pc, #76]	@ (800037c <enable_clocks+0x94>)
+ 800032e:	f043 0301 	orr.w	r3, r3, #1
+ 8000332:	61d3      	str	r3, [r2, #28]
+
+    // Enable the peripheral clock for timer 4 (PWM generation for RGB3)
+    RCC->APB1ENR |= RCC_APB1ENR_TIM4EN;
+ 8000334:	4b11      	ldr	r3, [pc, #68]	@ (800037c <enable_clocks+0x94>)
+ 8000336:	69db      	ldr	r3, [r3, #28]
+ 8000338:	4a10      	ldr	r2, [pc, #64]	@ (800037c <enable_clocks+0x94>)
+ 800033a:	f043 0304 	orr.w	r3, r3, #4
+ 800033e:	61d3      	str	r3, [r2, #28]
+
+    // Enable the peripheral clock for timer 1 (PWM generation for RGB4) - APB2 timer
+    RCC->APB2ENR |= RCC_APB2ENR_TIM1EN;
+ 8000340:	4b0e      	ldr	r3, [pc, #56]	@ (800037c <enable_clocks+0x94>)
+ 8000342:	699b      	ldr	r3, [r3, #24]
+ 8000344:	4a0d      	ldr	r2, [pc, #52]	@ (800037c <enable_clocks+0x94>)
+ 8000346:	f443 6300 	orr.w	r3, r3, #2048	@ 0x800
+ 800034a:	6193      	str	r3, [r2, #24]
+
+    // Enable the peripheral clock for timer 17 (LED flashing) - APB2 timer
+    RCC->APB2ENR |= RCC_APB2ENR_TIM17EN;
+ 800034c:	4b0b      	ldr	r3, [pc, #44]	@ (800037c <enable_clocks+0x94>)
+ 800034e:	699b      	ldr	r3, [r3, #24]
+ 8000350:	4a0a      	ldr	r2, [pc, #40]	@ (800037c <enable_clocks+0x94>)
+ 8000352:	f443 2380 	orr.w	r3, r3, #262144	@ 0x40000
+ 8000356:	6193      	str	r3, [r2, #24]
+
+    // Enable SYSCFG for EXTI
+    RCC->APB2ENR |= RCC_APB2ENR_SYSCFGEN;
+ 8000358:	4b08      	ldr	r3, [pc, #32]	@ (800037c <enable_clocks+0x94>)
+ 800035a:	699b      	ldr	r3, [r3, #24]
+ 800035c:	4a07      	ldr	r2, [pc, #28]	@ (800037c <enable_clocks+0x94>)
+ 800035e:	f043 0301 	orr.w	r3, r3, #1
+ 8000362:	6193      	str	r3, [r2, #24]
+
+    // Add this line in enable_clocks() function:
+    RCC->APB2ENR |= RCC_APB2ENR_USART1EN;
+ 8000364:	4b05      	ldr	r3, [pc, #20]	@ (800037c <enable_clocks+0x94>)
+ 8000366:	699b      	ldr	r3, [r3, #24]
+ 8000368:	4a04      	ldr	r2, [pc, #16]	@ (800037c <enable_clocks+0x94>)
+ 800036a:	f443 4380 	orr.w	r3, r3, #16384	@ 0x4000
+ 800036e:	6193      	str	r3, [r2, #24]
+}
+ 8000370:	bf00      	nop
+ 8000372:	46bd      	mov	sp, r7
+ 8000374:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 8000378:	4770      	bx	lr
+ 800037a:	bf00      	nop
+ 800037c:	40021000 	.word	0x40021000
+
+08000380 <initialise_board>:
+
+// Initialize the RGB LED pins for timer output and limit switches as input
+void initialise_board() {
+ 8000380:	b580      	push	{r7, lr}
+ 8000382:	af00      	add	r7, sp, #0
+    // Configure GPIO pins for RGB1 timer outputs (AF mode)
+    // Clear the current mode bits
+    RGB_PORT->MODER &= ~(GPIO_MODER_MODER6 | GPIO_MODER_MODER7 | GPIO_MODER_MODER8);
+ 8000384:	4b7c      	ldr	r3, [pc, #496]	@ (8000578 <initialise_board+0x1f8>)
+ 8000386:	681b      	ldr	r3, [r3, #0]
+ 8000388:	4a7b      	ldr	r2, [pc, #492]	@ (8000578 <initialise_board+0x1f8>)
+ 800038a:	f423 337c 	bic.w	r3, r3, #258048	@ 0x3f000
+ 800038e:	6013      	str	r3, [r2, #0]
+
+    // Set to Alternate Function mode (0b10)
+    RGB_PORT->MODER |= (GPIO_MODER_MODER6_1 | GPIO_MODER_MODER7_1 | GPIO_MODER_MODER8_1);
+ 8000390:	4b79      	ldr	r3, [pc, #484]	@ (8000578 <initialise_board+0x1f8>)
+ 8000392:	681b      	ldr	r3, [r3, #0]
+ 8000394:	4a78      	ldr	r2, [pc, #480]	@ (8000578 <initialise_board+0x1f8>)
+ 8000396:	f443 3328 	orr.w	r3, r3, #172032	@ 0x2a000
+ 800039a:	6013      	str	r3, [r2, #0]
+
+    // Set to AF2 (TIM3) for all three pins
+    // First, clear the current AF
+    RGB_PORT->AFR[0] &= ~(GPIO_AFRL_AFRL6 | GPIO_AFRL_AFRL7);
+ 800039c:	4b76      	ldr	r3, [pc, #472]	@ (8000578 <initialise_board+0x1f8>)
+ 800039e:	6a1b      	ldr	r3, [r3, #32]
+ 80003a0:	4a75      	ldr	r2, [pc, #468]	@ (8000578 <initialise_board+0x1f8>)
+ 80003a2:	f023 437f 	bic.w	r3, r3, #4278190080	@ 0xff000000
+ 80003a6:	6213      	str	r3, [r2, #32]
+    RGB_PORT->AFR[1] &= ~(GPIO_AFRH_AFRH0); // For pin 8
+ 80003a8:	4b73      	ldr	r3, [pc, #460]	@ (8000578 <initialise_board+0x1f8>)
+ 80003aa:	6a5b      	ldr	r3, [r3, #36]	@ 0x24
+ 80003ac:	4a72      	ldr	r2, [pc, #456]	@ (8000578 <initialise_board+0x1f8>)
+ 80003ae:	f023 030f 	bic.w	r3, r3, #15
+ 80003b2:	6253      	str	r3, [r2, #36]	@ 0x24
+
+    // Then set AF2 (0010)
+    RGB_PORT->AFR[0] |= (0x2 << (4 * 6)) | (0x2 << (4 * 7)); // For pins 6 and 7
+ 80003b4:	4b70      	ldr	r3, [pc, #448]	@ (8000578 <initialise_board+0x1f8>)
+ 80003b6:	6a1b      	ldr	r3, [r3, #32]
+ 80003b8:	4a6f      	ldr	r2, [pc, #444]	@ (8000578 <initialise_board+0x1f8>)
+ 80003ba:	f043 5308 	orr.w	r3, r3, #570425344	@ 0x22000000
+ 80003be:	6213      	str	r3, [r2, #32]
+    RGB_PORT->AFR[1] |= (0x2 << (4 * 0)); // For pin 8 (as the 0th pin in the high register)
+ 80003c0:	4b6d      	ldr	r3, [pc, #436]	@ (8000578 <initialise_board+0x1f8>)
+ 80003c2:	6a5b      	ldr	r3, [r3, #36]	@ 0x24
+ 80003c4:	4a6c      	ldr	r2, [pc, #432]	@ (8000578 <initialise_board+0x1f8>)
+ 80003c6:	f043 0302 	orr.w	r3, r3, #2
+ 80003ca:	6253      	str	r3, [r2, #36]	@ 0x24
+
+    // Set push-pull output type
+    RGB_PORT->OTYPER &= ~((1 << RGB_RED_PIN) | (1 << RGB_GREEN_PIN) | (1 << RGB_BLUE_PIN));
+ 80003cc:	4b6a      	ldr	r3, [pc, #424]	@ (8000578 <initialise_board+0x1f8>)
+ 80003ce:	685b      	ldr	r3, [r3, #4]
+ 80003d0:	4a69      	ldr	r2, [pc, #420]	@ (8000578 <initialise_board+0x1f8>)
+ 80003d2:	f423 73e0 	bic.w	r3, r3, #448	@ 0x1c0
+ 80003d6:	6053      	str	r3, [r2, #4]
+
+    // Set high speed
+    RGB_PORT->OSPEEDR |= (GPIO_OSPEEDER_OSPEEDR6 | GPIO_OSPEEDER_OSPEEDR7 | GPIO_OSPEEDER_OSPEEDR8);
+ 80003d8:	4b67      	ldr	r3, [pc, #412]	@ (8000578 <initialise_board+0x1f8>)
+ 80003da:	689b      	ldr	r3, [r3, #8]
+ 80003dc:	4a66      	ldr	r2, [pc, #408]	@ (8000578 <initialise_board+0x1f8>)
+ 80003de:	f443 337c 	orr.w	r3, r3, #258048	@ 0x3f000
+ 80003e2:	6093      	str	r3, [r2, #8]
+
+    // No pull-up, pull-down
+    RGB_PORT->PUPDR &= ~(GPIO_PUPDR_PUPDR6 | GPIO_PUPDR_PUPDR7 | GPIO_PUPDR_PUPDR8);
+ 80003e4:	4b64      	ldr	r3, [pc, #400]	@ (8000578 <initialise_board+0x1f8>)
+ 80003e6:	68db      	ldr	r3, [r3, #12]
+ 80003e8:	4a63      	ldr	r2, [pc, #396]	@ (8000578 <initialise_board+0x1f8>)
+ 80003ea:	f423 337c 	bic.w	r3, r3, #258048	@ 0x3f000
+ 80003ee:	60d3      	str	r3, [r2, #12]
+
+    // Configure GPIO pins for RGB2 timer outputs (AF mode)
+    // Clear the current mode bits for PA0, PA1, PA2
+    RGB2_PORT->MODER &= ~(GPIO_MODER_MODER0 | GPIO_MODER_MODER1 | GPIO_MODER_MODER2);
+ 80003f0:	f04f 4390 	mov.w	r3, #1207959552	@ 0x48000000
+ 80003f4:	681b      	ldr	r3, [r3, #0]
+ 80003f6:	f04f 4290 	mov.w	r2, #1207959552	@ 0x48000000
+ 80003fa:	f023 033f 	bic.w	r3, r3, #63	@ 0x3f
+ 80003fe:	6013      	str	r3, [r2, #0]
+
+    // Set to Alternate Function mode (0b10)
+    RGB2_PORT->MODER |= (GPIO_MODER_MODER0_1 | GPIO_MODER_MODER1_1 | GPIO_MODER_MODER2_1);
+ 8000400:	f04f 4390 	mov.w	r3, #1207959552	@ 0x48000000
+ 8000404:	681b      	ldr	r3, [r3, #0]
+ 8000406:	f04f 4290 	mov.w	r2, #1207959552	@ 0x48000000
+ 800040a:	f043 032a 	orr.w	r3, r3, #42	@ 0x2a
+ 800040e:	6013      	str	r3, [r2, #0]
+
+    // Set to AF1 (TIM2) for PA0, PA1, PA2
+    // First, clear the current AF
+    RGB2_PORT->AFR[0] &= ~(GPIO_AFRL_AFRL0 | GPIO_AFRL_AFRL1 | GPIO_AFRL_AFRL2);
+ 8000410:	f04f 4390 	mov.w	r3, #1207959552	@ 0x48000000
+ 8000414:	6a1b      	ldr	r3, [r3, #32]
+ 8000416:	f04f 4290 	mov.w	r2, #1207959552	@ 0x48000000
+ 800041a:	f423 637f 	bic.w	r3, r3, #4080	@ 0xff0
+ 800041e:	f023 030f 	bic.w	r3, r3, #15
+ 8000422:	6213      	str	r3, [r2, #32]
+
+    // Then set AF1 (0001)
+    RGB2_PORT->AFR[0] |= (0x1 << (4 * 0)) | (0x1 << (4 * 1)) | (0x1 << (4 * 2));
+ 8000424:	f04f 4390 	mov.w	r3, #1207959552	@ 0x48000000
+ 8000428:	6a1b      	ldr	r3, [r3, #32]
+ 800042a:	f04f 4290 	mov.w	r2, #1207959552	@ 0x48000000
+ 800042e:	f443 7388 	orr.w	r3, r3, #272	@ 0x110
+ 8000432:	f043 0301 	orr.w	r3, r3, #1
+ 8000436:	6213      	str	r3, [r2, #32]
+
+    // Set push-pull output type
+    RGB2_PORT->OTYPER &= ~((1 << RGB2_RED_PIN) | (1 << RGB2_GREEN_PIN) | (1 << RGB2_BLUE_PIN));
+ 8000438:	f04f 4390 	mov.w	r3, #1207959552	@ 0x48000000
+ 800043c:	685b      	ldr	r3, [r3, #4]
+ 800043e:	f04f 4290 	mov.w	r2, #1207959552	@ 0x48000000
+ 8000442:	f023 0307 	bic.w	r3, r3, #7
+ 8000446:	6053      	str	r3, [r2, #4]
+
+    // Set high speed
+    RGB2_PORT->OSPEEDR |= (GPIO_OSPEEDER_OSPEEDR0 | GPIO_OSPEEDER_OSPEEDR1 | GPIO_OSPEEDER_OSPEEDR2);
+ 8000448:	f04f 4390 	mov.w	r3, #1207959552	@ 0x48000000
+ 800044c:	689b      	ldr	r3, [r3, #8]
+ 800044e:	f04f 4290 	mov.w	r2, #1207959552	@ 0x48000000
+ 8000452:	f043 033f 	orr.w	r3, r3, #63	@ 0x3f
+ 8000456:	6093      	str	r3, [r2, #8]
+
+    // No pull-up, pull-down
+    RGB2_PORT->PUPDR &= ~(GPIO_PUPDR_PUPDR0 | GPIO_PUPDR_PUPDR1 | GPIO_PUPDR_PUPDR2);
+ 8000458:	f04f 4390 	mov.w	r3, #1207959552	@ 0x48000000
+ 800045c:	68db      	ldr	r3, [r3, #12]
+ 800045e:	f04f 4290 	mov.w	r2, #1207959552	@ 0x48000000
+ 8000462:	f023 033f 	bic.w	r3, r3, #63	@ 0x3f
+ 8000466:	60d3      	str	r3, [r2, #12]
+
+    // Configure GPIO pins for RGB3 timer outputs (AF mode)
+        // Clear the current mode bits for PB6, PB7, PB8
+        RGB3_PORT->MODER &= ~(GPIO_MODER_MODER6 | GPIO_MODER_MODER7 | GPIO_MODER_MODER8);
+ 8000468:	4b44      	ldr	r3, [pc, #272]	@ (800057c <initialise_board+0x1fc>)
+ 800046a:	681b      	ldr	r3, [r3, #0]
+ 800046c:	4a43      	ldr	r2, [pc, #268]	@ (800057c <initialise_board+0x1fc>)
+ 800046e:	f423 337c 	bic.w	r3, r3, #258048	@ 0x3f000
+ 8000472:	6013      	str	r3, [r2, #0]
+
+        // Set to Alternate Function mode (0b10)
+        RGB3_PORT->MODER |= (GPIO_MODER_MODER6_1 | GPIO_MODER_MODER7_1 | GPIO_MODER_MODER8_1);
+ 8000474:	4b41      	ldr	r3, [pc, #260]	@ (800057c <initialise_board+0x1fc>)
+ 8000476:	681b      	ldr	r3, [r3, #0]
+ 8000478:	4a40      	ldr	r2, [pc, #256]	@ (800057c <initialise_board+0x1fc>)
+ 800047a:	f443 3328 	orr.w	r3, r3, #172032	@ 0x2a000
+ 800047e:	6013      	str	r3, [r2, #0]
+
+        // Set to AF2 (TIM4) for PB6, PB7, PB8
+        // First, clear the current AF
+        RGB3_PORT->AFR[0] &= ~(GPIO_AFRL_AFRL6 | GPIO_AFRL_AFRL7);
+ 8000480:	4b3e      	ldr	r3, [pc, #248]	@ (800057c <initialise_board+0x1fc>)
+ 8000482:	6a1b      	ldr	r3, [r3, #32]
+ 8000484:	4a3d      	ldr	r2, [pc, #244]	@ (800057c <initialise_board+0x1fc>)
+ 8000486:	f023 437f 	bic.w	r3, r3, #4278190080	@ 0xff000000
+ 800048a:	6213      	str	r3, [r2, #32]
+        RGB3_PORT->AFR[1] &= ~(GPIO_AFRH_AFRH0); // For pin 8
+ 800048c:	4b3b      	ldr	r3, [pc, #236]	@ (800057c <initialise_board+0x1fc>)
+ 800048e:	6a5b      	ldr	r3, [r3, #36]	@ 0x24
+ 8000490:	4a3a      	ldr	r2, [pc, #232]	@ (800057c <initialise_board+0x1fc>)
+ 8000492:	f023 030f 	bic.w	r3, r3, #15
+ 8000496:	6253      	str	r3, [r2, #36]	@ 0x24
+
+        // Then set AF2 (0010)
+        RGB3_PORT->AFR[0] |= (0x2 << (4 * 6)) | (0x2 << (4 * 7)); // For pins 6 and 7
+ 8000498:	4b38      	ldr	r3, [pc, #224]	@ (800057c <initialise_board+0x1fc>)
+ 800049a:	6a1b      	ldr	r3, [r3, #32]
+ 800049c:	4a37      	ldr	r2, [pc, #220]	@ (800057c <initialise_board+0x1fc>)
+ 800049e:	f043 5308 	orr.w	r3, r3, #570425344	@ 0x22000000
+ 80004a2:	6213      	str	r3, [r2, #32]
+        RGB3_PORT->AFR[1] |= (0x2 << (4 * 0)); // For pin 8
+ 80004a4:	4b35      	ldr	r3, [pc, #212]	@ (800057c <initialise_board+0x1fc>)
+ 80004a6:	6a5b      	ldr	r3, [r3, #36]	@ 0x24
+ 80004a8:	4a34      	ldr	r2, [pc, #208]	@ (800057c <initialise_board+0x1fc>)
+ 80004aa:	f043 0302 	orr.w	r3, r3, #2
+ 80004ae:	6253      	str	r3, [r2, #36]	@ 0x24
+
+        // Set push-pull output type
+        RGB3_PORT->OTYPER &= ~((1 << RGB3_RED_PIN) | (1 << RGB3_GREEN_PIN) | (1 << RGB3_BLUE_PIN));
+ 80004b0:	4b32      	ldr	r3, [pc, #200]	@ (800057c <initialise_board+0x1fc>)
+ 80004b2:	685b      	ldr	r3, [r3, #4]
+ 80004b4:	4a31      	ldr	r2, [pc, #196]	@ (800057c <initialise_board+0x1fc>)
+ 80004b6:	f423 73e0 	bic.w	r3, r3, #448	@ 0x1c0
+ 80004ba:	6053      	str	r3, [r2, #4]
+
+        // Set high speed
+        RGB3_PORT->OSPEEDR |= (GPIO_OSPEEDER_OSPEEDR6 | GPIO_OSPEEDER_OSPEEDR7 | GPIO_OSPEEDER_OSPEEDR8);
+ 80004bc:	4b2f      	ldr	r3, [pc, #188]	@ (800057c <initialise_board+0x1fc>)
+ 80004be:	689b      	ldr	r3, [r3, #8]
+ 80004c0:	4a2e      	ldr	r2, [pc, #184]	@ (800057c <initialise_board+0x1fc>)
+ 80004c2:	f443 337c 	orr.w	r3, r3, #258048	@ 0x3f000
+ 80004c6:	6093      	str	r3, [r2, #8]
+
+        // No pull-up, pull-down
+        RGB3_PORT->PUPDR &= ~(GPIO_PUPDR_PUPDR6 | GPIO_PUPDR_PUPDR7 | GPIO_PUPDR_PUPDR8);
+ 80004c8:	4b2c      	ldr	r3, [pc, #176]	@ (800057c <initialise_board+0x1fc>)
+ 80004ca:	68db      	ldr	r3, [r3, #12]
+ 80004cc:	4a2b      	ldr	r2, [pc, #172]	@ (800057c <initialise_board+0x1fc>)
+ 80004ce:	f423 337c 	bic.w	r3, r3, #258048	@ 0x3f000
+ 80004d2:	60d3      	str	r3, [r2, #12]
+
+
+        // Configure GPIO pins for RGB4 timer outputs (AF mode)
+            // Clear the current mode bits for PA8, PA9, PA10
+            RGB4_PORT->MODER &= ~(GPIO_MODER_MODER8 | GPIO_MODER_MODER9 | GPIO_MODER_MODER10);
+ 80004d4:	f04f 4390 	mov.w	r3, #1207959552	@ 0x48000000
+ 80004d8:	681b      	ldr	r3, [r3, #0]
+ 80004da:	f04f 4290 	mov.w	r2, #1207959552	@ 0x48000000
+ 80004de:	f423 137c 	bic.w	r3, r3, #4128768	@ 0x3f0000
+ 80004e2:	6013      	str	r3, [r2, #0]
+
+            // Set to Alternate Function mode (0b10)
+            RGB4_PORT->MODER |= (GPIO_MODER_MODER8_1 | GPIO_MODER_MODER9_1 | GPIO_MODER_MODER10_1);
+ 80004e4:	f04f 4390 	mov.w	r3, #1207959552	@ 0x48000000
+ 80004e8:	681b      	ldr	r3, [r3, #0]
+ 80004ea:	f04f 4290 	mov.w	r2, #1207959552	@ 0x48000000
+ 80004ee:	f443 1328 	orr.w	r3, r3, #2752512	@ 0x2a0000
+ 80004f2:	6013      	str	r3, [r2, #0]
+
+            // Set to AF6 (TIM1) for PA8, PA9, PA10
+            // Clear the current AF
+            RGB4_PORT->AFR[1] &= ~(GPIO_AFRH_AFRH0 | GPIO_AFRH_AFRH1 | GPIO_AFRH_AFRH2); // PA8=AFR[1][0], PA9=AFR[1][1], PA10=AFR[1][2]
+ 80004f4:	f04f 4390 	mov.w	r3, #1207959552	@ 0x48000000
+ 80004f8:	6a5b      	ldr	r3, [r3, #36]	@ 0x24
+ 80004fa:	f04f 4290 	mov.w	r2, #1207959552	@ 0x48000000
+ 80004fe:	f423 637f 	bic.w	r3, r3, #4080	@ 0xff0
+ 8000502:	f023 030f 	bic.w	r3, r3, #15
+ 8000506:	6253      	str	r3, [r2, #36]	@ 0x24
+
+            // Then set AF6 (0110) for TIM1
+            RGB4_PORT->AFR[1] |= (0x6 << (4 * 0)) | (0x6 << (4 * 1)) | (0x6 << (4 * 2)); // For pins 8, 9, 10
+ 8000508:	f04f 4390 	mov.w	r3, #1207959552	@ 0x48000000
+ 800050c:	6a5b      	ldr	r3, [r3, #36]	@ 0x24
+ 800050e:	f04f 4290 	mov.w	r2, #1207959552	@ 0x48000000
+ 8000512:	f443 63cc 	orr.w	r3, r3, #1632	@ 0x660
+ 8000516:	f043 0306 	orr.w	r3, r3, #6
+ 800051a:	6253      	str	r3, [r2, #36]	@ 0x24
+
+            // Set push-pull output type
+            RGB4_PORT->OTYPER &= ~((1 << RGB4_RED_PIN) | (1 << RGB4_GREEN_PIN) | (1 << RGB4_BLUE_PIN));
+ 800051c:	f04f 4390 	mov.w	r3, #1207959552	@ 0x48000000
+ 8000520:	685b      	ldr	r3, [r3, #4]
+ 8000522:	f04f 4290 	mov.w	r2, #1207959552	@ 0x48000000
+ 8000526:	f423 63e0 	bic.w	r3, r3, #1792	@ 0x700
+ 800052a:	6053      	str	r3, [r2, #4]
+
+            // Set high speed
+            RGB4_PORT->OSPEEDR |= (GPIO_OSPEEDER_OSPEEDR8 | GPIO_OSPEEDER_OSPEEDR9 | GPIO_OSPEEDER_OSPEEDR10);
+ 800052c:	f04f 4390 	mov.w	r3, #1207959552	@ 0x48000000
+ 8000530:	689b      	ldr	r3, [r3, #8]
+ 8000532:	f04f 4290 	mov.w	r2, #1207959552	@ 0x48000000
+ 8000536:	f443 137c 	orr.w	r3, r3, #4128768	@ 0x3f0000
+ 800053a:	6093      	str	r3, [r2, #8]
+
+            // No pull-up, pull-down
+            RGB4_PORT->PUPDR &= ~(GPIO_PUPDR_PUPDR8 | GPIO_PUPDR_PUPDR9 | GPIO_PUPDR_PUPDR10);
+ 800053c:	f04f 4390 	mov.w	r3, #1207959552	@ 0x48000000
+ 8000540:	68db      	ldr	r3, [r3, #12]
+ 8000542:	f04f 4290 	mov.w	r2, #1207959552	@ 0x48000000
+ 8000546:	f423 137c 	bic.w	r3, r3, #4128768	@ 0x3f0000
+ 800054a:	60d3      	str	r3, [r2, #12]
+
+    // Configure hardware PWM
+    configure_hardware_pwm();
+ 800054c:	f000 f818 	bl	8000580 <configure_hardware_pwm>
+    configure_hardware_pwm2();
+ 8000550:	f000 f882 	bl	8000658 <configure_hardware_pwm2>
+    configure_hardware_pwm3();
+ 8000554:	f000 f910 	bl	8000778 <configure_hardware_pwm3>
+    configure_hardware_pwm4();
+ 8000558:	f000 f980 	bl	800085c <configure_hardware_pwm4>
+
+
+    // Configure limit switches input
+    configure_limit_switch();
+ 800055c:	f000 f9f6 	bl	800094c <configure_limit_switch>
+    configure_limit_switch2();
+ 8000560:	f000 fa38 	bl	80009d4 <configure_limit_switch2>
+    configure_limit_switch3();
+ 8000564:	f000 fa7a 	bl	8000a5c <configure_limit_switch3>
+    configure_limit_switch4();
+ 8000568:	f000 fabc 	bl	8000ae4 <configure_limit_switch4>
+
+
+
+    // Configure flash timer
+    configure_flash_timer();
+ 800056c:	f000 fafe 	bl	8000b6c <configure_flash_timer>
+
+    enableUSART1();
+ 8000570:	f001 fa3c 	bl	80019ec <enableUSART1>
+
+}
+ 8000574:	bf00      	nop
+ 8000576:	bd80      	pop	{r7, pc}
+ 8000578:	48000800 	.word	0x48000800
+ 800057c:	48000400 	.word	0x48000400
+
+08000580 <configure_hardware_pwm>:
+
+// Configure TIM3 for hardware PWM (RGB1)
+void configure_hardware_pwm(void) {
+ 8000580:	b480      	push	{r7}
+ 8000582:	af00      	add	r7, sp, #0
+    // Reset timer configuration
+    TIM3->CR1 = 0;
+ 8000584:	4b33      	ldr	r3, [pc, #204]	@ (8000654 <configure_hardware_pwm+0xd4>)
+ 8000586:	2200      	movs	r2, #0
+ 8000588:	601a      	str	r2, [r3, #0]
+
+    // Set prescaler to 84-1 (counts from 0)
+    // This divides the 84MHz APB clock to 1MHz
+    TIM3->PSC = 84 - 1;
+ 800058a:	4b32      	ldr	r3, [pc, #200]	@ (8000654 <configure_hardware_pwm+0xd4>)
+ 800058c:	2253      	movs	r2, #83	@ 0x53
+ 800058e:	629a      	str	r2, [r3, #40]	@ 0x28
+
+    // Set auto-reload value to 255 (8-bit resolution)
+    TIM3->ARR = 255;
+ 8000590:	4b30      	ldr	r3, [pc, #192]	@ (8000654 <configure_hardware_pwm+0xd4>)
+ 8000592:	22ff      	movs	r2, #255	@ 0xff
+ 8000594:	62da      	str	r2, [r3, #44]	@ 0x2c
+
+    // Enable auto-reload preload
+    TIM3->CR1 |= TIM_CR1_ARPE;
+ 8000596:	4b2f      	ldr	r3, [pc, #188]	@ (8000654 <configure_hardware_pwm+0xd4>)
+ 8000598:	681b      	ldr	r3, [r3, #0]
+ 800059a:	4a2e      	ldr	r2, [pc, #184]	@ (8000654 <configure_hardware_pwm+0xd4>)
+ 800059c:	f043 0380 	orr.w	r3, r3, #128	@ 0x80
+ 80005a0:	6013      	str	r3, [r2, #0]
+
+    // Configure channels for PWM mode 1
+    // PWM mode 1: Channel is active when TIMx_CNT < TIMx_CCRx
+
+    // Configure Channel 1 (Red - PC6)
+    TIM3->CCMR1 &= ~TIM_CCMR1_OC1M;
+ 80005a2:	4b2c      	ldr	r3, [pc, #176]	@ (8000654 <configure_hardware_pwm+0xd4>)
+ 80005a4:	699b      	ldr	r3, [r3, #24]
+ 80005a6:	4a2b      	ldr	r2, [pc, #172]	@ (8000654 <configure_hardware_pwm+0xd4>)
+ 80005a8:	f423 3380 	bic.w	r3, r3, #65536	@ 0x10000
+ 80005ac:	f023 0370 	bic.w	r3, r3, #112	@ 0x70
+ 80005b0:	6193      	str	r3, [r2, #24]
+    TIM3->CCMR1 |= TIM_CCMR1_OC1M_1 | TIM_CCMR1_OC1M_2; // PWM mode 1 (0110)
+ 80005b2:	4b28      	ldr	r3, [pc, #160]	@ (8000654 <configure_hardware_pwm+0xd4>)
+ 80005b4:	699b      	ldr	r3, [r3, #24]
+ 80005b6:	4a27      	ldr	r2, [pc, #156]	@ (8000654 <configure_hardware_pwm+0xd4>)
+ 80005b8:	f043 0360 	orr.w	r3, r3, #96	@ 0x60
+ 80005bc:	6193      	str	r3, [r2, #24]
+    TIM3->CCMR1 |= TIM_CCMR1_OC1PE; // Enable preload for Channel 1
+ 80005be:	4b25      	ldr	r3, [pc, #148]	@ (8000654 <configure_hardware_pwm+0xd4>)
+ 80005c0:	699b      	ldr	r3, [r3, #24]
+ 80005c2:	4a24      	ldr	r2, [pc, #144]	@ (8000654 <configure_hardware_pwm+0xd4>)
+ 80005c4:	f043 0308 	orr.w	r3, r3, #8
+ 80005c8:	6193      	str	r3, [r2, #24]
+
+    // Configure Channel 2 (Green - PC7)
+    TIM3->CCMR1 &= ~TIM_CCMR1_OC2M;
+ 80005ca:	4b22      	ldr	r3, [pc, #136]	@ (8000654 <configure_hardware_pwm+0xd4>)
+ 80005cc:	699b      	ldr	r3, [r3, #24]
+ 80005ce:	4a21      	ldr	r2, [pc, #132]	@ (8000654 <configure_hardware_pwm+0xd4>)
+ 80005d0:	f023 7380 	bic.w	r3, r3, #16777216	@ 0x1000000
+ 80005d4:	f423 43e0 	bic.w	r3, r3, #28672	@ 0x7000
+ 80005d8:	6193      	str	r3, [r2, #24]
+    TIM3->CCMR1 |= TIM_CCMR1_OC2M_1 | TIM_CCMR1_OC2M_2; // PWM mode 1 (0110)
+ 80005da:	4b1e      	ldr	r3, [pc, #120]	@ (8000654 <configure_hardware_pwm+0xd4>)
+ 80005dc:	699b      	ldr	r3, [r3, #24]
+ 80005de:	4a1d      	ldr	r2, [pc, #116]	@ (8000654 <configure_hardware_pwm+0xd4>)
+ 80005e0:	f443 43c0 	orr.w	r3, r3, #24576	@ 0x6000
+ 80005e4:	6193      	str	r3, [r2, #24]
+    TIM3->CCMR1 |= TIM_CCMR1_OC2PE; // Enable preload for Channel 2
+ 80005e6:	4b1b      	ldr	r3, [pc, #108]	@ (8000654 <configure_hardware_pwm+0xd4>)
+ 80005e8:	699b      	ldr	r3, [r3, #24]
+ 80005ea:	4a1a      	ldr	r2, [pc, #104]	@ (8000654 <configure_hardware_pwm+0xd4>)
+ 80005ec:	f443 6300 	orr.w	r3, r3, #2048	@ 0x800
+ 80005f0:	6193      	str	r3, [r2, #24]
+
+    // Configure Channel 3 (Blue - PC8)
+    TIM3->CCMR2 &= ~TIM_CCMR2_OC3M;
+ 80005f2:	4b18      	ldr	r3, [pc, #96]	@ (8000654 <configure_hardware_pwm+0xd4>)
+ 80005f4:	69db      	ldr	r3, [r3, #28]
+ 80005f6:	4a17      	ldr	r2, [pc, #92]	@ (8000654 <configure_hardware_pwm+0xd4>)
+ 80005f8:	f423 3380 	bic.w	r3, r3, #65536	@ 0x10000
+ 80005fc:	f023 0370 	bic.w	r3, r3, #112	@ 0x70
+ 8000600:	61d3      	str	r3, [r2, #28]
+    TIM3->CCMR2 |= TIM_CCMR2_OC3M_1 | TIM_CCMR2_OC3M_2; // PWM mode 1 (0110)
+ 8000602:	4b14      	ldr	r3, [pc, #80]	@ (8000654 <configure_hardware_pwm+0xd4>)
+ 8000604:	69db      	ldr	r3, [r3, #28]
+ 8000606:	4a13      	ldr	r2, [pc, #76]	@ (8000654 <configure_hardware_pwm+0xd4>)
+ 8000608:	f043 0360 	orr.w	r3, r3, #96	@ 0x60
+ 800060c:	61d3      	str	r3, [r2, #28]
+    TIM3->CCMR2 |= TIM_CCMR2_OC3PE; // Enable preload for Channel 3
+ 800060e:	4b11      	ldr	r3, [pc, #68]	@ (8000654 <configure_hardware_pwm+0xd4>)
+ 8000610:	69db      	ldr	r3, [r3, #28]
+ 8000612:	4a10      	ldr	r2, [pc, #64]	@ (8000654 <configure_hardware_pwm+0xd4>)
+ 8000614:	f043 0308 	orr.w	r3, r3, #8
+ 8000618:	61d3      	str	r3, [r2, #28]
+
+    // Enable all output channels
+    TIM3->CCER |= TIM_CCER_CC1E | TIM_CCER_CC2E | TIM_CCER_CC3E;
+ 800061a:	4b0e      	ldr	r3, [pc, #56]	@ (8000654 <configure_hardware_pwm+0xd4>)
+ 800061c:	6a1b      	ldr	r3, [r3, #32]
+ 800061e:	4a0d      	ldr	r2, [pc, #52]	@ (8000654 <configure_hardware_pwm+0xd4>)
+ 8000620:	f443 7388 	orr.w	r3, r3, #272	@ 0x110
+ 8000624:	f043 0301 	orr.w	r3, r3, #1
+ 8000628:	6213      	str	r3, [r2, #32]
+
+    // Set initial CCR values to 0 (all LEDs off)
+    TIM3->CCR1 = 0; // Red
+ 800062a:	4b0a      	ldr	r3, [pc, #40]	@ (8000654 <configure_hardware_pwm+0xd4>)
+ 800062c:	2200      	movs	r2, #0
+ 800062e:	635a      	str	r2, [r3, #52]	@ 0x34
+    TIM3->CCR2 = 0; // Green
+ 8000630:	4b08      	ldr	r3, [pc, #32]	@ (8000654 <configure_hardware_pwm+0xd4>)
+ 8000632:	2200      	movs	r2, #0
+ 8000634:	639a      	str	r2, [r3, #56]	@ 0x38
+    TIM3->CCR3 = 0; // Blue
+ 8000636:	4b07      	ldr	r3, [pc, #28]	@ (8000654 <configure_hardware_pwm+0xd4>)
+ 8000638:	2200      	movs	r2, #0
+ 800063a:	63da      	str	r2, [r3, #60]	@ 0x3c
+
+    // Generate update event to load the registers
+    TIM3->EGR |= TIM_EGR_UG;
+ 800063c:	4b05      	ldr	r3, [pc, #20]	@ (8000654 <configure_hardware_pwm+0xd4>)
+ 800063e:	695b      	ldr	r3, [r3, #20]
+ 8000640:	4a04      	ldr	r2, [pc, #16]	@ (8000654 <configure_hardware_pwm+0xd4>)
+ 8000642:	f043 0301 	orr.w	r3, r3, #1
+ 8000646:	6153      	str	r3, [r2, #20]
+}
+ 8000648:	bf00      	nop
+ 800064a:	46bd      	mov	sp, r7
+ 800064c:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 8000650:	4770      	bx	lr
+ 8000652:	bf00      	nop
+ 8000654:	40000400 	.word	0x40000400
+
+08000658 <configure_hardware_pwm2>:
+
+// Configure TIM2 for hardware PWM (RGB2)
+void configure_hardware_pwm2(void) {
+ 8000658:	b480      	push	{r7}
+ 800065a:	af00      	add	r7, sp, #0
+    // Reset timer configuration
+    TIM2->CR1 = 0;
+ 800065c:	f04f 4380 	mov.w	r3, #1073741824	@ 0x40000000
+ 8000660:	2200      	movs	r2, #0
+ 8000662:	601a      	str	r2, [r3, #0]
+    // For STM32F3, APB1 is typically 36MHz or 72MHz depending on configuration
+    // Set prescaler to get 1MHz timer clock
+    // If APB1 = 36MHz: prescaler = 36-1 = 35
+    // If APB1 = 72MHz: prescaler = 72-1 = 71
+    // Let's try with 71 first (assuming 72MHz APB1)
+    TIM2->PSC = 71; // This gives us ~1MHz timer clock
+ 8000664:	f04f 4380 	mov.w	r3, #1073741824	@ 0x40000000
+ 8000668:	2247      	movs	r2, #71	@ 0x47
+ 800066a:	629a      	str	r2, [r3, #40]	@ 0x28
+
+    // Set auto-reload value to 255 (8-bit resolution)
+    // TIM2 is 32-bit, so this is fine
+    TIM2->ARR = 255;
+ 800066c:	f04f 4380 	mov.w	r3, #1073741824	@ 0x40000000
+ 8000670:	22ff      	movs	r2, #255	@ 0xff
+ 8000672:	62da      	str	r2, [r3, #44]	@ 0x2c
+
+    // Enable auto-reload preload
+    TIM2->CR1 |= TIM_CR1_ARPE;
+ 8000674:	f04f 4380 	mov.w	r3, #1073741824	@ 0x40000000
+ 8000678:	681b      	ldr	r3, [r3, #0]
+ 800067a:	f04f 4280 	mov.w	r2, #1073741824	@ 0x40000000
+ 800067e:	f043 0380 	orr.w	r3, r3, #128	@ 0x80
+ 8000682:	6013      	str	r3, [r2, #0]
+
+    // Configure channels for PWM mode 1
+    // PWM mode 1: Channel is active when TIMx_CNT < TIMx_CCRx
+
+    // Configure Channel 1 (Red - PA0)
+    TIM2->CCMR1 &= ~TIM_CCMR1_OC1M;
+ 8000684:	f04f 4380 	mov.w	r3, #1073741824	@ 0x40000000
+ 8000688:	699b      	ldr	r3, [r3, #24]
+ 800068a:	f04f 4280 	mov.w	r2, #1073741824	@ 0x40000000
+ 800068e:	f423 3380 	bic.w	r3, r3, #65536	@ 0x10000
+ 8000692:	f023 0370 	bic.w	r3, r3, #112	@ 0x70
+ 8000696:	6193      	str	r3, [r2, #24]
+    TIM2->CCMR1 |= TIM_CCMR1_OC1M_1 | TIM_CCMR1_OC1M_2; // PWM mode 1 (0110)
+ 8000698:	f04f 4380 	mov.w	r3, #1073741824	@ 0x40000000
+ 800069c:	699b      	ldr	r3, [r3, #24]
+ 800069e:	f04f 4280 	mov.w	r2, #1073741824	@ 0x40000000
+ 80006a2:	f043 0360 	orr.w	r3, r3, #96	@ 0x60
+ 80006a6:	6193      	str	r3, [r2, #24]
+    TIM2->CCMR1 |= TIM_CCMR1_OC1PE; // Enable preload for Channel 1
+ 80006a8:	f04f 4380 	mov.w	r3, #1073741824	@ 0x40000000
+ 80006ac:	699b      	ldr	r3, [r3, #24]
+ 80006ae:	f04f 4280 	mov.w	r2, #1073741824	@ 0x40000000
+ 80006b2:	f043 0308 	orr.w	r3, r3, #8
+ 80006b6:	6193      	str	r3, [r2, #24]
+
+    // Configure Channel 2 (Green - PA1)
+    TIM2->CCMR1 &= ~TIM_CCMR1_OC2M;
+ 80006b8:	f04f 4380 	mov.w	r3, #1073741824	@ 0x40000000
+ 80006bc:	699b      	ldr	r3, [r3, #24]
+ 80006be:	f04f 4280 	mov.w	r2, #1073741824	@ 0x40000000
+ 80006c2:	f023 7380 	bic.w	r3, r3, #16777216	@ 0x1000000
+ 80006c6:	f423 43e0 	bic.w	r3, r3, #28672	@ 0x7000
+ 80006ca:	6193      	str	r3, [r2, #24]
+    TIM2->CCMR1 |= TIM_CCMR1_OC2M_1 | TIM_CCMR1_OC2M_2; // PWM mode 1 (0110)
+ 80006cc:	f04f 4380 	mov.w	r3, #1073741824	@ 0x40000000
+ 80006d0:	699b      	ldr	r3, [r3, #24]
+ 80006d2:	f04f 4280 	mov.w	r2, #1073741824	@ 0x40000000
+ 80006d6:	f443 43c0 	orr.w	r3, r3, #24576	@ 0x6000
+ 80006da:	6193      	str	r3, [r2, #24]
+    TIM2->CCMR1 |= TIM_CCMR1_OC2PE; // Enable preload for Channel 2
+ 80006dc:	f04f 4380 	mov.w	r3, #1073741824	@ 0x40000000
+ 80006e0:	699b      	ldr	r3, [r3, #24]
+ 80006e2:	f04f 4280 	mov.w	r2, #1073741824	@ 0x40000000
+ 80006e6:	f443 6300 	orr.w	r3, r3, #2048	@ 0x800
+ 80006ea:	6193      	str	r3, [r2, #24]
+
+    // Configure Channel 3 (Blue - PA2)
+    TIM2->CCMR2 &= ~TIM_CCMR2_OC3M;
+ 80006ec:	f04f 4380 	mov.w	r3, #1073741824	@ 0x40000000
+ 80006f0:	69db      	ldr	r3, [r3, #28]
+ 80006f2:	f04f 4280 	mov.w	r2, #1073741824	@ 0x40000000
+ 80006f6:	f423 3380 	bic.w	r3, r3, #65536	@ 0x10000
+ 80006fa:	f023 0370 	bic.w	r3, r3, #112	@ 0x70
+ 80006fe:	61d3      	str	r3, [r2, #28]
+    TIM2->CCMR2 |= TIM_CCMR2_OC3M_1 | TIM_CCMR2_OC3M_2; // PWM mode 1 (0110)
+ 8000700:	f04f 4380 	mov.w	r3, #1073741824	@ 0x40000000
+ 8000704:	69db      	ldr	r3, [r3, #28]
+ 8000706:	f04f 4280 	mov.w	r2, #1073741824	@ 0x40000000
+ 800070a:	f043 0360 	orr.w	r3, r3, #96	@ 0x60
+ 800070e:	61d3      	str	r3, [r2, #28]
+    TIM2->CCMR2 |= TIM_CCMR2_OC3PE; // Enable preload for Channel 3
+ 8000710:	f04f 4380 	mov.w	r3, #1073741824	@ 0x40000000
+ 8000714:	69db      	ldr	r3, [r3, #28]
+ 8000716:	f04f 4280 	mov.w	r2, #1073741824	@ 0x40000000
+ 800071a:	f043 0308 	orr.w	r3, r3, #8
+ 800071e:	61d3      	str	r3, [r2, #28]
+
+    // Enable all output channels
+    TIM2->CCER |= TIM_CCER_CC1E | TIM_CCER_CC2E | TIM_CCER_CC3E;
+ 8000720:	f04f 4380 	mov.w	r3, #1073741824	@ 0x40000000
+ 8000724:	6a1b      	ldr	r3, [r3, #32]
+ 8000726:	f04f 4280 	mov.w	r2, #1073741824	@ 0x40000000
+ 800072a:	f443 7388 	orr.w	r3, r3, #272	@ 0x110
+ 800072e:	f043 0301 	orr.w	r3, r3, #1
+ 8000732:	6213      	str	r3, [r2, #32]
+
+    // Set initial CCR values to test values (instead of 0)
+    TIM2->CCR1 = 128; // Red - 50% duty cycle for testing
+ 8000734:	f04f 4380 	mov.w	r3, #1073741824	@ 0x40000000
+ 8000738:	2280      	movs	r2, #128	@ 0x80
+ 800073a:	635a      	str	r2, [r3, #52]	@ 0x34
+    TIM2->CCR2 = 128; // Green - 50% duty cycle for testing
+ 800073c:	f04f 4380 	mov.w	r3, #1073741824	@ 0x40000000
+ 8000740:	2280      	movs	r2, #128	@ 0x80
+ 8000742:	639a      	str	r2, [r3, #56]	@ 0x38
+    TIM2->CCR3 = 128; // Blue - 50% duty cycle for testing
+ 8000744:	f04f 4380 	mov.w	r3, #1073741824	@ 0x40000000
+ 8000748:	2280      	movs	r2, #128	@ 0x80
+ 800074a:	63da      	str	r2, [r3, #60]	@ 0x3c
+
+    // Generate update event to load the registers
+    TIM2->EGR |= TIM_EGR_UG;
+ 800074c:	f04f 4380 	mov.w	r3, #1073741824	@ 0x40000000
+ 8000750:	695b      	ldr	r3, [r3, #20]
+ 8000752:	f04f 4280 	mov.w	r2, #1073741824	@ 0x40000000
+ 8000756:	f043 0301 	orr.w	r3, r3, #1
+ 800075a:	6153      	str	r3, [r2, #20]
+
+    // Clear the update flag
+    TIM2->SR &= ~TIM_SR_UIF;
+ 800075c:	f04f 4380 	mov.w	r3, #1073741824	@ 0x40000000
+ 8000760:	691b      	ldr	r3, [r3, #16]
+ 8000762:	f04f 4280 	mov.w	r2, #1073741824	@ 0x40000000
+ 8000766:	f023 0301 	bic.w	r3, r3, #1
+ 800076a:	6113      	str	r3, [r2, #16]
+}
+ 800076c:	bf00      	nop
+ 800076e:	46bd      	mov	sp, r7
+ 8000770:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 8000774:	4770      	bx	lr
+	...
+
+08000778 <configure_hardware_pwm3>:
+
+
+// Configure TIM4 for hardware PWM (RGB3)
+void configure_hardware_pwm3(void) {
+ 8000778:	b480      	push	{r7}
+ 800077a:	af00      	add	r7, sp, #0
+    // Reset timer configuration
+    TIM4->CR1 = 0;
+ 800077c:	4b36      	ldr	r3, [pc, #216]	@ (8000858 <configure_hardware_pwm3+0xe0>)
+ 800077e:	2200      	movs	r2, #0
+ 8000780:	601a      	str	r2, [r3, #0]
+
+    // TIM4 is on APB1, set prescaler to get 1MHz timer clock
+    TIM4->PSC = 71; // Assuming 72MHz APB1
+ 8000782:	4b35      	ldr	r3, [pc, #212]	@ (8000858 <configure_hardware_pwm3+0xe0>)
+ 8000784:	2247      	movs	r2, #71	@ 0x47
+ 8000786:	629a      	str	r2, [r3, #40]	@ 0x28
+
+    // Set auto-reload value to 255 (8-bit resolution)
+    TIM4->ARR = 255;
+ 8000788:	4b33      	ldr	r3, [pc, #204]	@ (8000858 <configure_hardware_pwm3+0xe0>)
+ 800078a:	22ff      	movs	r2, #255	@ 0xff
+ 800078c:	62da      	str	r2, [r3, #44]	@ 0x2c
+
+    // Enable auto-reload preload
+    TIM4->CR1 |= TIM_CR1_ARPE;
+ 800078e:	4b32      	ldr	r3, [pc, #200]	@ (8000858 <configure_hardware_pwm3+0xe0>)
+ 8000790:	681b      	ldr	r3, [r3, #0]
+ 8000792:	4a31      	ldr	r2, [pc, #196]	@ (8000858 <configure_hardware_pwm3+0xe0>)
+ 8000794:	f043 0380 	orr.w	r3, r3, #128	@ 0x80
+ 8000798:	6013      	str	r3, [r2, #0]
+
+    // Configure channels for PWM mode 1
+    // Configure Channel 1 (Red - PB6)
+    TIM4->CCMR1 &= ~TIM_CCMR1_OC1M;
+ 800079a:	4b2f      	ldr	r3, [pc, #188]	@ (8000858 <configure_hardware_pwm3+0xe0>)
+ 800079c:	699b      	ldr	r3, [r3, #24]
+ 800079e:	4a2e      	ldr	r2, [pc, #184]	@ (8000858 <configure_hardware_pwm3+0xe0>)
+ 80007a0:	f423 3380 	bic.w	r3, r3, #65536	@ 0x10000
+ 80007a4:	f023 0370 	bic.w	r3, r3, #112	@ 0x70
+ 80007a8:	6193      	str	r3, [r2, #24]
+    TIM4->CCMR1 |= TIM_CCMR1_OC1M_1 | TIM_CCMR1_OC1M_2; // PWM mode 1 (0110)
+ 80007aa:	4b2b      	ldr	r3, [pc, #172]	@ (8000858 <configure_hardware_pwm3+0xe0>)
+ 80007ac:	699b      	ldr	r3, [r3, #24]
+ 80007ae:	4a2a      	ldr	r2, [pc, #168]	@ (8000858 <configure_hardware_pwm3+0xe0>)
+ 80007b0:	f043 0360 	orr.w	r3, r3, #96	@ 0x60
+ 80007b4:	6193      	str	r3, [r2, #24]
+    TIM4->CCMR1 |= TIM_CCMR1_OC1PE; // Enable preload for Channel 1
+ 80007b6:	4b28      	ldr	r3, [pc, #160]	@ (8000858 <configure_hardware_pwm3+0xe0>)
+ 80007b8:	699b      	ldr	r3, [r3, #24]
+ 80007ba:	4a27      	ldr	r2, [pc, #156]	@ (8000858 <configure_hardware_pwm3+0xe0>)
+ 80007bc:	f043 0308 	orr.w	r3, r3, #8
+ 80007c0:	6193      	str	r3, [r2, #24]
+
+    // Configure Channel 2 (Green - PB7)
+    TIM4->CCMR1 &= ~TIM_CCMR1_OC2M;
+ 80007c2:	4b25      	ldr	r3, [pc, #148]	@ (8000858 <configure_hardware_pwm3+0xe0>)
+ 80007c4:	699b      	ldr	r3, [r3, #24]
+ 80007c6:	4a24      	ldr	r2, [pc, #144]	@ (8000858 <configure_hardware_pwm3+0xe0>)
+ 80007c8:	f023 7380 	bic.w	r3, r3, #16777216	@ 0x1000000
+ 80007cc:	f423 43e0 	bic.w	r3, r3, #28672	@ 0x7000
+ 80007d0:	6193      	str	r3, [r2, #24]
+    TIM4->CCMR1 |= TIM_CCMR1_OC2M_1 | TIM_CCMR1_OC2M_2; // PWM mode 1 (0110)
+ 80007d2:	4b21      	ldr	r3, [pc, #132]	@ (8000858 <configure_hardware_pwm3+0xe0>)
+ 80007d4:	699b      	ldr	r3, [r3, #24]
+ 80007d6:	4a20      	ldr	r2, [pc, #128]	@ (8000858 <configure_hardware_pwm3+0xe0>)
+ 80007d8:	f443 43c0 	orr.w	r3, r3, #24576	@ 0x6000
+ 80007dc:	6193      	str	r3, [r2, #24]
+    TIM4->CCMR1 |= TIM_CCMR1_OC2PE; // Enable preload for Channel 2
+ 80007de:	4b1e      	ldr	r3, [pc, #120]	@ (8000858 <configure_hardware_pwm3+0xe0>)
+ 80007e0:	699b      	ldr	r3, [r3, #24]
+ 80007e2:	4a1d      	ldr	r2, [pc, #116]	@ (8000858 <configure_hardware_pwm3+0xe0>)
+ 80007e4:	f443 6300 	orr.w	r3, r3, #2048	@ 0x800
+ 80007e8:	6193      	str	r3, [r2, #24]
+
+    // Configure Channel 3 (Blue - PB8)
+    TIM4->CCMR2 &= ~TIM_CCMR2_OC3M;
+ 80007ea:	4b1b      	ldr	r3, [pc, #108]	@ (8000858 <configure_hardware_pwm3+0xe0>)
+ 80007ec:	69db      	ldr	r3, [r3, #28]
+ 80007ee:	4a1a      	ldr	r2, [pc, #104]	@ (8000858 <configure_hardware_pwm3+0xe0>)
+ 80007f0:	f423 3380 	bic.w	r3, r3, #65536	@ 0x10000
+ 80007f4:	f023 0370 	bic.w	r3, r3, #112	@ 0x70
+ 80007f8:	61d3      	str	r3, [r2, #28]
+    TIM4->CCMR2 |= TIM_CCMR2_OC3M_1 | TIM_CCMR2_OC3M_2; // PWM mode 1 (0110)
+ 80007fa:	4b17      	ldr	r3, [pc, #92]	@ (8000858 <configure_hardware_pwm3+0xe0>)
+ 80007fc:	69db      	ldr	r3, [r3, #28]
+ 80007fe:	4a16      	ldr	r2, [pc, #88]	@ (8000858 <configure_hardware_pwm3+0xe0>)
+ 8000800:	f043 0360 	orr.w	r3, r3, #96	@ 0x60
+ 8000804:	61d3      	str	r3, [r2, #28]
+    TIM4->CCMR2 |= TIM_CCMR2_OC3PE; // Enable preload for Channel 3
+ 8000806:	4b14      	ldr	r3, [pc, #80]	@ (8000858 <configure_hardware_pwm3+0xe0>)
+ 8000808:	69db      	ldr	r3, [r3, #28]
+ 800080a:	4a13      	ldr	r2, [pc, #76]	@ (8000858 <configure_hardware_pwm3+0xe0>)
+ 800080c:	f043 0308 	orr.w	r3, r3, #8
+ 8000810:	61d3      	str	r3, [r2, #28]
+
+    // Enable all output channels
+    TIM4->CCER |= TIM_CCER_CC1E | TIM_CCER_CC2E | TIM_CCER_CC3E;
+ 8000812:	4b11      	ldr	r3, [pc, #68]	@ (8000858 <configure_hardware_pwm3+0xe0>)
+ 8000814:	6a1b      	ldr	r3, [r3, #32]
+ 8000816:	4a10      	ldr	r2, [pc, #64]	@ (8000858 <configure_hardware_pwm3+0xe0>)
+ 8000818:	f443 7388 	orr.w	r3, r3, #272	@ 0x110
+ 800081c:	f043 0301 	orr.w	r3, r3, #1
+ 8000820:	6213      	str	r3, [r2, #32]
+
+    // Set initial CCR values to test values
+    TIM4->CCR1 = 128; // Red - 50% duty cycle for testing
+ 8000822:	4b0d      	ldr	r3, [pc, #52]	@ (8000858 <configure_hardware_pwm3+0xe0>)
+ 8000824:	2280      	movs	r2, #128	@ 0x80
+ 8000826:	635a      	str	r2, [r3, #52]	@ 0x34
+    TIM4->CCR2 = 128; // Green - 50% duty cycle for testing
+ 8000828:	4b0b      	ldr	r3, [pc, #44]	@ (8000858 <configure_hardware_pwm3+0xe0>)
+ 800082a:	2280      	movs	r2, #128	@ 0x80
+ 800082c:	639a      	str	r2, [r3, #56]	@ 0x38
+    TIM4->CCR3 = 128; // Blue - 50% duty cycle for testing
+ 800082e:	4b0a      	ldr	r3, [pc, #40]	@ (8000858 <configure_hardware_pwm3+0xe0>)
+ 8000830:	2280      	movs	r2, #128	@ 0x80
+ 8000832:	63da      	str	r2, [r3, #60]	@ 0x3c
+
+    // Generate update event to load the registers
+    TIM4->EGR |= TIM_EGR_UG;
+ 8000834:	4b08      	ldr	r3, [pc, #32]	@ (8000858 <configure_hardware_pwm3+0xe0>)
+ 8000836:	695b      	ldr	r3, [r3, #20]
+ 8000838:	4a07      	ldr	r2, [pc, #28]	@ (8000858 <configure_hardware_pwm3+0xe0>)
+ 800083a:	f043 0301 	orr.w	r3, r3, #1
+ 800083e:	6153      	str	r3, [r2, #20]
+
+    // Clear the update flag
+    TIM4->SR &= ~TIM_SR_UIF;
+ 8000840:	4b05      	ldr	r3, [pc, #20]	@ (8000858 <configure_hardware_pwm3+0xe0>)
+ 8000842:	691b      	ldr	r3, [r3, #16]
+ 8000844:	4a04      	ldr	r2, [pc, #16]	@ (8000858 <configure_hardware_pwm3+0xe0>)
+ 8000846:	f023 0301 	bic.w	r3, r3, #1
+ 800084a:	6113      	str	r3, [r2, #16]
+}
+ 800084c:	bf00      	nop
+ 800084e:	46bd      	mov	sp, r7
+ 8000850:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 8000854:	4770      	bx	lr
+ 8000856:	bf00      	nop
+ 8000858:	40000800 	.word	0x40000800
+
+0800085c <configure_hardware_pwm4>:
+
+// Configure TIM1 for hardware PWM (RGB4)
+void configure_hardware_pwm4(void) {
+ 800085c:	b480      	push	{r7}
+ 800085e:	af00      	add	r7, sp, #0
+    // Reset timer configuration
+    TIM1->CR1 = 0;
+ 8000860:	4b39      	ldr	r3, [pc, #228]	@ (8000948 <configure_hardware_pwm4+0xec>)
+ 8000862:	2200      	movs	r2, #0
+ 8000864:	601a      	str	r2, [r3, #0]
+
+    // TIM1 is on APB2, typically 72MHz
+    // Set prescaler to get 1MHz timer clock: 72MHz / 72 = 1MHz
+    TIM1->PSC = 71; // 72-1
+ 8000866:	4b38      	ldr	r3, [pc, #224]	@ (8000948 <configure_hardware_pwm4+0xec>)
+ 8000868:	2247      	movs	r2, #71	@ 0x47
+ 800086a:	629a      	str	r2, [r3, #40]	@ 0x28
+
+    // Set auto-reload value to 255 (8-bit resolution)
+    TIM1->ARR = 255;
+ 800086c:	4b36      	ldr	r3, [pc, #216]	@ (8000948 <configure_hardware_pwm4+0xec>)
+ 800086e:	22ff      	movs	r2, #255	@ 0xff
+ 8000870:	62da      	str	r2, [r3, #44]	@ 0x2c
+
+    // Enable auto-reload preload
+    TIM1->CR1 |= TIM_CR1_ARPE;
+ 8000872:	4b35      	ldr	r3, [pc, #212]	@ (8000948 <configure_hardware_pwm4+0xec>)
+ 8000874:	681b      	ldr	r3, [r3, #0]
+ 8000876:	4a34      	ldr	r2, [pc, #208]	@ (8000948 <configure_hardware_pwm4+0xec>)
+ 8000878:	f043 0380 	orr.w	r3, r3, #128	@ 0x80
+ 800087c:	6013      	str	r3, [r2, #0]
+
+    // Configure channels for PWM mode 1
+    // PWM mode 1: Channel is active when TIMx_CNT < TIMx_CCRx
+
+    // Configure Channel 1 (Red - PA8)
+    TIM1->CCMR1 &= ~TIM_CCMR1_OC1M;
+ 800087e:	4b32      	ldr	r3, [pc, #200]	@ (8000948 <configure_hardware_pwm4+0xec>)
+ 8000880:	699b      	ldr	r3, [r3, #24]
+ 8000882:	4a31      	ldr	r2, [pc, #196]	@ (8000948 <configure_hardware_pwm4+0xec>)
+ 8000884:	f423 3380 	bic.w	r3, r3, #65536	@ 0x10000
+ 8000888:	f023 0370 	bic.w	r3, r3, #112	@ 0x70
+ 800088c:	6193      	str	r3, [r2, #24]
+    TIM1->CCMR1 |= TIM_CCMR1_OC1M_1 | TIM_CCMR1_OC1M_2; // PWM mode 1 (0110)
+ 800088e:	4b2e      	ldr	r3, [pc, #184]	@ (8000948 <configure_hardware_pwm4+0xec>)
+ 8000890:	699b      	ldr	r3, [r3, #24]
+ 8000892:	4a2d      	ldr	r2, [pc, #180]	@ (8000948 <configure_hardware_pwm4+0xec>)
+ 8000894:	f043 0360 	orr.w	r3, r3, #96	@ 0x60
+ 8000898:	6193      	str	r3, [r2, #24]
+    TIM1->CCMR1 |= TIM_CCMR1_OC1PE; // Enable preload for Channel 1
+ 800089a:	4b2b      	ldr	r3, [pc, #172]	@ (8000948 <configure_hardware_pwm4+0xec>)
+ 800089c:	699b      	ldr	r3, [r3, #24]
+ 800089e:	4a2a      	ldr	r2, [pc, #168]	@ (8000948 <configure_hardware_pwm4+0xec>)
+ 80008a0:	f043 0308 	orr.w	r3, r3, #8
+ 80008a4:	6193      	str	r3, [r2, #24]
+
+    // Configure Channel 2 (Green - PA9)
+    TIM1->CCMR1 &= ~TIM_CCMR1_OC2M;
+ 80008a6:	4b28      	ldr	r3, [pc, #160]	@ (8000948 <configure_hardware_pwm4+0xec>)
+ 80008a8:	699b      	ldr	r3, [r3, #24]
+ 80008aa:	4a27      	ldr	r2, [pc, #156]	@ (8000948 <configure_hardware_pwm4+0xec>)
+ 80008ac:	f023 7380 	bic.w	r3, r3, #16777216	@ 0x1000000
+ 80008b0:	f423 43e0 	bic.w	r3, r3, #28672	@ 0x7000
+ 80008b4:	6193      	str	r3, [r2, #24]
+    TIM1->CCMR1 |= TIM_CCMR1_OC2M_1 | TIM_CCMR1_OC2M_2; // PWM mode 1 (0110)
+ 80008b6:	4b24      	ldr	r3, [pc, #144]	@ (8000948 <configure_hardware_pwm4+0xec>)
+ 80008b8:	699b      	ldr	r3, [r3, #24]
+ 80008ba:	4a23      	ldr	r2, [pc, #140]	@ (8000948 <configure_hardware_pwm4+0xec>)
+ 80008bc:	f443 43c0 	orr.w	r3, r3, #24576	@ 0x6000
+ 80008c0:	6193      	str	r3, [r2, #24]
+    TIM1->CCMR1 |= TIM_CCMR1_OC2PE; // Enable preload for Channel 2
+ 80008c2:	4b21      	ldr	r3, [pc, #132]	@ (8000948 <configure_hardware_pwm4+0xec>)
+ 80008c4:	699b      	ldr	r3, [r3, #24]
+ 80008c6:	4a20      	ldr	r2, [pc, #128]	@ (8000948 <configure_hardware_pwm4+0xec>)
+ 80008c8:	f443 6300 	orr.w	r3, r3, #2048	@ 0x800
+ 80008cc:	6193      	str	r3, [r2, #24]
+
+    // Configure Channel 3 (Blue - PA10)
+    TIM1->CCMR2 &= ~TIM_CCMR2_OC3M;
+ 80008ce:	4b1e      	ldr	r3, [pc, #120]	@ (8000948 <configure_hardware_pwm4+0xec>)
+ 80008d0:	69db      	ldr	r3, [r3, #28]
+ 80008d2:	4a1d      	ldr	r2, [pc, #116]	@ (8000948 <configure_hardware_pwm4+0xec>)
+ 80008d4:	f423 3380 	bic.w	r3, r3, #65536	@ 0x10000
+ 80008d8:	f023 0370 	bic.w	r3, r3, #112	@ 0x70
+ 80008dc:	61d3      	str	r3, [r2, #28]
+    TIM1->CCMR2 |= TIM_CCMR2_OC3M_1 | TIM_CCMR2_OC3M_2; // PWM mode 1 (0110)
+ 80008de:	4b1a      	ldr	r3, [pc, #104]	@ (8000948 <configure_hardware_pwm4+0xec>)
+ 80008e0:	69db      	ldr	r3, [r3, #28]
+ 80008e2:	4a19      	ldr	r2, [pc, #100]	@ (8000948 <configure_hardware_pwm4+0xec>)
+ 80008e4:	f043 0360 	orr.w	r3, r3, #96	@ 0x60
+ 80008e8:	61d3      	str	r3, [r2, #28]
+    TIM1->CCMR2 |= TIM_CCMR2_OC3PE; // Enable preload for Channel 3
+ 80008ea:	4b17      	ldr	r3, [pc, #92]	@ (8000948 <configure_hardware_pwm4+0xec>)
+ 80008ec:	69db      	ldr	r3, [r3, #28]
+ 80008ee:	4a16      	ldr	r2, [pc, #88]	@ (8000948 <configure_hardware_pwm4+0xec>)
+ 80008f0:	f043 0308 	orr.w	r3, r3, #8
+ 80008f4:	61d3      	str	r3, [r2, #28]
+
+    // Enable all output channels
+    TIM1->CCER |= TIM_CCER_CC1E | TIM_CCER_CC2E | TIM_CCER_CC3E;
+ 80008f6:	4b14      	ldr	r3, [pc, #80]	@ (8000948 <configure_hardware_pwm4+0xec>)
+ 80008f8:	6a1b      	ldr	r3, [r3, #32]
+ 80008fa:	4a13      	ldr	r2, [pc, #76]	@ (8000948 <configure_hardware_pwm4+0xec>)
+ 80008fc:	f443 7388 	orr.w	r3, r3, #272	@ 0x110
+ 8000900:	f043 0301 	orr.w	r3, r3, #1
+ 8000904:	6213      	str	r3, [r2, #32]
+
+    // CRITICAL: For advanced-control timers, enable the main output
+    TIM1->BDTR |= TIM_BDTR_MOE; // Main Output Enable - required for TIM1
+ 8000906:	4b10      	ldr	r3, [pc, #64]	@ (8000948 <configure_hardware_pwm4+0xec>)
+ 8000908:	6c5b      	ldr	r3, [r3, #68]	@ 0x44
+ 800090a:	4a0f      	ldr	r2, [pc, #60]	@ (8000948 <configure_hardware_pwm4+0xec>)
+ 800090c:	f443 4300 	orr.w	r3, r3, #32768	@ 0x8000
+ 8000910:	6453      	str	r3, [r2, #68]	@ 0x44
+
+    // Set initial CCR values to test values
+    TIM1->CCR1 = 128; // Red - 50% duty cycle for testing
+ 8000912:	4b0d      	ldr	r3, [pc, #52]	@ (8000948 <configure_hardware_pwm4+0xec>)
+ 8000914:	2280      	movs	r2, #128	@ 0x80
+ 8000916:	635a      	str	r2, [r3, #52]	@ 0x34
+    TIM1->CCR2 = 128; // Green - 50% duty cycle for testing
+ 8000918:	4b0b      	ldr	r3, [pc, #44]	@ (8000948 <configure_hardware_pwm4+0xec>)
+ 800091a:	2280      	movs	r2, #128	@ 0x80
+ 800091c:	639a      	str	r2, [r3, #56]	@ 0x38
+    TIM1->CCR3 = 128; // Blue - 50% duty cycle for testing
+ 800091e:	4b0a      	ldr	r3, [pc, #40]	@ (8000948 <configure_hardware_pwm4+0xec>)
+ 8000920:	2280      	movs	r2, #128	@ 0x80
+ 8000922:	63da      	str	r2, [r3, #60]	@ 0x3c
+
+    // Generate update event to load the registers
+    TIM1->EGR |= TIM_EGR_UG;
+ 8000924:	4b08      	ldr	r3, [pc, #32]	@ (8000948 <configure_hardware_pwm4+0xec>)
+ 8000926:	695b      	ldr	r3, [r3, #20]
+ 8000928:	4a07      	ldr	r2, [pc, #28]	@ (8000948 <configure_hardware_pwm4+0xec>)
+ 800092a:	f043 0301 	orr.w	r3, r3, #1
+ 800092e:	6153      	str	r3, [r2, #20]
+
+    // Clear the update flag
+    TIM1->SR &= ~TIM_SR_UIF;
+ 8000930:	4b05      	ldr	r3, [pc, #20]	@ (8000948 <configure_hardware_pwm4+0xec>)
+ 8000932:	691b      	ldr	r3, [r3, #16]
+ 8000934:	4a04      	ldr	r2, [pc, #16]	@ (8000948 <configure_hardware_pwm4+0xec>)
+ 8000936:	f023 0301 	bic.w	r3, r3, #1
+ 800093a:	6113      	str	r3, [r2, #16]
+}
+ 800093c:	bf00      	nop
+ 800093e:	46bd      	mov	sp, r7
+ 8000940:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 8000944:	4770      	bx	lr
+ 8000946:	bf00      	nop
+ 8000948:	40012c00 	.word	0x40012c00
+
+0800094c <configure_limit_switch>:
+
+
+// Configure the limit switch 1 input pin and interrupt
+void configure_limit_switch(void) {
+ 800094c:	b580      	push	{r7, lr}
+ 800094e:	af00      	add	r7, sp, #0
+    // Configure PA3 as input with pull-up
+    LIMIT_SWITCH_PORT->MODER &= ~(GPIO_MODER_MODER3); // Input mode (00)
+ 8000950:	f04f 4390 	mov.w	r3, #1207959552	@ 0x48000000
+ 8000954:	681b      	ldr	r3, [r3, #0]
+ 8000956:	f04f 4290 	mov.w	r2, #1207959552	@ 0x48000000
+ 800095a:	f023 03c0 	bic.w	r3, r3, #192	@ 0xc0
+ 800095e:	6013      	str	r3, [r2, #0]
+    LIMIT_SWITCH_PORT->PUPDR &= ~(GPIO_PUPDR_PUPDR3); // Clear existing setting
+ 8000960:	f04f 4390 	mov.w	r3, #1207959552	@ 0x48000000
+ 8000964:	68db      	ldr	r3, [r3, #12]
+ 8000966:	f04f 4290 	mov.w	r2, #1207959552	@ 0x48000000
+ 800096a:	f023 03c0 	bic.w	r3, r3, #192	@ 0xc0
+ 800096e:	60d3      	str	r3, [r2, #12]
+    LIMIT_SWITCH_PORT->PUPDR |= GPIO_PUPDR_PUPDR3_0;  // Pull-up (01)
+ 8000970:	f04f 4390 	mov.w	r3, #1207959552	@ 0x48000000
+ 8000974:	68db      	ldr	r3, [r3, #12]
+ 8000976:	f04f 4290 	mov.w	r2, #1207959552	@ 0x48000000
+ 800097a:	f043 0340 	orr.w	r3, r3, #64	@ 0x40
+ 800097e:	60d3      	str	r3, [r2, #12]
+
+    // Configure EXTI line 3 to be connected to GPIOA
+    SYSCFG->EXTICR[0] &= ~(SYSCFG_EXTICR1_EXTI3); // Clear current setting
+ 8000980:	4b12      	ldr	r3, [pc, #72]	@ (80009cc <configure_limit_switch+0x80>)
+ 8000982:	689b      	ldr	r3, [r3, #8]
+ 8000984:	4a11      	ldr	r2, [pc, #68]	@ (80009cc <configure_limit_switch+0x80>)
+ 8000986:	f423 4370 	bic.w	r3, r3, #61440	@ 0xf000
+ 800098a:	6093      	str	r3, [r2, #8]
+    SYSCFG->EXTICR[0] |= SYSCFG_EXTICR1_EXTI3_PA; // Set PA3 for EXTI3
+ 800098c:	4b0f      	ldr	r3, [pc, #60]	@ (80009cc <configure_limit_switch+0x80>)
+ 800098e:	4a0f      	ldr	r2, [pc, #60]	@ (80009cc <configure_limit_switch+0x80>)
+ 8000990:	689b      	ldr	r3, [r3, #8]
+ 8000992:	6093      	str	r3, [r2, #8]
+
+    // Configure EXTI line 3
+    EXTI->IMR |= EXTI_IMR_MR3;   // Enable interrupt on EXTI3
+ 8000994:	4b0e      	ldr	r3, [pc, #56]	@ (80009d0 <configure_limit_switch+0x84>)
+ 8000996:	681b      	ldr	r3, [r3, #0]
+ 8000998:	4a0d      	ldr	r2, [pc, #52]	@ (80009d0 <configure_limit_switch+0x84>)
+ 800099a:	f043 0308 	orr.w	r3, r3, #8
+ 800099e:	6013      	str	r3, [r2, #0]
+    EXTI->RTSR |= EXTI_RTSR_TR3; // Rising edge trigger (switch release)
+ 80009a0:	4b0b      	ldr	r3, [pc, #44]	@ (80009d0 <configure_limit_switch+0x84>)
+ 80009a2:	689b      	ldr	r3, [r3, #8]
+ 80009a4:	4a0a      	ldr	r2, [pc, #40]	@ (80009d0 <configure_limit_switch+0x84>)
+ 80009a6:	f043 0308 	orr.w	r3, r3, #8
+ 80009aa:	6093      	str	r3, [r2, #8]
+    EXTI->FTSR |= EXTI_FTSR_TR3; // Falling edge trigger (switch press)
+ 80009ac:	4b08      	ldr	r3, [pc, #32]	@ (80009d0 <configure_limit_switch+0x84>)
+ 80009ae:	68db      	ldr	r3, [r3, #12]
+ 80009b0:	4a07      	ldr	r2, [pc, #28]	@ (80009d0 <configure_limit_switch+0x84>)
+ 80009b2:	f043 0308 	orr.w	r3, r3, #8
+ 80009b6:	60d3      	str	r3, [r2, #12]
+
+    // Enable EXTI3 interrupt in NVIC
+    NVIC_SetPriority(EXTI3_IRQn, 1); // Higher priority than timers
+ 80009b8:	2101      	movs	r1, #1
+ 80009ba:	2009      	movs	r0, #9
+ 80009bc:	f7ff fc6a 	bl	8000294 <__NVIC_SetPriority>
+    NVIC_EnableIRQ(EXTI3_IRQn);
+ 80009c0:	2009      	movs	r0, #9
+ 80009c2:	f7ff fc07 	bl	80001d4 <__NVIC_EnableIRQ>
+}
+ 80009c6:	bf00      	nop
+ 80009c8:	bd80      	pop	{r7, pc}
+ 80009ca:	bf00      	nop
+ 80009cc:	40010000 	.word	0x40010000
+ 80009d0:	40010400 	.word	0x40010400
+
+080009d4 <configure_limit_switch2>:
+
+// Configure the limit switch 2 input pin and interrupt
+void configure_limit_switch2(void) {
+ 80009d4:	b580      	push	{r7, lr}
+ 80009d6:	af00      	add	r7, sp, #0
+    // Configure PA4 as input with pull-up
+    LIMIT_SWITCH2_PORT->MODER &= ~(GPIO_MODER_MODER4); // Input mode (00)
+ 80009d8:	f04f 4390 	mov.w	r3, #1207959552	@ 0x48000000
+ 80009dc:	681b      	ldr	r3, [r3, #0]
+ 80009de:	f04f 4290 	mov.w	r2, #1207959552	@ 0x48000000
+ 80009e2:	f423 7340 	bic.w	r3, r3, #768	@ 0x300
+ 80009e6:	6013      	str	r3, [r2, #0]
+    LIMIT_SWITCH2_PORT->PUPDR &= ~(GPIO_PUPDR_PUPDR4); // Clear existing setting
+ 80009e8:	f04f 4390 	mov.w	r3, #1207959552	@ 0x48000000
+ 80009ec:	68db      	ldr	r3, [r3, #12]
+ 80009ee:	f04f 4290 	mov.w	r2, #1207959552	@ 0x48000000
+ 80009f2:	f423 7340 	bic.w	r3, r3, #768	@ 0x300
+ 80009f6:	60d3      	str	r3, [r2, #12]
+    LIMIT_SWITCH2_PORT->PUPDR |= GPIO_PUPDR_PUPDR4_0;  // Pull-up (01)
+ 80009f8:	f04f 4390 	mov.w	r3, #1207959552	@ 0x48000000
+ 80009fc:	68db      	ldr	r3, [r3, #12]
+ 80009fe:	f04f 4290 	mov.w	r2, #1207959552	@ 0x48000000
+ 8000a02:	f443 7380 	orr.w	r3, r3, #256	@ 0x100
+ 8000a06:	60d3      	str	r3, [r2, #12]
+
+    // Configure EXTI line 4 to be connected to GPIOA
+    SYSCFG->EXTICR[1] &= ~(SYSCFG_EXTICR2_EXTI4); // Clear current setting
+ 8000a08:	4b12      	ldr	r3, [pc, #72]	@ (8000a54 <configure_limit_switch2+0x80>)
+ 8000a0a:	68db      	ldr	r3, [r3, #12]
+ 8000a0c:	4a11      	ldr	r2, [pc, #68]	@ (8000a54 <configure_limit_switch2+0x80>)
+ 8000a0e:	f023 030f 	bic.w	r3, r3, #15
+ 8000a12:	60d3      	str	r3, [r2, #12]
+    SYSCFG->EXTICR[1] |= SYSCFG_EXTICR2_EXTI4_PA; // Set PA4 for EXTI4
+ 8000a14:	4b0f      	ldr	r3, [pc, #60]	@ (8000a54 <configure_limit_switch2+0x80>)
+ 8000a16:	4a0f      	ldr	r2, [pc, #60]	@ (8000a54 <configure_limit_switch2+0x80>)
+ 8000a18:	68db      	ldr	r3, [r3, #12]
+ 8000a1a:	60d3      	str	r3, [r2, #12]
+
+    // Configure EXTI line 4
+    EXTI->IMR |= EXTI_IMR_MR4;   // Enable interrupt on EXTI4
+ 8000a1c:	4b0e      	ldr	r3, [pc, #56]	@ (8000a58 <configure_limit_switch2+0x84>)
+ 8000a1e:	681b      	ldr	r3, [r3, #0]
+ 8000a20:	4a0d      	ldr	r2, [pc, #52]	@ (8000a58 <configure_limit_switch2+0x84>)
+ 8000a22:	f043 0310 	orr.w	r3, r3, #16
+ 8000a26:	6013      	str	r3, [r2, #0]
+    EXTI->RTSR |= EXTI_RTSR_TR4; // Rising edge trigger (switch release)
+ 8000a28:	4b0b      	ldr	r3, [pc, #44]	@ (8000a58 <configure_limit_switch2+0x84>)
+ 8000a2a:	689b      	ldr	r3, [r3, #8]
+ 8000a2c:	4a0a      	ldr	r2, [pc, #40]	@ (8000a58 <configure_limit_switch2+0x84>)
+ 8000a2e:	f043 0310 	orr.w	r3, r3, #16
+ 8000a32:	6093      	str	r3, [r2, #8]
+    EXTI->FTSR |= EXTI_FTSR_TR4; // Falling edge trigger (switch press)
+ 8000a34:	4b08      	ldr	r3, [pc, #32]	@ (8000a58 <configure_limit_switch2+0x84>)
+ 8000a36:	68db      	ldr	r3, [r3, #12]
+ 8000a38:	4a07      	ldr	r2, [pc, #28]	@ (8000a58 <configure_limit_switch2+0x84>)
+ 8000a3a:	f043 0310 	orr.w	r3, r3, #16
+ 8000a3e:	60d3      	str	r3, [r2, #12]
+
+    // Enable EXTI4 interrupt in NVIC
+    NVIC_SetPriority(EXTI4_IRQn, 1); // Higher priority than timers
+ 8000a40:	2101      	movs	r1, #1
+ 8000a42:	200a      	movs	r0, #10
+ 8000a44:	f7ff fc26 	bl	8000294 <__NVIC_SetPriority>
+    NVIC_EnableIRQ(EXTI4_IRQn);
+ 8000a48:	200a      	movs	r0, #10
+ 8000a4a:	f7ff fbc3 	bl	80001d4 <__NVIC_EnableIRQ>
+}
+ 8000a4e:	bf00      	nop
+ 8000a50:	bd80      	pop	{r7, pc}
+ 8000a52:	bf00      	nop
+ 8000a54:	40010000 	.word	0x40010000
+ 8000a58:	40010400 	.word	0x40010400
+
+08000a5c <configure_limit_switch3>:
+
+
+// Configure the limit switch 3 input pin and interrupt
+void configure_limit_switch3(void) {
+ 8000a5c:	b580      	push	{r7, lr}
+ 8000a5e:	af00      	add	r7, sp, #0
+    // Configure PA5 as input with pull-up
+    LIMIT_SWITCH3_PORT->MODER &= ~(GPIO_MODER_MODER5); // Input mode (00)
+ 8000a60:	f04f 4390 	mov.w	r3, #1207959552	@ 0x48000000
+ 8000a64:	681b      	ldr	r3, [r3, #0]
+ 8000a66:	f04f 4290 	mov.w	r2, #1207959552	@ 0x48000000
+ 8000a6a:	f423 6340 	bic.w	r3, r3, #3072	@ 0xc00
+ 8000a6e:	6013      	str	r3, [r2, #0]
+    LIMIT_SWITCH3_PORT->PUPDR &= ~(GPIO_PUPDR_PUPDR5); // Clear existing setting
+ 8000a70:	f04f 4390 	mov.w	r3, #1207959552	@ 0x48000000
+ 8000a74:	68db      	ldr	r3, [r3, #12]
+ 8000a76:	f04f 4290 	mov.w	r2, #1207959552	@ 0x48000000
+ 8000a7a:	f423 6340 	bic.w	r3, r3, #3072	@ 0xc00
+ 8000a7e:	60d3      	str	r3, [r2, #12]
+    LIMIT_SWITCH3_PORT->PUPDR |= GPIO_PUPDR_PUPDR5_0;  // Pull-up (01)
+ 8000a80:	f04f 4390 	mov.w	r3, #1207959552	@ 0x48000000
+ 8000a84:	68db      	ldr	r3, [r3, #12]
+ 8000a86:	f04f 4290 	mov.w	r2, #1207959552	@ 0x48000000
+ 8000a8a:	f443 6380 	orr.w	r3, r3, #1024	@ 0x400
+ 8000a8e:	60d3      	str	r3, [r2, #12]
+
+    // Configure EXTI line 5 to be connected to GPIOA
+    SYSCFG->EXTICR[1] &= ~(SYSCFG_EXTICR2_EXTI5); // Clear current setting
+ 8000a90:	4b12      	ldr	r3, [pc, #72]	@ (8000adc <configure_limit_switch3+0x80>)
+ 8000a92:	68db      	ldr	r3, [r3, #12]
+ 8000a94:	4a11      	ldr	r2, [pc, #68]	@ (8000adc <configure_limit_switch3+0x80>)
+ 8000a96:	f023 03f0 	bic.w	r3, r3, #240	@ 0xf0
+ 8000a9a:	60d3      	str	r3, [r2, #12]
+    SYSCFG->EXTICR[1] |= SYSCFG_EXTICR2_EXTI5_PA; // Set PA5 for EXTI5
+ 8000a9c:	4b0f      	ldr	r3, [pc, #60]	@ (8000adc <configure_limit_switch3+0x80>)
+ 8000a9e:	4a0f      	ldr	r2, [pc, #60]	@ (8000adc <configure_limit_switch3+0x80>)
+ 8000aa0:	68db      	ldr	r3, [r3, #12]
+ 8000aa2:	60d3      	str	r3, [r2, #12]
+
+    // Configure EXTI line 5
+    EXTI->IMR |= EXTI_IMR_MR5;   // Enable interrupt on EXTI5
+ 8000aa4:	4b0e      	ldr	r3, [pc, #56]	@ (8000ae0 <configure_limit_switch3+0x84>)
+ 8000aa6:	681b      	ldr	r3, [r3, #0]
+ 8000aa8:	4a0d      	ldr	r2, [pc, #52]	@ (8000ae0 <configure_limit_switch3+0x84>)
+ 8000aaa:	f043 0320 	orr.w	r3, r3, #32
+ 8000aae:	6013      	str	r3, [r2, #0]
+    EXTI->RTSR |= EXTI_RTSR_TR5; // Rising edge trigger (switch release)
+ 8000ab0:	4b0b      	ldr	r3, [pc, #44]	@ (8000ae0 <configure_limit_switch3+0x84>)
+ 8000ab2:	689b      	ldr	r3, [r3, #8]
+ 8000ab4:	4a0a      	ldr	r2, [pc, #40]	@ (8000ae0 <configure_limit_switch3+0x84>)
+ 8000ab6:	f043 0320 	orr.w	r3, r3, #32
+ 8000aba:	6093      	str	r3, [r2, #8]
+    EXTI->FTSR |= EXTI_FTSR_TR5; // Falling edge trigger (switch press)
+ 8000abc:	4b08      	ldr	r3, [pc, #32]	@ (8000ae0 <configure_limit_switch3+0x84>)
+ 8000abe:	68db      	ldr	r3, [r3, #12]
+ 8000ac0:	4a07      	ldr	r2, [pc, #28]	@ (8000ae0 <configure_limit_switch3+0x84>)
+ 8000ac2:	f043 0320 	orr.w	r3, r3, #32
+ 8000ac6:	60d3      	str	r3, [r2, #12]
+
+    // Enable EXTI9_5 interrupt in NVIC (EXTI5 uses EXTI9_5_IRQn)
+    NVIC_SetPriority(EXTI9_5_IRQn, 1); // Higher priority than timers
+ 8000ac8:	2101      	movs	r1, #1
+ 8000aca:	2017      	movs	r0, #23
+ 8000acc:	f7ff fbe2 	bl	8000294 <__NVIC_SetPriority>
+    NVIC_EnableIRQ(EXTI9_5_IRQn);
+ 8000ad0:	2017      	movs	r0, #23
+ 8000ad2:	f7ff fb7f 	bl	80001d4 <__NVIC_EnableIRQ>
+}
+ 8000ad6:	bf00      	nop
+ 8000ad8:	bd80      	pop	{r7, pc}
+ 8000ada:	bf00      	nop
+ 8000adc:	40010000 	.word	0x40010000
+ 8000ae0:	40010400 	.word	0x40010400
+
+08000ae4 <configure_limit_switch4>:
+
+// Configure the limit switch 4 input pin and interrupt
+void configure_limit_switch4(void) {
+ 8000ae4:	b580      	push	{r7, lr}
+ 8000ae6:	af00      	add	r7, sp, #0
+    // Configure PA6 as input with pull-up
+    LIMIT_SWITCH4_PORT->MODER &= ~(GPIO_MODER_MODER6); // Input mode (00)
+ 8000ae8:	f04f 4390 	mov.w	r3, #1207959552	@ 0x48000000
+ 8000aec:	681b      	ldr	r3, [r3, #0]
+ 8000aee:	f04f 4290 	mov.w	r2, #1207959552	@ 0x48000000
+ 8000af2:	f423 5340 	bic.w	r3, r3, #12288	@ 0x3000
+ 8000af6:	6013      	str	r3, [r2, #0]
+    LIMIT_SWITCH4_PORT->PUPDR &= ~(GPIO_PUPDR_PUPDR6); // Clear existing setting
+ 8000af8:	f04f 4390 	mov.w	r3, #1207959552	@ 0x48000000
+ 8000afc:	68db      	ldr	r3, [r3, #12]
+ 8000afe:	f04f 4290 	mov.w	r2, #1207959552	@ 0x48000000
+ 8000b02:	f423 5340 	bic.w	r3, r3, #12288	@ 0x3000
+ 8000b06:	60d3      	str	r3, [r2, #12]
+    LIMIT_SWITCH4_PORT->PUPDR |= GPIO_PUPDR_PUPDR6_0;  // Pull-up (01)
+ 8000b08:	f04f 4390 	mov.w	r3, #1207959552	@ 0x48000000
+ 8000b0c:	68db      	ldr	r3, [r3, #12]
+ 8000b0e:	f04f 4290 	mov.w	r2, #1207959552	@ 0x48000000
+ 8000b12:	f443 5380 	orr.w	r3, r3, #4096	@ 0x1000
+ 8000b16:	60d3      	str	r3, [r2, #12]
+
+    // Configure EXTI line 6 to be connected to GPIOA
+    SYSCFG->EXTICR[1] &= ~(SYSCFG_EXTICR2_EXTI6); // Clear current setting
+ 8000b18:	4b12      	ldr	r3, [pc, #72]	@ (8000b64 <configure_limit_switch4+0x80>)
+ 8000b1a:	68db      	ldr	r3, [r3, #12]
+ 8000b1c:	4a11      	ldr	r2, [pc, #68]	@ (8000b64 <configure_limit_switch4+0x80>)
+ 8000b1e:	f423 6370 	bic.w	r3, r3, #3840	@ 0xf00
+ 8000b22:	60d3      	str	r3, [r2, #12]
+    SYSCFG->EXTICR[1] |= SYSCFG_EXTICR2_EXTI6_PA; // Set PA6 for EXTI6
+ 8000b24:	4b0f      	ldr	r3, [pc, #60]	@ (8000b64 <configure_limit_switch4+0x80>)
+ 8000b26:	4a0f      	ldr	r2, [pc, #60]	@ (8000b64 <configure_limit_switch4+0x80>)
+ 8000b28:	68db      	ldr	r3, [r3, #12]
+ 8000b2a:	60d3      	str	r3, [r2, #12]
+
+    // Configure EXTI line 6
+    EXTI->IMR |= EXTI_IMR_MR6;   // Enable interrupt on EXTI6
+ 8000b2c:	4b0e      	ldr	r3, [pc, #56]	@ (8000b68 <configure_limit_switch4+0x84>)
+ 8000b2e:	681b      	ldr	r3, [r3, #0]
+ 8000b30:	4a0d      	ldr	r2, [pc, #52]	@ (8000b68 <configure_limit_switch4+0x84>)
+ 8000b32:	f043 0340 	orr.w	r3, r3, #64	@ 0x40
+ 8000b36:	6013      	str	r3, [r2, #0]
+    EXTI->RTSR |= EXTI_RTSR_TR6; // Rising edge trigger (switch release)
+ 8000b38:	4b0b      	ldr	r3, [pc, #44]	@ (8000b68 <configure_limit_switch4+0x84>)
+ 8000b3a:	689b      	ldr	r3, [r3, #8]
+ 8000b3c:	4a0a      	ldr	r2, [pc, #40]	@ (8000b68 <configure_limit_switch4+0x84>)
+ 8000b3e:	f043 0340 	orr.w	r3, r3, #64	@ 0x40
+ 8000b42:	6093      	str	r3, [r2, #8]
+    EXTI->FTSR |= EXTI_FTSR_TR6; // Falling edge trigger (switch press)
+ 8000b44:	4b08      	ldr	r3, [pc, #32]	@ (8000b68 <configure_limit_switch4+0x84>)
+ 8000b46:	68db      	ldr	r3, [r3, #12]
+ 8000b48:	4a07      	ldr	r2, [pc, #28]	@ (8000b68 <configure_limit_switch4+0x84>)
+ 8000b4a:	f043 0340 	orr.w	r3, r3, #64	@ 0x40
+ 8000b4e:	60d3      	str	r3, [r2, #12]
+
+    // Enable EXTI9_5 interrupt in NVIC (EXTI6 uses EXTI9_5_IRQn)
+    NVIC_SetPriority(EXTI9_5_IRQn, 1); // Higher priority than timers
+ 8000b50:	2101      	movs	r1, #1
+ 8000b52:	2017      	movs	r0, #23
+ 8000b54:	f7ff fb9e 	bl	8000294 <__NVIC_SetPriority>
+    NVIC_EnableIRQ(EXTI9_5_IRQn);
+ 8000b58:	2017      	movs	r0, #23
+ 8000b5a:	f7ff fb3b 	bl	80001d4 <__NVIC_EnableIRQ>
+}
+ 8000b5e:	bf00      	nop
+ 8000b60:	bd80      	pop	{r7, pc}
+ 8000b62:	bf00      	nop
+ 8000b64:	40010000 	.word	0x40010000
+ 8000b68:	40010400 	.word	0x40010400
+
+08000b6c <configure_flash_timer>:
+
+
+void configure_flash_timer(void) {
+ 8000b6c:	b580      	push	{r7, lr}
+ 8000b6e:	af00      	add	r7, sp, #0
+    // Reset timer configuration
+    TIM17->CR1 = 0;
+ 8000b70:	4b16      	ldr	r3, [pc, #88]	@ (8000bcc <configure_flash_timer+0x60>)
+ 8000b72:	2200      	movs	r2, #0
+ 8000b74:	601a      	str	r2, [r3, #0]
+
+    // Set prescaler for 1kHz timer clock
+    TIM17->PSC = 71999;
+ 8000b76:	4b15      	ldr	r3, [pc, #84]	@ (8000bcc <configure_flash_timer+0x60>)
+ 8000b78:	4a15      	ldr	r2, [pc, #84]	@ (8000bd0 <configure_flash_timer+0x64>)
+ 8000b7a:	629a      	str	r2, [r3, #40]	@ 0x28
+
+    // Set auto-reload value for slower flash interval
+    TIM17->ARR = 199; // 200ms interval (twice as slow)
+ 8000b7c:	4b13      	ldr	r3, [pc, #76]	@ (8000bcc <configure_flash_timer+0x60>)
+ 8000b7e:	22c7      	movs	r2, #199	@ 0xc7
+ 8000b80:	62da      	str	r2, [r3, #44]	@ 0x2c
+//    TIM17->ARR = 299; // 300ms interval (3x slower)
+//    // or
+//    TIM17->ARR = 499; // 500ms interval (5x slower)
+
+    // Enable auto-reload preload
+    TIM17->CR1 |= TIM_CR1_ARPE;
+ 8000b82:	4b12      	ldr	r3, [pc, #72]	@ (8000bcc <configure_flash_timer+0x60>)
+ 8000b84:	681b      	ldr	r3, [r3, #0]
+ 8000b86:	4a11      	ldr	r2, [pc, #68]	@ (8000bcc <configure_flash_timer+0x60>)
+ 8000b88:	f043 0380 	orr.w	r3, r3, #128	@ 0x80
+ 8000b8c:	6013      	str	r3, [r2, #0]
+
+    // Generate update event to load the registers
+    TIM17->EGR |= TIM_EGR_UG;
+ 8000b8e:	4b0f      	ldr	r3, [pc, #60]	@ (8000bcc <configure_flash_timer+0x60>)
+ 8000b90:	695b      	ldr	r3, [r3, #20]
+ 8000b92:	4a0e      	ldr	r2, [pc, #56]	@ (8000bcc <configure_flash_timer+0x60>)
+ 8000b94:	f043 0301 	orr.w	r3, r3, #1
+ 8000b98:	6153      	str	r3, [r2, #20]
+
+    // Clear the update flag
+    TIM17->SR &= ~TIM_SR_UIF;
+ 8000b9a:	4b0c      	ldr	r3, [pc, #48]	@ (8000bcc <configure_flash_timer+0x60>)
+ 8000b9c:	691b      	ldr	r3, [r3, #16]
+ 8000b9e:	4a0b      	ldr	r2, [pc, #44]	@ (8000bcc <configure_flash_timer+0x60>)
+ 8000ba0:	f023 0301 	bic.w	r3, r3, #1
+ 8000ba4:	6113      	str	r3, [r2, #16]
+
+    // Enable update interrupt
+    TIM17->DIER |= TIM_DIER_UIE;
+ 8000ba6:	4b09      	ldr	r3, [pc, #36]	@ (8000bcc <configure_flash_timer+0x60>)
+ 8000ba8:	68db      	ldr	r3, [r3, #12]
+ 8000baa:	4a08      	ldr	r2, [pc, #32]	@ (8000bcc <configure_flash_timer+0x60>)
+ 8000bac:	f043 0301 	orr.w	r3, r3, #1
+ 8000bb0:	60d3      	str	r3, [r2, #12]
+
+    // Configure and enable TIM17 interrupt in NVIC
+    NVIC_SetPriority(TIM1_TRG_COM_TIM17_IRQn, 3);
+ 8000bb2:	2103      	movs	r1, #3
+ 8000bb4:	201a      	movs	r0, #26
+ 8000bb6:	f7ff fb6d 	bl	8000294 <__NVIC_SetPriority>
+    NVIC_EnableIRQ(TIM1_TRG_COM_TIM17_IRQn);
+ 8000bba:	201a      	movs	r0, #26
+ 8000bbc:	f7ff fb0a 	bl	80001d4 <__NVIC_EnableIRQ>
+
+    // Set the flash timer callback
+    flash_timer_callback = flash_led_callback;
+ 8000bc0:	4b04      	ldr	r3, [pc, #16]	@ (8000bd4 <configure_flash_timer+0x68>)
+ 8000bc2:	4a05      	ldr	r2, [pc, #20]	@ (8000bd8 <configure_flash_timer+0x6c>)
+ 8000bc4:	601a      	str	r2, [r3, #0]
+}
+ 8000bc6:	bf00      	nop
+ 8000bc8:	bd80      	pop	{r7, pc}
+ 8000bca:	bf00      	nop
+ 8000bcc:	40014800 	.word	0x40014800
+ 8000bd0:	0001193f 	.word	0x0001193f
+ 8000bd4:	20000038 	.word	0x20000038
+ 8000bd8:	08001265 	.word	0x08001265
+
+08000bdc <timer_init>:
+
+// Initialize timer for color cycling
+void timer_init(uint32_t time_period_ms, callback_t cb) {
+ 8000bdc:	b580      	push	{r7, lr}
+ 8000bde:	b082      	sub	sp, #8
+ 8000be0:	af00      	add	r7, sp, #0
+ 8000be2:	6078      	str	r0, [r7, #4]
+ 8000be4:	6039      	str	r1, [r7, #0]
+  __ASM volatile ("cpsid i" : : : "memory");
+ 8000be6:	b672      	cpsid	i
+}
+ 8000be8:	bf00      	nop
+    // Disable the interrupts while configuring timer settings
+    __disable_irq();
+
+    // Store the callback function
+    timer_callback = cb;
+ 8000bea:	4a1b      	ldr	r2, [pc, #108]	@ (8000c58 <timer_init+0x7c>)
+ 8000bec:	683b      	ldr	r3, [r7, #0]
+ 8000bee:	6013      	str	r3, [r2, #0]
+
+    // Disable interrupts for TIM16
+    NVIC_DisableIRQ(TIM1_UP_TIM16_IRQn);
+ 8000bf0:	2019      	movs	r0, #25
+ 8000bf2:	f7ff fb0d 	bl	8000210 <__NVIC_DisableIRQ>
+
+    // Clear any pending interrupt
+    NVIC_ClearPendingIRQ(TIM1_UP_TIM16_IRQn);
+ 8000bf6:	2019      	movs	r0, #25
+ 8000bf8:	f7ff fb2e 	bl	8000258 <__NVIC_ClearPendingIRQ>
+
+    // Configure TIM16 (16-bit timer) for color cycling
+    // Note: TIM16 is on APB2, which typically runs at higher frequency
+    // Assuming APB2 = 72MHz, set prescaler for 1kHz timer clock (72MHz / 72000 = 1kHz)
+    TIM16->PSC = 71999; // Adjust based on your actual APB2 clock frequency
+ 8000bfc:	4b17      	ldr	r3, [pc, #92]	@ (8000c5c <timer_init+0x80>)
+ 8000bfe:	4a18      	ldr	r2, [pc, #96]	@ (8000c60 <timer_init+0x84>)
+ 8000c00:	629a      	str	r2, [r3, #40]	@ 0x28
+
+    // Calculate the auto-reload value based on the desired time period
+    // For 16-bit timer, maximum ARR value is 65535
+    if (time_period_ms > 65535) {
+ 8000c02:	687b      	ldr	r3, [r7, #4]
+ 8000c04:	f5b3 3f80 	cmp.w	r3, #65536	@ 0x10000
+ 8000c08:	d302      	bcc.n	8000c10 <timer_init+0x34>
+        // If time period is too large, adjust prescaler
+        // This is a simplified approach - you might need more sophisticated scaling
+        time_period_ms = 65535;
+ 8000c0a:	f64f 73ff 	movw	r3, #65535	@ 0xffff
+ 8000c0e:	607b      	str	r3, [r7, #4]
+    }
+    TIM16->ARR = (time_period_ms - 1);
+ 8000c10:	4a12      	ldr	r2, [pc, #72]	@ (8000c5c <timer_init+0x80>)
+ 8000c12:	687b      	ldr	r3, [r7, #4]
+ 8000c14:	3b01      	subs	r3, #1
+ 8000c16:	62d3      	str	r3, [r2, #44]	@ 0x2c
+
+    // Generate an update event to load the new settings
+    TIM16->EGR |= TIM_EGR_UG;
+ 8000c18:	4b10      	ldr	r3, [pc, #64]	@ (8000c5c <timer_init+0x80>)
+ 8000c1a:	695b      	ldr	r3, [r3, #20]
+ 8000c1c:	4a0f      	ldr	r2, [pc, #60]	@ (8000c5c <timer_init+0x80>)
+ 8000c1e:	f043 0301 	orr.w	r3, r3, #1
+ 8000c22:	6153      	str	r3, [r2, #20]
+
+    // Clear the update flag that was set by the UG bit
+    TIM16->SR &= ~TIM_SR_UIF;
+ 8000c24:	4b0d      	ldr	r3, [pc, #52]	@ (8000c5c <timer_init+0x80>)
+ 8000c26:	691b      	ldr	r3, [r3, #16]
+ 8000c28:	4a0c      	ldr	r2, [pc, #48]	@ (8000c5c <timer_init+0x80>)
+ 8000c2a:	f023 0301 	bic.w	r3, r3, #1
+ 8000c2e:	6113      	str	r3, [r2, #16]
+
+    // Enable update interrupt for Timer 16
+    TIM16->DIER |= TIM_DIER_UIE;
+ 8000c30:	4b0a      	ldr	r3, [pc, #40]	@ (8000c5c <timer_init+0x80>)
+ 8000c32:	68db      	ldr	r3, [r3, #12]
+ 8000c34:	4a09      	ldr	r2, [pc, #36]	@ (8000c5c <timer_init+0x80>)
+ 8000c36:	f043 0301 	orr.w	r3, r3, #1
+ 8000c3a:	60d3      	str	r3, [r2, #12]
+
+    // Configure and enable Timer 16 interrupt in NVIC
+    NVIC_SetPriority(TIM1_UP_TIM16_IRQn, 2); // Lower priority
+ 8000c3c:	2102      	movs	r1, #2
+ 8000c3e:	2019      	movs	r0, #25
+ 8000c40:	f7ff fb28 	bl	8000294 <__NVIC_SetPriority>
+    NVIC_EnableIRQ(TIM1_UP_TIM16_IRQn);
+ 8000c44:	2019      	movs	r0, #25
+ 8000c46:	f7ff fac5 	bl	80001d4 <__NVIC_EnableIRQ>
+  __ASM volatile ("cpsie i" : : : "memory");
+ 8000c4a:	b662      	cpsie	i
+}
+ 8000c4c:	bf00      	nop
+
+    // Re-enable all interrupts
+    __enable_irq();
+}
+ 8000c4e:	bf00      	nop
+ 8000c50:	3708      	adds	r7, #8
+ 8000c52:	46bd      	mov	sp, r7
+ 8000c54:	bd80      	pop	{r7, pc}
+ 8000c56:	bf00      	nop
+ 8000c58:	20000034 	.word	0x20000034
+ 8000c5c:	40014400 	.word	0x40014400
+ 8000c60:	0001193f 	.word	0x0001193f
+
+08000c64 <set_rgb_ccr>:
+ * @brief Set RGB LED 1 color values
+ * @param red Value for red LED (0-255)
+ * @param green Value for green LED (0-255)
+ * @param blue Value for blue LED (0-255)
+ */
+void set_rgb_ccr(uint8_t red, uint8_t green, uint8_t blue) {
+ 8000c64:	b480      	push	{r7}
+ 8000c66:	b083      	sub	sp, #12
+ 8000c68:	af00      	add	r7, sp, #0
+ 8000c6a:	4603      	mov	r3, r0
+ 8000c6c:	71fb      	strb	r3, [r7, #7]
+ 8000c6e:	460b      	mov	r3, r1
+ 8000c70:	71bb      	strb	r3, [r7, #6]
+ 8000c72:	4613      	mov	r3, r2
+ 8000c74:	717b      	strb	r3, [r7, #5]
+    // Store values
+    red_value = red;
+ 8000c76:	4a0c      	ldr	r2, [pc, #48]	@ (8000ca8 <set_rgb_ccr+0x44>)
+ 8000c78:	79fb      	ldrb	r3, [r7, #7]
+ 8000c7a:	7013      	strb	r3, [r2, #0]
+    green_value = green;
+ 8000c7c:	4a0b      	ldr	r2, [pc, #44]	@ (8000cac <set_rgb_ccr+0x48>)
+ 8000c7e:	79bb      	ldrb	r3, [r7, #6]
+ 8000c80:	7013      	strb	r3, [r2, #0]
+    blue_value = blue;
+ 8000c82:	4a0b      	ldr	r2, [pc, #44]	@ (8000cb0 <set_rgb_ccr+0x4c>)
+ 8000c84:	797b      	ldrb	r3, [r7, #5]
+ 8000c86:	7013      	strb	r3, [r2, #0]
+
+    // Directly set hardware CCR registers
+    TIM3->CCR1 = red;    // Red
+ 8000c88:	4a0a      	ldr	r2, [pc, #40]	@ (8000cb4 <set_rgb_ccr+0x50>)
+ 8000c8a:	79fb      	ldrb	r3, [r7, #7]
+ 8000c8c:	6353      	str	r3, [r2, #52]	@ 0x34
+    TIM3->CCR2 = green;  // Green
+ 8000c8e:	4a09      	ldr	r2, [pc, #36]	@ (8000cb4 <set_rgb_ccr+0x50>)
+ 8000c90:	79bb      	ldrb	r3, [r7, #6]
+ 8000c92:	6393      	str	r3, [r2, #56]	@ 0x38
+    TIM3->CCR3 = blue;   // Blue
+ 8000c94:	4a07      	ldr	r2, [pc, #28]	@ (8000cb4 <set_rgb_ccr+0x50>)
+ 8000c96:	797b      	ldrb	r3, [r7, #5]
+ 8000c98:	63d3      	str	r3, [r2, #60]	@ 0x3c
+}
+ 8000c9a:	bf00      	nop
+ 8000c9c:	370c      	adds	r7, #12
+ 8000c9e:	46bd      	mov	sp, r7
+ 8000ca0:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 8000ca4:	4770      	bx	lr
+ 8000ca6:	bf00      	nop
+ 8000ca8:	2000003c 	.word	0x2000003c
+ 8000cac:	2000003d 	.word	0x2000003d
+ 8000cb0:	2000003e 	.word	0x2000003e
+ 8000cb4:	40000400 	.word	0x40000400
+
+08000cb8 <set_rgb2_ccr>:
+ * @brief Set RGB LED 2 color values
+ * @param red Value for red LED (0-255)
+ * @param green Value for green LED (0-255)
+ * @param blue Value for blue LED (0-255)
+ */
+void set_rgb2_ccr(uint8_t red, uint8_t green, uint8_t blue) {
+ 8000cb8:	b480      	push	{r7}
+ 8000cba:	b083      	sub	sp, #12
+ 8000cbc:	af00      	add	r7, sp, #0
+ 8000cbe:	4603      	mov	r3, r0
+ 8000cc0:	71fb      	strb	r3, [r7, #7]
+ 8000cc2:	460b      	mov	r3, r1
+ 8000cc4:	71bb      	strb	r3, [r7, #6]
+ 8000cc6:	4613      	mov	r3, r2
+ 8000cc8:	717b      	strb	r3, [r7, #5]
+    // Store values
+    red2_value = red;
+ 8000cca:	4a0d      	ldr	r2, [pc, #52]	@ (8000d00 <set_rgb2_ccr+0x48>)
+ 8000ccc:	79fb      	ldrb	r3, [r7, #7]
+ 8000cce:	7013      	strb	r3, [r2, #0]
+    green2_value = green;
+ 8000cd0:	4a0c      	ldr	r2, [pc, #48]	@ (8000d04 <set_rgb2_ccr+0x4c>)
+ 8000cd2:	79bb      	ldrb	r3, [r7, #6]
+ 8000cd4:	7013      	strb	r3, [r2, #0]
+    blue2_value = blue;
+ 8000cd6:	4a0c      	ldr	r2, [pc, #48]	@ (8000d08 <set_rgb2_ccr+0x50>)
+ 8000cd8:	797b      	ldrb	r3, [r7, #5]
+ 8000cda:	7013      	strb	r3, [r2, #0]
+
+    // Directly set hardware CCR registers for TIM2
+    TIM2->CCR1 = red;    // Red - Channel 1
+ 8000cdc:	f04f 4280 	mov.w	r2, #1073741824	@ 0x40000000
+ 8000ce0:	79fb      	ldrb	r3, [r7, #7]
+ 8000ce2:	6353      	str	r3, [r2, #52]	@ 0x34
+    TIM2->CCR2 = green;  // Green - Channel 2
+ 8000ce4:	f04f 4280 	mov.w	r2, #1073741824	@ 0x40000000
+ 8000ce8:	79bb      	ldrb	r3, [r7, #6]
+ 8000cea:	6393      	str	r3, [r2, #56]	@ 0x38
+    TIM2->CCR3 = blue;   // Blue - Channel 3
+ 8000cec:	f04f 4280 	mov.w	r2, #1073741824	@ 0x40000000
+ 8000cf0:	797b      	ldrb	r3, [r7, #5]
+ 8000cf2:	63d3      	str	r3, [r2, #60]	@ 0x3c
+}
+ 8000cf4:	bf00      	nop
+ 8000cf6:	370c      	adds	r7, #12
+ 8000cf8:	46bd      	mov	sp, r7
+ 8000cfa:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 8000cfe:	4770      	bx	lr
+ 8000d00:	2000003f 	.word	0x2000003f
+ 8000d04:	20000040 	.word	0x20000040
+ 8000d08:	20000041 	.word	0x20000041
+
+08000d0c <set_rgb3_ccr>:
+ * @brief Set RGB LED 3 color values
+ * @param red Value for red LED (0-255)
+ * @param green Value for green LED (0-255)
+ * @param blue Value for blue LED (0-255)
+ */
+void set_rgb3_ccr(uint8_t red, uint8_t green, uint8_t blue) {
+ 8000d0c:	b480      	push	{r7}
+ 8000d0e:	b083      	sub	sp, #12
+ 8000d10:	af00      	add	r7, sp, #0
+ 8000d12:	4603      	mov	r3, r0
+ 8000d14:	71fb      	strb	r3, [r7, #7]
+ 8000d16:	460b      	mov	r3, r1
+ 8000d18:	71bb      	strb	r3, [r7, #6]
+ 8000d1a:	4613      	mov	r3, r2
+ 8000d1c:	717b      	strb	r3, [r7, #5]
+    // Store values
+    red3_value = red;
+ 8000d1e:	4a0c      	ldr	r2, [pc, #48]	@ (8000d50 <set_rgb3_ccr+0x44>)
+ 8000d20:	79fb      	ldrb	r3, [r7, #7]
+ 8000d22:	7013      	strb	r3, [r2, #0]
+    green3_value = green;
+ 8000d24:	4a0b      	ldr	r2, [pc, #44]	@ (8000d54 <set_rgb3_ccr+0x48>)
+ 8000d26:	79bb      	ldrb	r3, [r7, #6]
+ 8000d28:	7013      	strb	r3, [r2, #0]
+    blue3_value = blue;
+ 8000d2a:	4a0b      	ldr	r2, [pc, #44]	@ (8000d58 <set_rgb3_ccr+0x4c>)
+ 8000d2c:	797b      	ldrb	r3, [r7, #5]
+ 8000d2e:	7013      	strb	r3, [r2, #0]
+
+    // Directly set hardware CCR registers for TIM4
+    TIM4->CCR1 = red;    // Red - Channel 1
+ 8000d30:	4a0a      	ldr	r2, [pc, #40]	@ (8000d5c <set_rgb3_ccr+0x50>)
+ 8000d32:	79fb      	ldrb	r3, [r7, #7]
+ 8000d34:	6353      	str	r3, [r2, #52]	@ 0x34
+    TIM4->CCR2 = green;  // Green - Channel 2
+ 8000d36:	4a09      	ldr	r2, [pc, #36]	@ (8000d5c <set_rgb3_ccr+0x50>)
+ 8000d38:	79bb      	ldrb	r3, [r7, #6]
+ 8000d3a:	6393      	str	r3, [r2, #56]	@ 0x38
+    TIM4->CCR3 = blue;   // Blue - Channel 3
+ 8000d3c:	4a07      	ldr	r2, [pc, #28]	@ (8000d5c <set_rgb3_ccr+0x50>)
+ 8000d3e:	797b      	ldrb	r3, [r7, #5]
+ 8000d40:	63d3      	str	r3, [r2, #60]	@ 0x3c
+}
+ 8000d42:	bf00      	nop
+ 8000d44:	370c      	adds	r7, #12
+ 8000d46:	46bd      	mov	sp, r7
+ 8000d48:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 8000d4c:	4770      	bx	lr
+ 8000d4e:	bf00      	nop
+ 8000d50:	20000042 	.word	0x20000042
+ 8000d54:	20000043 	.word	0x20000043
+ 8000d58:	20000044 	.word	0x20000044
+ 8000d5c:	40000800 	.word	0x40000800
+
+08000d60 <set_rgb4_ccr>:
+ * @brief Set RGB LED 4 color values
+ * @param red Value for red LED (0-255)
+ * @param green Value for green LED (0-255)
+ * @param blue Value for blue LED (0-255)
+ */
+void set_rgb4_ccr(uint8_t red, uint8_t green, uint8_t blue) {
+ 8000d60:	b480      	push	{r7}
+ 8000d62:	b083      	sub	sp, #12
+ 8000d64:	af00      	add	r7, sp, #0
+ 8000d66:	4603      	mov	r3, r0
+ 8000d68:	71fb      	strb	r3, [r7, #7]
+ 8000d6a:	460b      	mov	r3, r1
+ 8000d6c:	71bb      	strb	r3, [r7, #6]
+ 8000d6e:	4613      	mov	r3, r2
+ 8000d70:	717b      	strb	r3, [r7, #5]
+    // Store values
+    red4_value = red;
+ 8000d72:	4a0c      	ldr	r2, [pc, #48]	@ (8000da4 <set_rgb4_ccr+0x44>)
+ 8000d74:	79fb      	ldrb	r3, [r7, #7]
+ 8000d76:	7013      	strb	r3, [r2, #0]
+    green4_value = green;
+ 8000d78:	4a0b      	ldr	r2, [pc, #44]	@ (8000da8 <set_rgb4_ccr+0x48>)
+ 8000d7a:	79bb      	ldrb	r3, [r7, #6]
+ 8000d7c:	7013      	strb	r3, [r2, #0]
+    blue4_value = blue;
+ 8000d7e:	4a0b      	ldr	r2, [pc, #44]	@ (8000dac <set_rgb4_ccr+0x4c>)
+ 8000d80:	797b      	ldrb	r3, [r7, #5]
+ 8000d82:	7013      	strb	r3, [r2, #0]
+
+    // Directly set hardware CCR registers for TIM1
+    TIM1->CCR1 = red;    // Red - Channel 1
+ 8000d84:	4a0a      	ldr	r2, [pc, #40]	@ (8000db0 <set_rgb4_ccr+0x50>)
+ 8000d86:	79fb      	ldrb	r3, [r7, #7]
+ 8000d88:	6353      	str	r3, [r2, #52]	@ 0x34
+    TIM1->CCR2 = green;  // Green - Channel 2
+ 8000d8a:	4a09      	ldr	r2, [pc, #36]	@ (8000db0 <set_rgb4_ccr+0x50>)
+ 8000d8c:	79bb      	ldrb	r3, [r7, #6]
+ 8000d8e:	6393      	str	r3, [r2, #56]	@ 0x38
+    TIM1->CCR3 = blue;   // Blue - Channel 3
+ 8000d90:	4a07      	ldr	r2, [pc, #28]	@ (8000db0 <set_rgb4_ccr+0x50>)
+ 8000d92:	797b      	ldrb	r3, [r7, #5]
+ 8000d94:	63d3      	str	r3, [r2, #60]	@ 0x3c
+}
+ 8000d96:	bf00      	nop
+ 8000d98:	370c      	adds	r7, #12
+ 8000d9a:	46bd      	mov	sp, r7
+ 8000d9c:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 8000da0:	4770      	bx	lr
+ 8000da2:	bf00      	nop
+ 8000da4:	20000045 	.word	0x20000045
+ 8000da8:	20000046 	.word	0x20000046
+ 8000dac:	20000047 	.word	0x20000047
+ 8000db0:	40012c00 	.word	0x40012c00
+
+08000db4 <set_rgb_color>:
+
+
+// Set RGB LED 1 color based on current demonstration state
+void set_rgb_color(void) {
+ 8000db4:	b580      	push	{r7, lr}
+ 8000db6:	af00      	add	r7, sp, #0
+    // Only change colors if not in flashing mode
+    if (!flash_active) {
+ 8000db8:	4b3f      	ldr	r3, [pc, #252]	@ (8000eb8 <set_rgb_color+0x104>)
+ 8000dba:	781b      	ldrb	r3, [r3, #0]
+ 8000dbc:	b2db      	uxtb	r3, r3
+ 8000dbe:	2b00      	cmp	r3, #0
+ 8000dc0:	d177      	bne.n	8000eb2 <set_rgb_color+0xfe>
+        // Check if RGB1 should display yellow cycling
+        if (current_yellow_led == 0) {
+ 8000dc2:	4b3e      	ldr	r3, [pc, #248]	@ (8000ebc <set_rgb_color+0x108>)
+ 8000dc4:	781b      	ldrb	r3, [r3, #0]
+ 8000dc6:	b2db      	uxtb	r3, r3
+ 8000dc8:	2b00      	cmp	r3, #0
+ 8000dca:	d148      	bne.n	8000e5e <set_rgb_color+0xaa>
+            // Yellow cycling sequence
+            switch (current_state) {
+ 8000dcc:	4b3c      	ldr	r3, [pc, #240]	@ (8000ec0 <set_rgb_color+0x10c>)
+ 8000dce:	781b      	ldrb	r3, [r3, #0]
+ 8000dd0:	2b05      	cmp	r3, #5
+ 8000dd2:	d833      	bhi.n	8000e3c <set_rgb_color+0x88>
+ 8000dd4:	a201      	add	r2, pc, #4	@ (adr r2, 8000ddc <set_rgb_color+0x28>)
+ 8000dd6:	f852 f023 	ldr.w	pc, [r2, r3, lsl #2]
+ 8000dda:	bf00      	nop
+ 8000ddc:	08000df5 	.word	0x08000df5
+ 8000de0:	08000e01 	.word	0x08000e01
+ 8000de4:	08000e0d 	.word	0x08000e0d
+ 8000de8:	08000e19 	.word	0x08000e19
+ 8000dec:	08000e25 	.word	0x08000e25
+ 8000df0:	08000e31 	.word	0x08000e31
+                case 0:
+                    set_rgb_ccr(200, 230, 0);
+ 8000df4:	2200      	movs	r2, #0
+ 8000df6:	21e6      	movs	r1, #230	@ 0xe6
+ 8000df8:	20c8      	movs	r0, #200	@ 0xc8
+ 8000dfa:	f7ff ff33 	bl	8000c64 <set_rgb_ccr>
+                    break;
+ 8000dfe:	e01d      	b.n	8000e3c <set_rgb_color+0x88>
+                case 1:
+                    set_rgb_ccr(190, 200, 0);
+ 8000e00:	2200      	movs	r2, #0
+ 8000e02:	21c8      	movs	r1, #200	@ 0xc8
+ 8000e04:	20be      	movs	r0, #190	@ 0xbe
+ 8000e06:	f7ff ff2d 	bl	8000c64 <set_rgb_ccr>
+                    break;
+ 8000e0a:	e017      	b.n	8000e3c <set_rgb_color+0x88>
+                case 2:
+                    set_rgb_ccr(200, 255, 0);
+ 8000e0c:	2200      	movs	r2, #0
+ 8000e0e:	21ff      	movs	r1, #255	@ 0xff
+ 8000e10:	20c8      	movs	r0, #200	@ 0xc8
+ 8000e12:	f7ff ff27 	bl	8000c64 <set_rgb_ccr>
+                    break;
+ 8000e16:	e011      	b.n	8000e3c <set_rgb_color+0x88>
+                case 3:
+                    set_rgb_ccr(210, 240, 0);
+ 8000e18:	2200      	movs	r2, #0
+ 8000e1a:	21f0      	movs	r1, #240	@ 0xf0
+ 8000e1c:	20d2      	movs	r0, #210	@ 0xd2
+ 8000e1e:	f7ff ff21 	bl	8000c64 <set_rgb_ccr>
+                    break;
+ 8000e22:	e00b      	b.n	8000e3c <set_rgb_color+0x88>
+                case 4:
+                    set_rgb_ccr(200, 240, 0);
+ 8000e24:	2200      	movs	r2, #0
+ 8000e26:	21f0      	movs	r1, #240	@ 0xf0
+ 8000e28:	20c8      	movs	r0, #200	@ 0xc8
+ 8000e2a:	f7ff ff1b 	bl	8000c64 <set_rgb_ccr>
+                    break;
+ 8000e2e:	e005      	b.n	8000e3c <set_rgb_color+0x88>
+                case 5:
+                    set_rgb_ccr(180, 200, 10);
+ 8000e30:	220a      	movs	r2, #10
+ 8000e32:	21c8      	movs	r1, #200	@ 0xc8
+ 8000e34:	20b4      	movs	r0, #180	@ 0xb4
+ 8000e36:	f7ff ff15 	bl	8000c64 <set_rgb_ccr>
+                    break;
+ 8000e3a:	bf00      	nop
+            }
+            // Move to the next state
+            current_state = (current_state + 1) % 6;
+ 8000e3c:	4b20      	ldr	r3, [pc, #128]	@ (8000ec0 <set_rgb_color+0x10c>)
+ 8000e3e:	781b      	ldrb	r3, [r3, #0]
+ 8000e40:	1c5a      	adds	r2, r3, #1
+ 8000e42:	4b20      	ldr	r3, [pc, #128]	@ (8000ec4 <set_rgb_color+0x110>)
+ 8000e44:	fb83 3102 	smull	r3, r1, r3, r2
+ 8000e48:	17d3      	asrs	r3, r2, #31
+ 8000e4a:	1ac9      	subs	r1, r1, r3
+ 8000e4c:	460b      	mov	r3, r1
+ 8000e4e:	005b      	lsls	r3, r3, #1
+ 8000e50:	440b      	add	r3, r1
+ 8000e52:	005b      	lsls	r3, r3, #1
+ 8000e54:	1ad1      	subs	r1, r2, r3
+ 8000e56:	b2ca      	uxtb	r2, r1
+ 8000e58:	4b19      	ldr	r3, [pc, #100]	@ (8000ec0 <set_rgb_color+0x10c>)
+ 8000e5a:	701a      	strb	r2, [r3, #0]
+ 8000e5c:	e01d      	b.n	8000e9a <set_rgb_color+0xe6>
+        } else {
+            // Red cycling sequence
+            switch (current_state) {
+ 8000e5e:	4b18      	ldr	r3, [pc, #96]	@ (8000ec0 <set_rgb_color+0x10c>)
+ 8000e60:	781b      	ldrb	r3, [r3, #0]
+ 8000e62:	2b00      	cmp	r3, #0
+ 8000e64:	d002      	beq.n	8000e6c <set_rgb_color+0xb8>
+ 8000e66:	2b01      	cmp	r3, #1
+ 8000e68:	d006      	beq.n	8000e78 <set_rgb_color+0xc4>
+ 8000e6a:	e00b      	b.n	8000e84 <set_rgb_color+0xd0>
+                case 0:
+                    set_rgb_ccr(120, 50, 50);
+ 8000e6c:	2232      	movs	r2, #50	@ 0x32
+ 8000e6e:	2132      	movs	r1, #50	@ 0x32
+ 8000e70:	2078      	movs	r0, #120	@ 0x78
+ 8000e72:	f7ff fef7 	bl	8000c64 <set_rgb_ccr>
+                    break;
+ 8000e76:	e005      	b.n	8000e84 <set_rgb_color+0xd0>
+                case 1:
+                    set_rgb_ccr(255, 255, 255);
+ 8000e78:	22ff      	movs	r2, #255	@ 0xff
+ 8000e7a:	21ff      	movs	r1, #255	@ 0xff
+ 8000e7c:	20ff      	movs	r0, #255	@ 0xff
+ 8000e7e:	f7ff fef1 	bl	8000c64 <set_rgb_ccr>
+                    break;
+ 8000e82:	bf00      	nop
+            }
+            // Move to the next state
+            current_state = (current_state + 1) % 2;
+ 8000e84:	4b0e      	ldr	r3, [pc, #56]	@ (8000ec0 <set_rgb_color+0x10c>)
+ 8000e86:	781b      	ldrb	r3, [r3, #0]
+ 8000e88:	3301      	adds	r3, #1
+ 8000e8a:	2b00      	cmp	r3, #0
+ 8000e8c:	f003 0301 	and.w	r3, r3, #1
+ 8000e90:	bfb8      	it	lt
+ 8000e92:	425b      	neglt	r3, r3
+ 8000e94:	b2da      	uxtb	r2, r3
+ 8000e96:	4b0a      	ldr	r3, [pc, #40]	@ (8000ec0 <set_rgb_color+0x10c>)
+ 8000e98:	701a      	strb	r2, [r3, #0]
+        }
+
+        // Store the original colors (for when flashing starts)
+        original_red = red_value;
+ 8000e9a:	4b0b      	ldr	r3, [pc, #44]	@ (8000ec8 <set_rgb_color+0x114>)
+ 8000e9c:	781a      	ldrb	r2, [r3, #0]
+ 8000e9e:	4b0b      	ldr	r3, [pc, #44]	@ (8000ecc <set_rgb_color+0x118>)
+ 8000ea0:	701a      	strb	r2, [r3, #0]
+        original_green = green_value;
+ 8000ea2:	4b0b      	ldr	r3, [pc, #44]	@ (8000ed0 <set_rgb_color+0x11c>)
+ 8000ea4:	781a      	ldrb	r2, [r3, #0]
+ 8000ea6:	4b0b      	ldr	r3, [pc, #44]	@ (8000ed4 <set_rgb_color+0x120>)
+ 8000ea8:	701a      	strb	r2, [r3, #0]
+        original_blue = blue_value;
+ 8000eaa:	4b0b      	ldr	r3, [pc, #44]	@ (8000ed8 <set_rgb_color+0x124>)
+ 8000eac:	781a      	ldrb	r2, [r3, #0]
+ 8000eae:	4b0b      	ldr	r3, [pc, #44]	@ (8000edc <set_rgb_color+0x128>)
+ 8000eb0:	701a      	strb	r2, [r3, #0]
+    }
+}
+ 8000eb2:	bf00      	nop
+ 8000eb4:	bd80      	pop	{r7, pc}
+ 8000eb6:	bf00      	nop
+ 8000eb8:	2000004f 	.word	0x2000004f
+ 8000ebc:	20000068 	.word	0x20000068
+ 8000ec0:	20000048 	.word	0x20000048
+ 8000ec4:	2aaaaaab 	.word	0x2aaaaaab
+ 8000ec8:	2000003c 	.word	0x2000003c
+ 8000ecc:	20000058 	.word	0x20000058
+ 8000ed0:	2000003d 	.word	0x2000003d
+ 8000ed4:	20000059 	.word	0x20000059
+ 8000ed8:	2000003e 	.word	0x2000003e
+ 8000edc:	2000005a 	.word	0x2000005a
+
+08000ee0 <set_rgb2_color>:
+
+void set_rgb2_color(void) {
+ 8000ee0:	b580      	push	{r7, lr}
+ 8000ee2:	af00      	add	r7, sp, #0
+    // Only change colors if not in flashing mode
+    if (!flash2_active) {
+ 8000ee4:	4b3f      	ldr	r3, [pc, #252]	@ (8000fe4 <set_rgb2_color+0x104>)
+ 8000ee6:	781b      	ldrb	r3, [r3, #0]
+ 8000ee8:	b2db      	uxtb	r3, r3
+ 8000eea:	2b00      	cmp	r3, #0
+ 8000eec:	d177      	bne.n	8000fde <set_rgb2_color+0xfe>
+        // Check if RGB2 should display yellow cycling
+        if (current_yellow_led == 1) {
+ 8000eee:	4b3e      	ldr	r3, [pc, #248]	@ (8000fe8 <set_rgb2_color+0x108>)
+ 8000ef0:	781b      	ldrb	r3, [r3, #0]
+ 8000ef2:	b2db      	uxtb	r3, r3
+ 8000ef4:	2b01      	cmp	r3, #1
+ 8000ef6:	d148      	bne.n	8000f8a <set_rgb2_color+0xaa>
+            // Yellow cycling sequence
+            switch (current_state2) {
+ 8000ef8:	4b3c      	ldr	r3, [pc, #240]	@ (8000fec <set_rgb2_color+0x10c>)
+ 8000efa:	781b      	ldrb	r3, [r3, #0]
+ 8000efc:	2b05      	cmp	r3, #5
+ 8000efe:	d833      	bhi.n	8000f68 <set_rgb2_color+0x88>
+ 8000f00:	a201      	add	r2, pc, #4	@ (adr r2, 8000f08 <set_rgb2_color+0x28>)
+ 8000f02:	f852 f023 	ldr.w	pc, [r2, r3, lsl #2]
+ 8000f06:	bf00      	nop
+ 8000f08:	08000f21 	.word	0x08000f21
+ 8000f0c:	08000f2d 	.word	0x08000f2d
+ 8000f10:	08000f39 	.word	0x08000f39
+ 8000f14:	08000f45 	.word	0x08000f45
+ 8000f18:	08000f51 	.word	0x08000f51
+ 8000f1c:	08000f5d 	.word	0x08000f5d
+                case 0:
+                    set_rgb2_ccr(200, 230, 0);
+ 8000f20:	2200      	movs	r2, #0
+ 8000f22:	21e6      	movs	r1, #230	@ 0xe6
+ 8000f24:	20c8      	movs	r0, #200	@ 0xc8
+ 8000f26:	f7ff fec7 	bl	8000cb8 <set_rgb2_ccr>
+                    break;
+ 8000f2a:	e01d      	b.n	8000f68 <set_rgb2_color+0x88>
+                case 1:
+                    set_rgb2_ccr(190, 200, 0);
+ 8000f2c:	2200      	movs	r2, #0
+ 8000f2e:	21c8      	movs	r1, #200	@ 0xc8
+ 8000f30:	20be      	movs	r0, #190	@ 0xbe
+ 8000f32:	f7ff fec1 	bl	8000cb8 <set_rgb2_ccr>
+                    break;
+ 8000f36:	e017      	b.n	8000f68 <set_rgb2_color+0x88>
+                case 2:
+                    set_rgb2_ccr(200, 255, 0);
+ 8000f38:	2200      	movs	r2, #0
+ 8000f3a:	21ff      	movs	r1, #255	@ 0xff
+ 8000f3c:	20c8      	movs	r0, #200	@ 0xc8
+ 8000f3e:	f7ff febb 	bl	8000cb8 <set_rgb2_ccr>
+                    break;
+ 8000f42:	e011      	b.n	8000f68 <set_rgb2_color+0x88>
+                case 3:
+                    set_rgb2_ccr(210, 240, 0);
+ 8000f44:	2200      	movs	r2, #0
+ 8000f46:	21f0      	movs	r1, #240	@ 0xf0
+ 8000f48:	20d2      	movs	r0, #210	@ 0xd2
+ 8000f4a:	f7ff feb5 	bl	8000cb8 <set_rgb2_ccr>
+                    break;
+ 8000f4e:	e00b      	b.n	8000f68 <set_rgb2_color+0x88>
+                case 4:
+                    set_rgb2_ccr(200, 240, 0);
+ 8000f50:	2200      	movs	r2, #0
+ 8000f52:	21f0      	movs	r1, #240	@ 0xf0
+ 8000f54:	20c8      	movs	r0, #200	@ 0xc8
+ 8000f56:	f7ff feaf 	bl	8000cb8 <set_rgb2_ccr>
+                    break;
+ 8000f5a:	e005      	b.n	8000f68 <set_rgb2_color+0x88>
+                case 5:
+                    set_rgb2_ccr(180, 200, 10);
+ 8000f5c:	220a      	movs	r2, #10
+ 8000f5e:	21c8      	movs	r1, #200	@ 0xc8
+ 8000f60:	20b4      	movs	r0, #180	@ 0xb4
+ 8000f62:	f7ff fea9 	bl	8000cb8 <set_rgb2_ccr>
+                    break;
+ 8000f66:	bf00      	nop
+            }
+            // Move to the next state
+            current_state2 = (current_state2 + 1) % 6;
+ 8000f68:	4b20      	ldr	r3, [pc, #128]	@ (8000fec <set_rgb2_color+0x10c>)
+ 8000f6a:	781b      	ldrb	r3, [r3, #0]
+ 8000f6c:	1c5a      	adds	r2, r3, #1
+ 8000f6e:	4b20      	ldr	r3, [pc, #128]	@ (8000ff0 <set_rgb2_color+0x110>)
+ 8000f70:	fb83 3102 	smull	r3, r1, r3, r2
+ 8000f74:	17d3      	asrs	r3, r2, #31
+ 8000f76:	1ac9      	subs	r1, r1, r3
+ 8000f78:	460b      	mov	r3, r1
+ 8000f7a:	005b      	lsls	r3, r3, #1
+ 8000f7c:	440b      	add	r3, r1
+ 8000f7e:	005b      	lsls	r3, r3, #1
+ 8000f80:	1ad1      	subs	r1, r2, r3
+ 8000f82:	b2ca      	uxtb	r2, r1
+ 8000f84:	4b19      	ldr	r3, [pc, #100]	@ (8000fec <set_rgb2_color+0x10c>)
+ 8000f86:	701a      	strb	r2, [r3, #0]
+ 8000f88:	e01d      	b.n	8000fc6 <set_rgb2_color+0xe6>
+        } else {
+            // Red cycling sequence
+            switch (current_state2) {
+ 8000f8a:	4b18      	ldr	r3, [pc, #96]	@ (8000fec <set_rgb2_color+0x10c>)
+ 8000f8c:	781b      	ldrb	r3, [r3, #0]
+ 8000f8e:	2b00      	cmp	r3, #0
+ 8000f90:	d002      	beq.n	8000f98 <set_rgb2_color+0xb8>
+ 8000f92:	2b01      	cmp	r3, #1
+ 8000f94:	d006      	beq.n	8000fa4 <set_rgb2_color+0xc4>
+ 8000f96:	e00b      	b.n	8000fb0 <set_rgb2_color+0xd0>
+                case 0:
+                    set_rgb2_ccr(120, 50, 50);
+ 8000f98:	2232      	movs	r2, #50	@ 0x32
+ 8000f9a:	2132      	movs	r1, #50	@ 0x32
+ 8000f9c:	2078      	movs	r0, #120	@ 0x78
+ 8000f9e:	f7ff fe8b 	bl	8000cb8 <set_rgb2_ccr>
+                    break;
+ 8000fa2:	e005      	b.n	8000fb0 <set_rgb2_color+0xd0>
+                case 1:
+                    set_rgb2_ccr(255, 255, 255);
+ 8000fa4:	22ff      	movs	r2, #255	@ 0xff
+ 8000fa6:	21ff      	movs	r1, #255	@ 0xff
+ 8000fa8:	20ff      	movs	r0, #255	@ 0xff
+ 8000faa:	f7ff fe85 	bl	8000cb8 <set_rgb2_ccr>
+                    break;
+ 8000fae:	bf00      	nop
+            }
+            // Move to the next state
+            current_state2 = (current_state2 + 1) % 2;
+ 8000fb0:	4b0e      	ldr	r3, [pc, #56]	@ (8000fec <set_rgb2_color+0x10c>)
+ 8000fb2:	781b      	ldrb	r3, [r3, #0]
+ 8000fb4:	3301      	adds	r3, #1
+ 8000fb6:	2b00      	cmp	r3, #0
+ 8000fb8:	f003 0301 	and.w	r3, r3, #1
+ 8000fbc:	bfb8      	it	lt
+ 8000fbe:	425b      	neglt	r3, r3
+ 8000fc0:	b2da      	uxtb	r2, r3
+ 8000fc2:	4b0a      	ldr	r3, [pc, #40]	@ (8000fec <set_rgb2_color+0x10c>)
+ 8000fc4:	701a      	strb	r2, [r3, #0]
+        }
+
+        // Store the original colors (for when flashing starts)
+        original_red2 = red2_value;
+ 8000fc6:	4b0b      	ldr	r3, [pc, #44]	@ (8000ff4 <set_rgb2_color+0x114>)
+ 8000fc8:	781a      	ldrb	r2, [r3, #0]
+ 8000fca:	4b0b      	ldr	r3, [pc, #44]	@ (8000ff8 <set_rgb2_color+0x118>)
+ 8000fcc:	701a      	strb	r2, [r3, #0]
+        original_green2 = green2_value;
+ 8000fce:	4b0b      	ldr	r3, [pc, #44]	@ (8000ffc <set_rgb2_color+0x11c>)
+ 8000fd0:	781a      	ldrb	r2, [r3, #0]
+ 8000fd2:	4b0b      	ldr	r3, [pc, #44]	@ (8001000 <set_rgb2_color+0x120>)
+ 8000fd4:	701a      	strb	r2, [r3, #0]
+        original_blue2 = blue2_value;
+ 8000fd6:	4b0b      	ldr	r3, [pc, #44]	@ (8001004 <set_rgb2_color+0x124>)
+ 8000fd8:	781a      	ldrb	r2, [r3, #0]
+ 8000fda:	4b0b      	ldr	r3, [pc, #44]	@ (8001008 <set_rgb2_color+0x128>)
+ 8000fdc:	701a      	strb	r2, [r3, #0]
+    }
+}
+ 8000fde:	bf00      	nop
+ 8000fe0:	bd80      	pop	{r7, pc}
+ 8000fe2:	bf00      	nop
+ 8000fe4:	20000051 	.word	0x20000051
+ 8000fe8:	20000068 	.word	0x20000068
+ 8000fec:	20000049 	.word	0x20000049
+ 8000ff0:	2aaaaaab 	.word	0x2aaaaaab
+ 8000ff4:	2000003f 	.word	0x2000003f
+ 8000ff8:	2000005b 	.word	0x2000005b
+ 8000ffc:	20000040 	.word	0x20000040
+ 8001000:	2000005c 	.word	0x2000005c
+ 8001004:	20000041 	.word	0x20000041
+ 8001008:	2000005d 	.word	0x2000005d
+
+0800100c <set_rgb3_color>:
+
+void set_rgb3_color(void) {
+ 800100c:	b580      	push	{r7, lr}
+ 800100e:	af00      	add	r7, sp, #0
+    // Only change colors if not in flashing mode
+    if (!flash3_active) {
+ 8001010:	4b3f      	ldr	r3, [pc, #252]	@ (8001110 <set_rgb3_color+0x104>)
+ 8001012:	781b      	ldrb	r3, [r3, #0]
+ 8001014:	b2db      	uxtb	r3, r3
+ 8001016:	2b00      	cmp	r3, #0
+ 8001018:	d177      	bne.n	800110a <set_rgb3_color+0xfe>
+        // Check if RGB3 should display yellow cycling
+        if (current_yellow_led == 2) {
+ 800101a:	4b3e      	ldr	r3, [pc, #248]	@ (8001114 <set_rgb3_color+0x108>)
+ 800101c:	781b      	ldrb	r3, [r3, #0]
+ 800101e:	b2db      	uxtb	r3, r3
+ 8001020:	2b02      	cmp	r3, #2
+ 8001022:	d148      	bne.n	80010b6 <set_rgb3_color+0xaa>
+            // Yellow cycling sequence
+            switch (current_state3) {
+ 8001024:	4b3c      	ldr	r3, [pc, #240]	@ (8001118 <set_rgb3_color+0x10c>)
+ 8001026:	781b      	ldrb	r3, [r3, #0]
+ 8001028:	2b05      	cmp	r3, #5
+ 800102a:	d833      	bhi.n	8001094 <set_rgb3_color+0x88>
+ 800102c:	a201      	add	r2, pc, #4	@ (adr r2, 8001034 <set_rgb3_color+0x28>)
+ 800102e:	f852 f023 	ldr.w	pc, [r2, r3, lsl #2]
+ 8001032:	bf00      	nop
+ 8001034:	0800104d 	.word	0x0800104d
+ 8001038:	08001059 	.word	0x08001059
+ 800103c:	08001065 	.word	0x08001065
+ 8001040:	08001071 	.word	0x08001071
+ 8001044:	0800107d 	.word	0x0800107d
+ 8001048:	08001089 	.word	0x08001089
+                case 0:
+                    set_rgb3_ccr(200, 230, 0);
+ 800104c:	2200      	movs	r2, #0
+ 800104e:	21e6      	movs	r1, #230	@ 0xe6
+ 8001050:	20c8      	movs	r0, #200	@ 0xc8
+ 8001052:	f7ff fe5b 	bl	8000d0c <set_rgb3_ccr>
+                    break;
+ 8001056:	e01d      	b.n	8001094 <set_rgb3_color+0x88>
+                case 1:
+                    set_rgb3_ccr(190, 200, 0);
+ 8001058:	2200      	movs	r2, #0
+ 800105a:	21c8      	movs	r1, #200	@ 0xc8
+ 800105c:	20be      	movs	r0, #190	@ 0xbe
+ 800105e:	f7ff fe55 	bl	8000d0c <set_rgb3_ccr>
+                    break;
+ 8001062:	e017      	b.n	8001094 <set_rgb3_color+0x88>
+                case 2:
+                    set_rgb3_ccr(200, 255, 0);
+ 8001064:	2200      	movs	r2, #0
+ 8001066:	21ff      	movs	r1, #255	@ 0xff
+ 8001068:	20c8      	movs	r0, #200	@ 0xc8
+ 800106a:	f7ff fe4f 	bl	8000d0c <set_rgb3_ccr>
+                    break;
+ 800106e:	e011      	b.n	8001094 <set_rgb3_color+0x88>
+                case 3:
+                    set_rgb3_ccr(210, 240, 0);
+ 8001070:	2200      	movs	r2, #0
+ 8001072:	21f0      	movs	r1, #240	@ 0xf0
+ 8001074:	20d2      	movs	r0, #210	@ 0xd2
+ 8001076:	f7ff fe49 	bl	8000d0c <set_rgb3_ccr>
+                    break;
+ 800107a:	e00b      	b.n	8001094 <set_rgb3_color+0x88>
+                case 4:
+                    set_rgb3_ccr(200, 240, 0);
+ 800107c:	2200      	movs	r2, #0
+ 800107e:	21f0      	movs	r1, #240	@ 0xf0
+ 8001080:	20c8      	movs	r0, #200	@ 0xc8
+ 8001082:	f7ff fe43 	bl	8000d0c <set_rgb3_ccr>
+                    break;
+ 8001086:	e005      	b.n	8001094 <set_rgb3_color+0x88>
+                case 5:
+                    set_rgb3_ccr(180, 200, 10);
+ 8001088:	220a      	movs	r2, #10
+ 800108a:	21c8      	movs	r1, #200	@ 0xc8
+ 800108c:	20b4      	movs	r0, #180	@ 0xb4
+ 800108e:	f7ff fe3d 	bl	8000d0c <set_rgb3_ccr>
+                    break;
+ 8001092:	bf00      	nop
+            }
+            // Move to the next state
+            current_state3 = (current_state3 + 1) % 6;
+ 8001094:	4b20      	ldr	r3, [pc, #128]	@ (8001118 <set_rgb3_color+0x10c>)
+ 8001096:	781b      	ldrb	r3, [r3, #0]
+ 8001098:	1c5a      	adds	r2, r3, #1
+ 800109a:	4b20      	ldr	r3, [pc, #128]	@ (800111c <set_rgb3_color+0x110>)
+ 800109c:	fb83 3102 	smull	r3, r1, r3, r2
+ 80010a0:	17d3      	asrs	r3, r2, #31
+ 80010a2:	1ac9      	subs	r1, r1, r3
+ 80010a4:	460b      	mov	r3, r1
+ 80010a6:	005b      	lsls	r3, r3, #1
+ 80010a8:	440b      	add	r3, r1
+ 80010aa:	005b      	lsls	r3, r3, #1
+ 80010ac:	1ad1      	subs	r1, r2, r3
+ 80010ae:	b2ca      	uxtb	r2, r1
+ 80010b0:	4b19      	ldr	r3, [pc, #100]	@ (8001118 <set_rgb3_color+0x10c>)
+ 80010b2:	701a      	strb	r2, [r3, #0]
+ 80010b4:	e01d      	b.n	80010f2 <set_rgb3_color+0xe6>
+        } else {
+            // Red cycling sequence
+            switch (current_state3) {
+ 80010b6:	4b18      	ldr	r3, [pc, #96]	@ (8001118 <set_rgb3_color+0x10c>)
+ 80010b8:	781b      	ldrb	r3, [r3, #0]
+ 80010ba:	2b00      	cmp	r3, #0
+ 80010bc:	d002      	beq.n	80010c4 <set_rgb3_color+0xb8>
+ 80010be:	2b01      	cmp	r3, #1
+ 80010c0:	d006      	beq.n	80010d0 <set_rgb3_color+0xc4>
+ 80010c2:	e00b      	b.n	80010dc <set_rgb3_color+0xd0>
+                case 0:
+                    set_rgb3_ccr(120, 50, 50);
+ 80010c4:	2232      	movs	r2, #50	@ 0x32
+ 80010c6:	2132      	movs	r1, #50	@ 0x32
+ 80010c8:	2078      	movs	r0, #120	@ 0x78
+ 80010ca:	f7ff fe1f 	bl	8000d0c <set_rgb3_ccr>
+                    break;
+ 80010ce:	e005      	b.n	80010dc <set_rgb3_color+0xd0>
+                case 1:
+                    set_rgb3_ccr(255, 255, 255);
+ 80010d0:	22ff      	movs	r2, #255	@ 0xff
+ 80010d2:	21ff      	movs	r1, #255	@ 0xff
+ 80010d4:	20ff      	movs	r0, #255	@ 0xff
+ 80010d6:	f7ff fe19 	bl	8000d0c <set_rgb3_ccr>
+                    break;
+ 80010da:	bf00      	nop
+            }
+            // Move to the next state
+            current_state3 = (current_state3 + 1) % 2;
+ 80010dc:	4b0e      	ldr	r3, [pc, #56]	@ (8001118 <set_rgb3_color+0x10c>)
+ 80010de:	781b      	ldrb	r3, [r3, #0]
+ 80010e0:	3301      	adds	r3, #1
+ 80010e2:	2b00      	cmp	r3, #0
+ 80010e4:	f003 0301 	and.w	r3, r3, #1
+ 80010e8:	bfb8      	it	lt
+ 80010ea:	425b      	neglt	r3, r3
+ 80010ec:	b2da      	uxtb	r2, r3
+ 80010ee:	4b0a      	ldr	r3, [pc, #40]	@ (8001118 <set_rgb3_color+0x10c>)
+ 80010f0:	701a      	strb	r2, [r3, #0]
+        }
+
+        // Store the original colors (for when flashing starts)
+        original_red3 = red3_value;
+ 80010f2:	4b0b      	ldr	r3, [pc, #44]	@ (8001120 <set_rgb3_color+0x114>)
+ 80010f4:	781a      	ldrb	r2, [r3, #0]
+ 80010f6:	4b0b      	ldr	r3, [pc, #44]	@ (8001124 <set_rgb3_color+0x118>)
+ 80010f8:	701a      	strb	r2, [r3, #0]
+        original_green3 = green3_value;
+ 80010fa:	4b0b      	ldr	r3, [pc, #44]	@ (8001128 <set_rgb3_color+0x11c>)
+ 80010fc:	781a      	ldrb	r2, [r3, #0]
+ 80010fe:	4b0b      	ldr	r3, [pc, #44]	@ (800112c <set_rgb3_color+0x120>)
+ 8001100:	701a      	strb	r2, [r3, #0]
+        original_blue3 = blue3_value;
+ 8001102:	4b0b      	ldr	r3, [pc, #44]	@ (8001130 <set_rgb3_color+0x124>)
+ 8001104:	781a      	ldrb	r2, [r3, #0]
+ 8001106:	4b0b      	ldr	r3, [pc, #44]	@ (8001134 <set_rgb3_color+0x128>)
+ 8001108:	701a      	strb	r2, [r3, #0]
+    }
+}
+ 800110a:	bf00      	nop
+ 800110c:	bd80      	pop	{r7, pc}
+ 800110e:	bf00      	nop
+ 8001110:	20000054 	.word	0x20000054
+ 8001114:	20000068 	.word	0x20000068
+ 8001118:	2000004a 	.word	0x2000004a
+ 800111c:	2aaaaaab 	.word	0x2aaaaaab
+ 8001120:	20000042 	.word	0x20000042
+ 8001124:	2000005e 	.word	0x2000005e
+ 8001128:	20000043 	.word	0x20000043
+ 800112c:	2000005f 	.word	0x2000005f
+ 8001130:	20000044 	.word	0x20000044
+ 8001134:	20000060 	.word	0x20000060
+
+08001138 <set_rgb4_color>:
+
+void set_rgb4_color(void) {
+ 8001138:	b580      	push	{r7, lr}
+ 800113a:	af00      	add	r7, sp, #0
+    if (!flash4_active) {
+ 800113c:	4b3f      	ldr	r3, [pc, #252]	@ (800123c <set_rgb4_color+0x104>)
+ 800113e:	781b      	ldrb	r3, [r3, #0]
+ 8001140:	b2db      	uxtb	r3, r3
+ 8001142:	2b00      	cmp	r3, #0
+ 8001144:	d177      	bne.n	8001236 <set_rgb4_color+0xfe>
+        // Check if RGB4 should display yellow cycling
+        if (current_yellow_led == 3) {
+ 8001146:	4b3e      	ldr	r3, [pc, #248]	@ (8001240 <set_rgb4_color+0x108>)
+ 8001148:	781b      	ldrb	r3, [r3, #0]
+ 800114a:	b2db      	uxtb	r3, r3
+ 800114c:	2b03      	cmp	r3, #3
+ 800114e:	d148      	bne.n	80011e2 <set_rgb4_color+0xaa>
+            // Yellow cycling sequence
+            switch (current_state4) {
+ 8001150:	4b3c      	ldr	r3, [pc, #240]	@ (8001244 <set_rgb4_color+0x10c>)
+ 8001152:	781b      	ldrb	r3, [r3, #0]
+ 8001154:	2b05      	cmp	r3, #5
+ 8001156:	d833      	bhi.n	80011c0 <set_rgb4_color+0x88>
+ 8001158:	a201      	add	r2, pc, #4	@ (adr r2, 8001160 <set_rgb4_color+0x28>)
+ 800115a:	f852 f023 	ldr.w	pc, [r2, r3, lsl #2]
+ 800115e:	bf00      	nop
+ 8001160:	08001179 	.word	0x08001179
+ 8001164:	08001185 	.word	0x08001185
+ 8001168:	08001191 	.word	0x08001191
+ 800116c:	0800119d 	.word	0x0800119d
+ 8001170:	080011a9 	.word	0x080011a9
+ 8001174:	080011b5 	.word	0x080011b5
+                case 0:
+                    set_rgb4_ccr(200, 230, 0);
+ 8001178:	2200      	movs	r2, #0
+ 800117a:	21e6      	movs	r1, #230	@ 0xe6
+ 800117c:	20c8      	movs	r0, #200	@ 0xc8
+ 800117e:	f7ff fdef 	bl	8000d60 <set_rgb4_ccr>
+                    break;
+ 8001182:	e01d      	b.n	80011c0 <set_rgb4_color+0x88>
+                case 1:
+                    set_rgb4_ccr(190, 200, 0);
+ 8001184:	2200      	movs	r2, #0
+ 8001186:	21c8      	movs	r1, #200	@ 0xc8
+ 8001188:	20be      	movs	r0, #190	@ 0xbe
+ 800118a:	f7ff fde9 	bl	8000d60 <set_rgb4_ccr>
+                    break;
+ 800118e:	e017      	b.n	80011c0 <set_rgb4_color+0x88>
+                case 2:
+                    set_rgb4_ccr(200, 255, 0);
+ 8001190:	2200      	movs	r2, #0
+ 8001192:	21ff      	movs	r1, #255	@ 0xff
+ 8001194:	20c8      	movs	r0, #200	@ 0xc8
+ 8001196:	f7ff fde3 	bl	8000d60 <set_rgb4_ccr>
+                    break;
+ 800119a:	e011      	b.n	80011c0 <set_rgb4_color+0x88>
+                case 3:
+                    set_rgb4_ccr(210, 240, 0);
+ 800119c:	2200      	movs	r2, #0
+ 800119e:	21f0      	movs	r1, #240	@ 0xf0
+ 80011a0:	20d2      	movs	r0, #210	@ 0xd2
+ 80011a2:	f7ff fddd 	bl	8000d60 <set_rgb4_ccr>
+                    break;
+ 80011a6:	e00b      	b.n	80011c0 <set_rgb4_color+0x88>
+                case 4:
+                    set_rgb4_ccr(200, 240, 0);
+ 80011a8:	2200      	movs	r2, #0
+ 80011aa:	21f0      	movs	r1, #240	@ 0xf0
+ 80011ac:	20c8      	movs	r0, #200	@ 0xc8
+ 80011ae:	f7ff fdd7 	bl	8000d60 <set_rgb4_ccr>
+                    break;
+ 80011b2:	e005      	b.n	80011c0 <set_rgb4_color+0x88>
+                case 5:
+                    set_rgb4_ccr(180, 200, 10);
+ 80011b4:	220a      	movs	r2, #10
+ 80011b6:	21c8      	movs	r1, #200	@ 0xc8
+ 80011b8:	20b4      	movs	r0, #180	@ 0xb4
+ 80011ba:	f7ff fdd1 	bl	8000d60 <set_rgb4_ccr>
+                    break;
+ 80011be:	bf00      	nop
+            }
+            // Move to the next state
+            current_state4 = (current_state4 + 1) % 6;
+ 80011c0:	4b20      	ldr	r3, [pc, #128]	@ (8001244 <set_rgb4_color+0x10c>)
+ 80011c2:	781b      	ldrb	r3, [r3, #0]
+ 80011c4:	1c5a      	adds	r2, r3, #1
+ 80011c6:	4b20      	ldr	r3, [pc, #128]	@ (8001248 <set_rgb4_color+0x110>)
+ 80011c8:	fb83 3102 	smull	r3, r1, r3, r2
+ 80011cc:	17d3      	asrs	r3, r2, #31
+ 80011ce:	1ac9      	subs	r1, r1, r3
+ 80011d0:	460b      	mov	r3, r1
+ 80011d2:	005b      	lsls	r3, r3, #1
+ 80011d4:	440b      	add	r3, r1
+ 80011d6:	005b      	lsls	r3, r3, #1
+ 80011d8:	1ad1      	subs	r1, r2, r3
+ 80011da:	b2ca      	uxtb	r2, r1
+ 80011dc:	4b19      	ldr	r3, [pc, #100]	@ (8001244 <set_rgb4_color+0x10c>)
+ 80011de:	701a      	strb	r2, [r3, #0]
+ 80011e0:	e01d      	b.n	800121e <set_rgb4_color+0xe6>
+        } else {
+            // Red cycling sequence
+            switch (current_state4) {
+ 80011e2:	4b18      	ldr	r3, [pc, #96]	@ (8001244 <set_rgb4_color+0x10c>)
+ 80011e4:	781b      	ldrb	r3, [r3, #0]
+ 80011e6:	2b00      	cmp	r3, #0
+ 80011e8:	d002      	beq.n	80011f0 <set_rgb4_color+0xb8>
+ 80011ea:	2b01      	cmp	r3, #1
+ 80011ec:	d006      	beq.n	80011fc <set_rgb4_color+0xc4>
+ 80011ee:	e00b      	b.n	8001208 <set_rgb4_color+0xd0>
+                case 0:
+                    set_rgb4_ccr(120, 50, 50);
+ 80011f0:	2232      	movs	r2, #50	@ 0x32
+ 80011f2:	2132      	movs	r1, #50	@ 0x32
+ 80011f4:	2078      	movs	r0, #120	@ 0x78
+ 80011f6:	f7ff fdb3 	bl	8000d60 <set_rgb4_ccr>
+                    break;
+ 80011fa:	e005      	b.n	8001208 <set_rgb4_color+0xd0>
+                case 1:
+                    set_rgb4_ccr(255, 255, 255);
+ 80011fc:	22ff      	movs	r2, #255	@ 0xff
+ 80011fe:	21ff      	movs	r1, #255	@ 0xff
+ 8001200:	20ff      	movs	r0, #255	@ 0xff
+ 8001202:	f7ff fdad 	bl	8000d60 <set_rgb4_ccr>
+                    break;
+ 8001206:	bf00      	nop
+            }
+            // Move to the next state
+            current_state4 = (current_state4 + 1) % 2;
+ 8001208:	4b0e      	ldr	r3, [pc, #56]	@ (8001244 <set_rgb4_color+0x10c>)
+ 800120a:	781b      	ldrb	r3, [r3, #0]
+ 800120c:	3301      	adds	r3, #1
+ 800120e:	2b00      	cmp	r3, #0
+ 8001210:	f003 0301 	and.w	r3, r3, #1
+ 8001214:	bfb8      	it	lt
+ 8001216:	425b      	neglt	r3, r3
+ 8001218:	b2da      	uxtb	r2, r3
+ 800121a:	4b0a      	ldr	r3, [pc, #40]	@ (8001244 <set_rgb4_color+0x10c>)
+ 800121c:	701a      	strb	r2, [r3, #0]
+        }
+
+        // Store original colors
+        original_red4 = red4_value;
+ 800121e:	4b0b      	ldr	r3, [pc, #44]	@ (800124c <set_rgb4_color+0x114>)
+ 8001220:	781a      	ldrb	r2, [r3, #0]
+ 8001222:	4b0b      	ldr	r3, [pc, #44]	@ (8001250 <set_rgb4_color+0x118>)
+ 8001224:	701a      	strb	r2, [r3, #0]
+        original_green4 = green4_value;
+ 8001226:	4b0b      	ldr	r3, [pc, #44]	@ (8001254 <set_rgb4_color+0x11c>)
+ 8001228:	781a      	ldrb	r2, [r3, #0]
+ 800122a:	4b0b      	ldr	r3, [pc, #44]	@ (8001258 <set_rgb4_color+0x120>)
+ 800122c:	701a      	strb	r2, [r3, #0]
+        original_blue4 = blue4_value;
+ 800122e:	4b0b      	ldr	r3, [pc, #44]	@ (800125c <set_rgb4_color+0x124>)
+ 8001230:	781a      	ldrb	r2, [r3, #0]
+ 8001232:	4b0b      	ldr	r3, [pc, #44]	@ (8001260 <set_rgb4_color+0x128>)
+ 8001234:	701a      	strb	r2, [r3, #0]
+    }
+}
+ 8001236:	bf00      	nop
+ 8001238:	bd80      	pop	{r7, pc}
+ 800123a:	bf00      	nop
+ 800123c:	20000057 	.word	0x20000057
+ 8001240:	20000068 	.word	0x20000068
+ 8001244:	2000004b 	.word	0x2000004b
+ 8001248:	2aaaaaab 	.word	0x2aaaaaab
+ 800124c:	20000045 	.word	0x20000045
+ 8001250:	20000061 	.word	0x20000061
+ 8001254:	20000046 	.word	0x20000046
+ 8001258:	20000062 	.word	0x20000062
+ 800125c:	20000047 	.word	0x20000047
+ 8001260:	20000063 	.word	0x20000063
+
+08001264 <flash_led_callback>:
+
+
+// Flash LED callback function
+void flash_led_callback(void) {
+ 8001264:	b580      	push	{r7, lr}
+ 8001266:	af00      	add	r7, sp, #0
+    // Check if circular flash is active first
+    if (circular_flash_active) {
+ 8001268:	4b4c      	ldr	r3, [pc, #304]	@ (800139c <flash_led_callback+0x138>)
+ 800126a:	781b      	ldrb	r3, [r3, #0]
+ 800126c:	b2db      	uxtb	r3, r3
+ 800126e:	2b00      	cmp	r3, #0
+ 8001270:	d002      	beq.n	8001278 <flash_led_callback+0x14>
+        circular_flash_callback();
+ 8001272:	f000 fb3f 	bl	80018f4 <circular_flash_callback>
+        return; // Don't process individual flashing if circular is active
+ 8001276:	e08f      	b.n	8001398 <flash_led_callback+0x134>
+    }
+
+    // Original individual flashing code
+    // Handle RGB1 flashing
+    if (flash_active) {
+ 8001278:	4b49      	ldr	r3, [pc, #292]	@ (80013a0 <flash_led_callback+0x13c>)
+ 800127a:	781b      	ldrb	r3, [r3, #0]
+ 800127c:	b2db      	uxtb	r3, r3
+ 800127e:	2b00      	cmp	r3, #0
+ 8001280:	d01e      	beq.n	80012c0 <flash_led_callback+0x5c>
+        if (flash_state) {
+ 8001282:	4b48      	ldr	r3, [pc, #288]	@ (80013a4 <flash_led_callback+0x140>)
+ 8001284:	781b      	ldrb	r3, [r3, #0]
+ 8001286:	b2db      	uxtb	r3, r3
+ 8001288:	2b00      	cmp	r3, #0
+ 800128a:	d009      	beq.n	80012a0 <flash_led_callback+0x3c>
+            // Flash ON state - show flash color
+            set_rgb_ccr(flash_red, flash_green, flash_blue);
+ 800128c:	4b46      	ldr	r3, [pc, #280]	@ (80013a8 <flash_led_callback+0x144>)
+ 800128e:	781b      	ldrb	r3, [r3, #0]
+ 8001290:	4a46      	ldr	r2, [pc, #280]	@ (80013ac <flash_led_callback+0x148>)
+ 8001292:	7811      	ldrb	r1, [r2, #0]
+ 8001294:	4a46      	ldr	r2, [pc, #280]	@ (80013b0 <flash_led_callback+0x14c>)
+ 8001296:	7812      	ldrb	r2, [r2, #0]
+ 8001298:	4618      	mov	r0, r3
+ 800129a:	f7ff fce3 	bl	8000c64 <set_rgb_ccr>
+ 800129e:	e004      	b.n	80012aa <flash_led_callback+0x46>
+        } else {
+            // Flash OFF state - turn LEDs off
+            set_rgb_ccr(0, 0, 0);
+ 80012a0:	2200      	movs	r2, #0
+ 80012a2:	2100      	movs	r1, #0
+ 80012a4:	2000      	movs	r0, #0
+ 80012a6:	f7ff fcdd 	bl	8000c64 <set_rgb_ccr>
+        }
+        // Toggle flash state
+        flash_state = !flash_state;
+ 80012aa:	4b3e      	ldr	r3, [pc, #248]	@ (80013a4 <flash_led_callback+0x140>)
+ 80012ac:	781b      	ldrb	r3, [r3, #0]
+ 80012ae:	b2db      	uxtb	r3, r3
+ 80012b0:	2b00      	cmp	r3, #0
+ 80012b2:	bf0c      	ite	eq
+ 80012b4:	2301      	moveq	r3, #1
+ 80012b6:	2300      	movne	r3, #0
+ 80012b8:	b2db      	uxtb	r3, r3
+ 80012ba:	461a      	mov	r2, r3
+ 80012bc:	4b39      	ldr	r3, [pc, #228]	@ (80013a4 <flash_led_callback+0x140>)
+ 80012be:	701a      	strb	r2, [r3, #0]
+    }
+
+    // Handle RGB2 flashing
+    if (flash2_active) {
+ 80012c0:	4b3c      	ldr	r3, [pc, #240]	@ (80013b4 <flash_led_callback+0x150>)
+ 80012c2:	781b      	ldrb	r3, [r3, #0]
+ 80012c4:	b2db      	uxtb	r3, r3
+ 80012c6:	2b00      	cmp	r3, #0
+ 80012c8:	d01e      	beq.n	8001308 <flash_led_callback+0xa4>
+        if (flash2_state) {
+ 80012ca:	4b3b      	ldr	r3, [pc, #236]	@ (80013b8 <flash_led_callback+0x154>)
+ 80012cc:	781b      	ldrb	r3, [r3, #0]
+ 80012ce:	b2db      	uxtb	r3, r3
+ 80012d0:	2b00      	cmp	r3, #0
+ 80012d2:	d009      	beq.n	80012e8 <flash_led_callback+0x84>
+            // Flash ON state - show flash color
+            set_rgb2_ccr(flash2_red, flash2_green, flash2_blue);
+ 80012d4:	4b39      	ldr	r3, [pc, #228]	@ (80013bc <flash_led_callback+0x158>)
+ 80012d6:	781b      	ldrb	r3, [r3, #0]
+ 80012d8:	4a39      	ldr	r2, [pc, #228]	@ (80013c0 <flash_led_callback+0x15c>)
+ 80012da:	7811      	ldrb	r1, [r2, #0]
+ 80012dc:	4a39      	ldr	r2, [pc, #228]	@ (80013c4 <flash_led_callback+0x160>)
+ 80012de:	7812      	ldrb	r2, [r2, #0]
+ 80012e0:	4618      	mov	r0, r3
+ 80012e2:	f7ff fce9 	bl	8000cb8 <set_rgb2_ccr>
+ 80012e6:	e004      	b.n	80012f2 <flash_led_callback+0x8e>
+        } else {
+            // Flash OFF state - turn LEDs off
+            set_rgb2_ccr(0, 0, 0);
+ 80012e8:	2200      	movs	r2, #0
+ 80012ea:	2100      	movs	r1, #0
+ 80012ec:	2000      	movs	r0, #0
+ 80012ee:	f7ff fce3 	bl	8000cb8 <set_rgb2_ccr>
+        }
+        // Toggle flash state
+        flash2_state = !flash2_state;
+ 80012f2:	4b31      	ldr	r3, [pc, #196]	@ (80013b8 <flash_led_callback+0x154>)
+ 80012f4:	781b      	ldrb	r3, [r3, #0]
+ 80012f6:	b2db      	uxtb	r3, r3
+ 80012f8:	2b00      	cmp	r3, #0
+ 80012fa:	bf0c      	ite	eq
+ 80012fc:	2301      	moveq	r3, #1
+ 80012fe:	2300      	movne	r3, #0
+ 8001300:	b2db      	uxtb	r3, r3
+ 8001302:	461a      	mov	r2, r3
+ 8001304:	4b2c      	ldr	r3, [pc, #176]	@ (80013b8 <flash_led_callback+0x154>)
+ 8001306:	701a      	strb	r2, [r3, #0]
+    }
+
+    // Handle RGB3 flashing
+    if (flash3_active) {
+ 8001308:	4b2f      	ldr	r3, [pc, #188]	@ (80013c8 <flash_led_callback+0x164>)
+ 800130a:	781b      	ldrb	r3, [r3, #0]
+ 800130c:	b2db      	uxtb	r3, r3
+ 800130e:	2b00      	cmp	r3, #0
+ 8001310:	d01e      	beq.n	8001350 <flash_led_callback+0xec>
+        if (flash3_state) {
+ 8001312:	4b2e      	ldr	r3, [pc, #184]	@ (80013cc <flash_led_callback+0x168>)
+ 8001314:	781b      	ldrb	r3, [r3, #0]
+ 8001316:	b2db      	uxtb	r3, r3
+ 8001318:	2b00      	cmp	r3, #0
+ 800131a:	d009      	beq.n	8001330 <flash_led_callback+0xcc>
+            // Flash ON state - show flash color
+            set_rgb3_ccr(flash3_red, flash3_green, flash3_blue);
+ 800131c:	4b2c      	ldr	r3, [pc, #176]	@ (80013d0 <flash_led_callback+0x16c>)
+ 800131e:	781b      	ldrb	r3, [r3, #0]
+ 8001320:	4a2c      	ldr	r2, [pc, #176]	@ (80013d4 <flash_led_callback+0x170>)
+ 8001322:	7811      	ldrb	r1, [r2, #0]
+ 8001324:	4a2c      	ldr	r2, [pc, #176]	@ (80013d8 <flash_led_callback+0x174>)
+ 8001326:	7812      	ldrb	r2, [r2, #0]
+ 8001328:	4618      	mov	r0, r3
+ 800132a:	f7ff fcef 	bl	8000d0c <set_rgb3_ccr>
+ 800132e:	e004      	b.n	800133a <flash_led_callback+0xd6>
+        } else {
+            // Flash OFF state - turn LEDs off
+            set_rgb3_ccr(0, 0, 0);
+ 8001330:	2200      	movs	r2, #0
+ 8001332:	2100      	movs	r1, #0
+ 8001334:	2000      	movs	r0, #0
+ 8001336:	f7ff fce9 	bl	8000d0c <set_rgb3_ccr>
+        }
+        // Toggle flash state
+        flash3_state = !flash3_state;
+ 800133a:	4b24      	ldr	r3, [pc, #144]	@ (80013cc <flash_led_callback+0x168>)
+ 800133c:	781b      	ldrb	r3, [r3, #0]
+ 800133e:	b2db      	uxtb	r3, r3
+ 8001340:	2b00      	cmp	r3, #0
+ 8001342:	bf0c      	ite	eq
+ 8001344:	2301      	moveq	r3, #1
+ 8001346:	2300      	movne	r3, #0
+ 8001348:	b2db      	uxtb	r3, r3
+ 800134a:	461a      	mov	r2, r3
+ 800134c:	4b1f      	ldr	r3, [pc, #124]	@ (80013cc <flash_led_callback+0x168>)
+ 800134e:	701a      	strb	r2, [r3, #0]
+    }
+
+    // Handle RGB4 flashing
+    if (flash4_active) {
+ 8001350:	4b22      	ldr	r3, [pc, #136]	@ (80013dc <flash_led_callback+0x178>)
+ 8001352:	781b      	ldrb	r3, [r3, #0]
+ 8001354:	b2db      	uxtb	r3, r3
+ 8001356:	2b00      	cmp	r3, #0
+ 8001358:	d01e      	beq.n	8001398 <flash_led_callback+0x134>
+        if (flash4_state) {
+ 800135a:	4b21      	ldr	r3, [pc, #132]	@ (80013e0 <flash_led_callback+0x17c>)
+ 800135c:	781b      	ldrb	r3, [r3, #0]
+ 800135e:	b2db      	uxtb	r3, r3
+ 8001360:	2b00      	cmp	r3, #0
+ 8001362:	d009      	beq.n	8001378 <flash_led_callback+0x114>
+            // Flash ON state - show flash color
+            set_rgb4_ccr(flash4_red, flash4_green, flash4_blue);
+ 8001364:	4b1f      	ldr	r3, [pc, #124]	@ (80013e4 <flash_led_callback+0x180>)
+ 8001366:	781b      	ldrb	r3, [r3, #0]
+ 8001368:	4a1f      	ldr	r2, [pc, #124]	@ (80013e8 <flash_led_callback+0x184>)
+ 800136a:	7811      	ldrb	r1, [r2, #0]
+ 800136c:	4a1f      	ldr	r2, [pc, #124]	@ (80013ec <flash_led_callback+0x188>)
+ 800136e:	7812      	ldrb	r2, [r2, #0]
+ 8001370:	4618      	mov	r0, r3
+ 8001372:	f7ff fcf5 	bl	8000d60 <set_rgb4_ccr>
+ 8001376:	e004      	b.n	8001382 <flash_led_callback+0x11e>
+        } else {
+            // Flash OFF state - turn LEDs off
+            set_rgb4_ccr(0, 0, 0);
+ 8001378:	2200      	movs	r2, #0
+ 800137a:	2100      	movs	r1, #0
+ 800137c:	2000      	movs	r0, #0
+ 800137e:	f7ff fcef 	bl	8000d60 <set_rgb4_ccr>
+        }
+        // Toggle flash state
+        flash4_state = !flash4_state;
+ 8001382:	4b17      	ldr	r3, [pc, #92]	@ (80013e0 <flash_led_callback+0x17c>)
+ 8001384:	781b      	ldrb	r3, [r3, #0]
+ 8001386:	b2db      	uxtb	r3, r3
+ 8001388:	2b00      	cmp	r3, #0
+ 800138a:	bf0c      	ite	eq
+ 800138c:	2301      	moveq	r3, #1
+ 800138e:	2300      	movne	r3, #0
+ 8001390:	b2db      	uxtb	r3, r3
+ 8001392:	461a      	mov	r2, r3
+ 8001394:	4b12      	ldr	r3, [pc, #72]	@ (80013e0 <flash_led_callback+0x17c>)
+ 8001396:	701a      	strb	r2, [r3, #0]
+    }
+}
+ 8001398:	bd80      	pop	{r7, pc}
+ 800139a:	bf00      	nop
+ 800139c:	20000064 	.word	0x20000064
+ 80013a0:	2000004f 	.word	0x2000004f
+ 80013a4:	2000004e 	.word	0x2000004e
+ 80013a8:	20000000 	.word	0x20000000
+ 80013ac:	20000001 	.word	0x20000001
+ 80013b0:	20000002 	.word	0x20000002
+ 80013b4:	20000051 	.word	0x20000051
+ 80013b8:	20000050 	.word	0x20000050
+ 80013bc:	20000003 	.word	0x20000003
+ 80013c0:	20000004 	.word	0x20000004
+ 80013c4:	20000005 	.word	0x20000005
+ 80013c8:	20000054 	.word	0x20000054
+ 80013cc:	20000053 	.word	0x20000053
+ 80013d0:	20000006 	.word	0x20000006
+ 80013d4:	20000007 	.word	0x20000007
+ 80013d8:	20000008 	.word	0x20000008
+ 80013dc:	20000057 	.word	0x20000057
+ 80013e0:	20000056 	.word	0x20000056
+ 80013e4:	20000009 	.word	0x20000009
+ 80013e8:	2000000a 	.word	0x2000000a
+ 80013ec:	2000000b 	.word	0x2000000b
+
+080013f0 <enable_timer>:
+
+
+// Enable all timers to start counting
+void enable_timer(void) {
+ 80013f0:	b480      	push	{r7}
+ 80013f2:	af00      	add	r7, sp, #0
+    // Enable the Timer 16 counter (color cycling)
+    TIM16->CR1 |= TIM_CR1_CEN;
+ 80013f4:	4b12      	ldr	r3, [pc, #72]	@ (8001440 <enable_timer+0x50>)
+ 80013f6:	681b      	ldr	r3, [r3, #0]
+ 80013f8:	4a11      	ldr	r2, [pc, #68]	@ (8001440 <enable_timer+0x50>)
+ 80013fa:	f043 0301 	orr.w	r3, r3, #1
+ 80013fe:	6013      	str	r3, [r2, #0]
+
+    // Enable the Timer 3 counter (PWM generation for RGB1)
+    TIM3->CR1 |= TIM_CR1_CEN;
+ 8001400:	4b10      	ldr	r3, [pc, #64]	@ (8001444 <enable_timer+0x54>)
+ 8001402:	681b      	ldr	r3, [r3, #0]
+ 8001404:	4a0f      	ldr	r2, [pc, #60]	@ (8001444 <enable_timer+0x54>)
+ 8001406:	f043 0301 	orr.w	r3, r3, #1
+ 800140a:	6013      	str	r3, [r2, #0]
+
+    // Enable the Timer 2 counter (PWM generation for RGB2)
+    TIM2->CR1 |= TIM_CR1_CEN;
+ 800140c:	f04f 4380 	mov.w	r3, #1073741824	@ 0x40000000
+ 8001410:	681b      	ldr	r3, [r3, #0]
+ 8001412:	f04f 4280 	mov.w	r2, #1073741824	@ 0x40000000
+ 8001416:	f043 0301 	orr.w	r3, r3, #1
+ 800141a:	6013      	str	r3, [r2, #0]
+
+    // Enable the Timer 4 counter (PWM generation for RGB3)
+    TIM4->CR1 |= TIM_CR1_CEN;
+ 800141c:	4b0a      	ldr	r3, [pc, #40]	@ (8001448 <enable_timer+0x58>)
+ 800141e:	681b      	ldr	r3, [r3, #0]
+ 8001420:	4a09      	ldr	r2, [pc, #36]	@ (8001448 <enable_timer+0x58>)
+ 8001422:	f043 0301 	orr.w	r3, r3, #1
+ 8001426:	6013      	str	r3, [r2, #0]
+
+    // Enable the Timer 1 counter (PWM generation for RGB4)
+    TIM1->CR1 |= TIM_CR1_CEN;
+ 8001428:	4b08      	ldr	r3, [pc, #32]	@ (800144c <enable_timer+0x5c>)
+ 800142a:	681b      	ldr	r3, [r3, #0]
+ 800142c:	4a07      	ldr	r2, [pc, #28]	@ (800144c <enable_timer+0x5c>)
+ 800142e:	f043 0301 	orr.w	r3, r3, #1
+ 8001432:	6013      	str	r3, [r2, #0]
+}
+ 8001434:	bf00      	nop
+ 8001436:	46bd      	mov	sp, r7
+ 8001438:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 800143c:	4770      	bx	lr
+ 800143e:	bf00      	nop
+ 8001440:	40014400 	.word	0x40014400
+ 8001444:	40000400 	.word	0x40000400
+ 8001448:	40000800 	.word	0x40000800
+ 800144c:	40012c00 	.word	0x40012c00
+
+08001450 <TIM1_UP_TIM16_IRQHandler>:
+    }
+}
+
+
+// Timer 16 Interrupt Service Routine - for color cycling
+void TIM1_UP_TIM16_IRQHandler(void) {
+ 8001450:	b580      	push	{r7, lr}
+ 8001452:	af00      	add	r7, sp, #0
+    if (TIM16->SR & TIM_SR_UIF) {
+ 8001454:	4b1b      	ldr	r3, [pc, #108]	@ (80014c4 <TIM1_UP_TIM16_IRQHandler+0x74>)
+ 8001456:	691b      	ldr	r3, [r3, #16]
+ 8001458:	f003 0301 	and.w	r3, r3, #1
+ 800145c:	2b00      	cmp	r3, #0
+ 800145e:	d02f      	beq.n	80014c0 <TIM1_UP_TIM16_IRQHandler+0x70>
+        // Clear the update interrupt flag
+        TIM16->SR &= ~TIM_SR_UIF;
+ 8001460:	4b18      	ldr	r3, [pc, #96]	@ (80014c4 <TIM1_UP_TIM16_IRQHandler+0x74>)
+ 8001462:	691b      	ldr	r3, [r3, #16]
+ 8001464:	4a17      	ldr	r2, [pc, #92]	@ (80014c4 <TIM1_UP_TIM16_IRQHandler+0x74>)
+ 8001466:	f023 0301 	bic.w	r3, r3, #1
+ 800146a:	6113      	str	r3, [r2, #16]
+
+        // Increment the yellow rotation counter
+        yellow_rotation_counter++;
+ 800146c:	4b16      	ldr	r3, [pc, #88]	@ (80014c8 <TIM1_UP_TIM16_IRQHandler+0x78>)
+ 800146e:	781b      	ldrb	r3, [r3, #0]
+ 8001470:	b2db      	uxtb	r3, r3
+ 8001472:	3301      	adds	r3, #1
+ 8001474:	b2da      	uxtb	r2, r3
+ 8001476:	4b14      	ldr	r3, [pc, #80]	@ (80014c8 <TIM1_UP_TIM16_IRQHandler+0x78>)
+ 8001478:	701a      	strb	r2, [r3, #0]
+
+        // Check if 50 cycles have passed
+        if (yellow_rotation_counter >= 10) {
+ 800147a:	4b13      	ldr	r3, [pc, #76]	@ (80014c8 <TIM1_UP_TIM16_IRQHandler+0x78>)
+ 800147c:	781b      	ldrb	r3, [r3, #0]
+ 800147e:	b2db      	uxtb	r3, r3
+ 8001480:	2b09      	cmp	r3, #9
+ 8001482:	d910      	bls.n	80014a6 <TIM1_UP_TIM16_IRQHandler+0x56>
+            yellow_rotation_counter = 0; // Reset counter
+ 8001484:	4b10      	ldr	r3, [pc, #64]	@ (80014c8 <TIM1_UP_TIM16_IRQHandler+0x78>)
+ 8001486:	2200      	movs	r2, #0
+ 8001488:	701a      	strb	r2, [r3, #0]
+            current_yellow_led = (current_yellow_led + 1) % 4; // Rotate to next LED
+ 800148a:	4b10      	ldr	r3, [pc, #64]	@ (80014cc <TIM1_UP_TIM16_IRQHandler+0x7c>)
+ 800148c:	781b      	ldrb	r3, [r3, #0]
+ 800148e:	b2db      	uxtb	r3, r3
+ 8001490:	3301      	adds	r3, #1
+ 8001492:	425a      	negs	r2, r3
+ 8001494:	f003 0303 	and.w	r3, r3, #3
+ 8001498:	f002 0203 	and.w	r2, r2, #3
+ 800149c:	bf58      	it	pl
+ 800149e:	4253      	negpl	r3, r2
+ 80014a0:	b2da      	uxtb	r2, r3
+ 80014a2:	4b0a      	ldr	r3, [pc, #40]	@ (80014cc <TIM1_UP_TIM16_IRQHandler+0x7c>)
+ 80014a4:	701a      	strb	r2, [r3, #0]
+        }
+
+        // Call the callback function if it's not NULL
+        if (timer_callback != NULL) {
+ 80014a6:	4b0a      	ldr	r3, [pc, #40]	@ (80014d0 <TIM1_UP_TIM16_IRQHandler+0x80>)
+ 80014a8:	681b      	ldr	r3, [r3, #0]
+ 80014aa:	2b00      	cmp	r3, #0
+ 80014ac:	d002      	beq.n	80014b4 <TIM1_UP_TIM16_IRQHandler+0x64>
+            timer_callback();
+ 80014ae:	4b08      	ldr	r3, [pc, #32]	@ (80014d0 <TIM1_UP_TIM16_IRQHandler+0x80>)
+ 80014b0:	681b      	ldr	r3, [r3, #0]
+ 80014b2:	4798      	blx	r3
+        }
+
+        // Cycle all LED colors
+        set_rgb2_color();
+ 80014b4:	f7ff fd14 	bl	8000ee0 <set_rgb2_color>
+        set_rgb3_color();
+ 80014b8:	f7ff fda8 	bl	800100c <set_rgb3_color>
+        set_rgb4_color();
+ 80014bc:	f7ff fe3c 	bl	8001138 <set_rgb4_color>
+    }
+}
+ 80014c0:	bf00      	nop
+ 80014c2:	bd80      	pop	{r7, pc}
+ 80014c4:	40014400 	.word	0x40014400
+ 80014c8:	20000067 	.word	0x20000067
+ 80014cc:	20000068 	.word	0x20000068
+ 80014d0:	20000034 	.word	0x20000034
+
+080014d4 <TIM1_TRG_COM_TIM17_IRQHandler>:
+
+// Timer 17 Interrupt Service Routine - for LED flashing
+void TIM1_TRG_COM_TIM17_IRQHandler(void) {
+ 80014d4:	b580      	push	{r7, lr}
+ 80014d6:	af00      	add	r7, sp, #0
+    if (TIM17->SR & TIM_SR_UIF) {
+ 80014d8:	4b0a      	ldr	r3, [pc, #40]	@ (8001504 <TIM1_TRG_COM_TIM17_IRQHandler+0x30>)
+ 80014da:	691b      	ldr	r3, [r3, #16]
+ 80014dc:	f003 0301 	and.w	r3, r3, #1
+ 80014e0:	2b00      	cmp	r3, #0
+ 80014e2:	d00c      	beq.n	80014fe <TIM1_TRG_COM_TIM17_IRQHandler+0x2a>
+        // Clear the update interrupt flag
+        TIM17->SR &= ~TIM_SR_UIF;
+ 80014e4:	4b07      	ldr	r3, [pc, #28]	@ (8001504 <TIM1_TRG_COM_TIM17_IRQHandler+0x30>)
+ 80014e6:	691b      	ldr	r3, [r3, #16]
+ 80014e8:	4a06      	ldr	r2, [pc, #24]	@ (8001504 <TIM1_TRG_COM_TIM17_IRQHandler+0x30>)
+ 80014ea:	f023 0301 	bic.w	r3, r3, #1
+ 80014ee:	6113      	str	r3, [r2, #16]
+
+        // Call the flash callback function if it's not NULL
+        if (flash_timer_callback != NULL) {
+ 80014f0:	4b05      	ldr	r3, [pc, #20]	@ (8001508 <TIM1_TRG_COM_TIM17_IRQHandler+0x34>)
+ 80014f2:	681b      	ldr	r3, [r3, #0]
+ 80014f4:	2b00      	cmp	r3, #0
+ 80014f6:	d002      	beq.n	80014fe <TIM1_TRG_COM_TIM17_IRQHandler+0x2a>
+            flash_timer_callback();
+ 80014f8:	4b03      	ldr	r3, [pc, #12]	@ (8001508 <TIM1_TRG_COM_TIM17_IRQHandler+0x34>)
+ 80014fa:	681b      	ldr	r3, [r3, #0]
+ 80014fc:	4798      	blx	r3
+        }
+    }
+}
+ 80014fe:	bf00      	nop
+ 8001500:	bd80      	pop	{r7, pc}
+ 8001502:	bf00      	nop
+ 8001504:	40014800 	.word	0x40014800
+ 8001508:	20000038 	.word	0x20000038
+
+0800150c <EXTI3_IRQHandler>:
+void EXTI3_IRQHandler(void) {
+ 800150c:	b580      	push	{r7, lr}
+ 800150e:	b082      	sub	sp, #8
+ 8001510:	af00      	add	r7, sp, #0
+    // Check if EXTI3 was triggered
+    if (EXTI->PR & EXTI_PR_PR3) {
+ 8001512:	4b18      	ldr	r3, [pc, #96]	@ (8001574 <EXTI3_IRQHandler+0x68>)
+ 8001514:	695b      	ldr	r3, [r3, #20]
+ 8001516:	f003 0308 	and.w	r3, r3, #8
+ 800151a:	2b00      	cmp	r3, #0
+ 800151c:	d026      	beq.n	800156c <EXTI3_IRQHandler+0x60>
+        // Clear the pending bit
+        EXTI->PR = EXTI_PR_PR3;
+ 800151e:	4b15      	ldr	r3, [pc, #84]	@ (8001574 <EXTI3_IRQHandler+0x68>)
+ 8001520:	2208      	movs	r2, #8
+ 8001522:	615a      	str	r2, [r3, #20]
+
+        // Read the current state of the limit switch
+        uint8_t switch_state = (LIMIT_SWITCH_PORT->IDR & (1 << LIMIT_SWITCH_PIN)) ? 0 : 1;
+ 8001524:	f04f 4390 	mov.w	r3, #1207959552	@ 0x48000000
+ 8001528:	691b      	ldr	r3, [r3, #16]
+ 800152a:	f003 0308 	and.w	r3, r3, #8
+ 800152e:	2b00      	cmp	r3, #0
+ 8001530:	bf0c      	ite	eq
+ 8001532:	2301      	moveq	r3, #1
+ 8001534:	2300      	movne	r3, #0
+ 8001536:	b2db      	uxtb	r3, r3
+ 8001538:	71fb      	strb	r3, [r7, #7]
+
+        // Update limit switch state
+        limit_switch_pressed = switch_state;
+ 800153a:	4a0f      	ldr	r2, [pc, #60]	@ (8001578 <EXTI3_IRQHandler+0x6c>)
+ 800153c:	79fb      	ldrb	r3, [r7, #7]
+ 800153e:	7013      	strb	r3, [r2, #0]
+
+        // If limit switch is pressed
+        if (limit_switch_pressed) {
+ 8001540:	4b0d      	ldr	r3, [pc, #52]	@ (8001578 <EXTI3_IRQHandler+0x6c>)
+ 8001542:	781b      	ldrb	r3, [r3, #0]
+ 8001544:	b2db      	uxtb	r3, r3
+ 8001546:	2b00      	cmp	r3, #0
+ 8001548:	d00e      	beq.n	8001568 <EXTI3_IRQHandler+0x5c>
+            // Check if this button corresponds to current yellow LED
+            if (current_yellow_led == 0) {
+ 800154a:	4b0c      	ldr	r3, [pc, #48]	@ (800157c <EXTI3_IRQHandler+0x70>)
+ 800154c:	781b      	ldrb	r3, [r3, #0]
+ 800154e:	b2db      	uxtb	r3, r3
+ 8001550:	2b00      	cmp	r3, #0
+ 8001552:	d103      	bne.n	800155c <EXTI3_IRQHandler+0x50>
+                USART1_SendString("GOLD");
+ 8001554:	480a      	ldr	r0, [pc, #40]	@ (8001580 <EXTI3_IRQHandler+0x74>)
+ 8001556:	f000 faa5 	bl	8001aa4 <USART1_SendString>
+ 800155a:	e002      	b.n	8001562 <EXTI3_IRQHandler+0x56>
+            } else {
+                USART1_SendString("KABOOM");
+ 800155c:	4809      	ldr	r0, [pc, #36]	@ (8001584 <EXTI3_IRQHandler+0x78>)
+ 800155e:	f000 faa1 	bl	8001aa4 <USART1_SendString>
+            }
+            start_circular_flash();
+ 8001562:	f000 f8bd 	bl	80016e0 <start_circular_flash>
+        } else {
+            // When released, stop circular flashing
+            stop_circular_flash();
+        }
+    }
+}
+ 8001566:	e001      	b.n	800156c <EXTI3_IRQHandler+0x60>
+            stop_circular_flash();
+ 8001568:	f000 f96a 	bl	8001840 <stop_circular_flash>
+}
+ 800156c:	bf00      	nop
+ 800156e:	3708      	adds	r7, #8
+ 8001570:	46bd      	mov	sp, r7
+ 8001572:	bd80      	pop	{r7, pc}
+ 8001574:	40010400 	.word	0x40010400
+ 8001578:	2000004c 	.word	0x2000004c
+ 800157c:	20000068 	.word	0x20000068
+ 8001580:	08001bb0 	.word	0x08001bb0
+ 8001584:	08001bb8 	.word	0x08001bb8
+
+08001588 <EXTI4_IRQHandler>:
+void EXTI4_IRQHandler(void) {
+ 8001588:	b580      	push	{r7, lr}
+ 800158a:	b082      	sub	sp, #8
+ 800158c:	af00      	add	r7, sp, #0
+    // Check if EXTI4 was triggered
+    if (EXTI->PR & EXTI_PR_PR4) {
+ 800158e:	4b18      	ldr	r3, [pc, #96]	@ (80015f0 <EXTI4_IRQHandler+0x68>)
+ 8001590:	695b      	ldr	r3, [r3, #20]
+ 8001592:	f003 0310 	and.w	r3, r3, #16
+ 8001596:	2b00      	cmp	r3, #0
+ 8001598:	d026      	beq.n	80015e8 <EXTI4_IRQHandler+0x60>
+        // Clear the pending bit
+        EXTI->PR = EXTI_PR_PR4;
+ 800159a:	4b15      	ldr	r3, [pc, #84]	@ (80015f0 <EXTI4_IRQHandler+0x68>)
+ 800159c:	2210      	movs	r2, #16
+ 800159e:	615a      	str	r2, [r3, #20]
+
+        // Read the current state of the limit switch 2
+        uint8_t switch_state = (LIMIT_SWITCH2_PORT->IDR & (1 << LIMIT_SWITCH2_PIN)) ? 0 : 1;
+ 80015a0:	f04f 4390 	mov.w	r3, #1207959552	@ 0x48000000
+ 80015a4:	691b      	ldr	r3, [r3, #16]
+ 80015a6:	f003 0310 	and.w	r3, r3, #16
+ 80015aa:	2b00      	cmp	r3, #0
+ 80015ac:	bf0c      	ite	eq
+ 80015ae:	2301      	moveq	r3, #1
+ 80015b0:	2300      	movne	r3, #0
+ 80015b2:	b2db      	uxtb	r3, r3
+ 80015b4:	71fb      	strb	r3, [r7, #7]
+
+        // Update limit switch 2 state
+        limit_switch2_pressed = switch_state;
+ 80015b6:	4a0f      	ldr	r2, [pc, #60]	@ (80015f4 <EXTI4_IRQHandler+0x6c>)
+ 80015b8:	79fb      	ldrb	r3, [r7, #7]
+ 80015ba:	7013      	strb	r3, [r2, #0]
+
+        // If limit switch 2 is pressed
+        if (limit_switch2_pressed) {
+ 80015bc:	4b0d      	ldr	r3, [pc, #52]	@ (80015f4 <EXTI4_IRQHandler+0x6c>)
+ 80015be:	781b      	ldrb	r3, [r3, #0]
+ 80015c0:	b2db      	uxtb	r3, r3
+ 80015c2:	2b00      	cmp	r3, #0
+ 80015c4:	d00e      	beq.n	80015e4 <EXTI4_IRQHandler+0x5c>
+            // Check if this button corresponds to current yellow LED
+            if (current_yellow_led == 1) {
+ 80015c6:	4b0c      	ldr	r3, [pc, #48]	@ (80015f8 <EXTI4_IRQHandler+0x70>)
+ 80015c8:	781b      	ldrb	r3, [r3, #0]
+ 80015ca:	b2db      	uxtb	r3, r3
+ 80015cc:	2b01      	cmp	r3, #1
+ 80015ce:	d103      	bne.n	80015d8 <EXTI4_IRQHandler+0x50>
+                USART1_SendString("GOLD");
+ 80015d0:	480a      	ldr	r0, [pc, #40]	@ (80015fc <EXTI4_IRQHandler+0x74>)
+ 80015d2:	f000 fa67 	bl	8001aa4 <USART1_SendString>
+ 80015d6:	e002      	b.n	80015de <EXTI4_IRQHandler+0x56>
+            } else {
+                USART1_SendString("KABOOM");
+ 80015d8:	4809      	ldr	r0, [pc, #36]	@ (8001600 <EXTI4_IRQHandler+0x78>)
+ 80015da:	f000 fa63 	bl	8001aa4 <USART1_SendString>
+            }
+            start_circular_flash();
+ 80015de:	f000 f87f 	bl	80016e0 <start_circular_flash>
+        } else {
+            // When released, stop circular flashing
+            stop_circular_flash();
+        }
+    }
+}
+ 80015e2:	e001      	b.n	80015e8 <EXTI4_IRQHandler+0x60>
+            stop_circular_flash();
+ 80015e4:	f000 f92c 	bl	8001840 <stop_circular_flash>
+}
+ 80015e8:	bf00      	nop
+ 80015ea:	3708      	adds	r7, #8
+ 80015ec:	46bd      	mov	sp, r7
+ 80015ee:	bd80      	pop	{r7, pc}
+ 80015f0:	40010400 	.word	0x40010400
+ 80015f4:	2000004d 	.word	0x2000004d
+ 80015f8:	20000068 	.word	0x20000068
+ 80015fc:	08001bb0 	.word	0x08001bb0
+ 8001600:	08001bb8 	.word	0x08001bb8
+
+08001604 <EXTI9_5_IRQHandler>:
+
+void EXTI9_5_IRQHandler(void) {
+ 8001604:	b580      	push	{r7, lr}
+ 8001606:	b082      	sub	sp, #8
+ 8001608:	af00      	add	r7, sp, #0
+    // Check if EXTI5 was triggered (limit switch 3)
+    if (EXTI->PR & EXTI_PR_PR5) {
+ 800160a:	4b2f      	ldr	r3, [pc, #188]	@ (80016c8 <EXTI9_5_IRQHandler+0xc4>)
+ 800160c:	695b      	ldr	r3, [r3, #20]
+ 800160e:	f003 0320 	and.w	r3, r3, #32
+ 8001612:	2b00      	cmp	r3, #0
+ 8001614:	d026      	beq.n	8001664 <EXTI9_5_IRQHandler+0x60>
+        // Clear the pending bit
+        EXTI->PR = EXTI_PR_PR5;
+ 8001616:	4b2c      	ldr	r3, [pc, #176]	@ (80016c8 <EXTI9_5_IRQHandler+0xc4>)
+ 8001618:	2220      	movs	r2, #32
+ 800161a:	615a      	str	r2, [r3, #20]
+
+        // Read the current state of the limit switch 3
+        uint8_t switch_state = (LIMIT_SWITCH3_PORT->IDR & (1 << LIMIT_SWITCH3_PIN)) ? 0 : 1;
+ 800161c:	f04f 4390 	mov.w	r3, #1207959552	@ 0x48000000
+ 8001620:	691b      	ldr	r3, [r3, #16]
+ 8001622:	f003 0320 	and.w	r3, r3, #32
+ 8001626:	2b00      	cmp	r3, #0
+ 8001628:	bf0c      	ite	eq
+ 800162a:	2301      	moveq	r3, #1
+ 800162c:	2300      	movne	r3, #0
+ 800162e:	b2db      	uxtb	r3, r3
+ 8001630:	71fb      	strb	r3, [r7, #7]
+
+        // Update limit switch 3 state
+        limit_switch3_pressed = switch_state;
+ 8001632:	4a26      	ldr	r2, [pc, #152]	@ (80016cc <EXTI9_5_IRQHandler+0xc8>)
+ 8001634:	79fb      	ldrb	r3, [r7, #7]
+ 8001636:	7013      	strb	r3, [r2, #0]
+
+        // If limit switch 3 is pressed
+        if (limit_switch3_pressed) {
+ 8001638:	4b24      	ldr	r3, [pc, #144]	@ (80016cc <EXTI9_5_IRQHandler+0xc8>)
+ 800163a:	781b      	ldrb	r3, [r3, #0]
+ 800163c:	b2db      	uxtb	r3, r3
+ 800163e:	2b00      	cmp	r3, #0
+ 8001640:	d00e      	beq.n	8001660 <EXTI9_5_IRQHandler+0x5c>
+            // Check if this button corresponds to current yellow LED
+            if (current_yellow_led == 2) {
+ 8001642:	4b23      	ldr	r3, [pc, #140]	@ (80016d0 <EXTI9_5_IRQHandler+0xcc>)
+ 8001644:	781b      	ldrb	r3, [r3, #0]
+ 8001646:	b2db      	uxtb	r3, r3
+ 8001648:	2b02      	cmp	r3, #2
+ 800164a:	d103      	bne.n	8001654 <EXTI9_5_IRQHandler+0x50>
+                USART1_SendString("GOLD");
+ 800164c:	4821      	ldr	r0, [pc, #132]	@ (80016d4 <EXTI9_5_IRQHandler+0xd0>)
+ 800164e:	f000 fa29 	bl	8001aa4 <USART1_SendString>
+ 8001652:	e002      	b.n	800165a <EXTI9_5_IRQHandler+0x56>
+            } else {
+                USART1_SendString("KABOOM");
+ 8001654:	4820      	ldr	r0, [pc, #128]	@ (80016d8 <EXTI9_5_IRQHandler+0xd4>)
+ 8001656:	f000 fa25 	bl	8001aa4 <USART1_SendString>
+            }
+            start_circular_flash();
+ 800165a:	f000 f841 	bl	80016e0 <start_circular_flash>
+ 800165e:	e001      	b.n	8001664 <EXTI9_5_IRQHandler+0x60>
+        } else {
+            // When released, stop circular flashing
+            stop_circular_flash();
+ 8001660:	f000 f8ee 	bl	8001840 <stop_circular_flash>
+        }
+    }
+
+    // Check if EXTI6 was triggered (limit switch 4)
+    if (EXTI->PR & EXTI_PR_PR6) {
+ 8001664:	4b18      	ldr	r3, [pc, #96]	@ (80016c8 <EXTI9_5_IRQHandler+0xc4>)
+ 8001666:	695b      	ldr	r3, [r3, #20]
+ 8001668:	f003 0340 	and.w	r3, r3, #64	@ 0x40
+ 800166c:	2b00      	cmp	r3, #0
+ 800166e:	d026      	beq.n	80016be <EXTI9_5_IRQHandler+0xba>
+        // Clear the pending bit
+        EXTI->PR = EXTI_PR_PR6;
+ 8001670:	4b15      	ldr	r3, [pc, #84]	@ (80016c8 <EXTI9_5_IRQHandler+0xc4>)
+ 8001672:	2240      	movs	r2, #64	@ 0x40
+ 8001674:	615a      	str	r2, [r3, #20]
+
+        // Read the current state of the limit switch 4
+        uint8_t switch_state = (LIMIT_SWITCH4_PORT->IDR & (1 << LIMIT_SWITCH4_PIN)) ? 0 : 1;
+ 8001676:	f04f 4390 	mov.w	r3, #1207959552	@ 0x48000000
+ 800167a:	691b      	ldr	r3, [r3, #16]
+ 800167c:	f003 0340 	and.w	r3, r3, #64	@ 0x40
+ 8001680:	2b00      	cmp	r3, #0
+ 8001682:	bf0c      	ite	eq
+ 8001684:	2301      	moveq	r3, #1
+ 8001686:	2300      	movne	r3, #0
+ 8001688:	b2db      	uxtb	r3, r3
+ 800168a:	71bb      	strb	r3, [r7, #6]
+
+        // Update limit switch 4 state
+        limit_switch4_pressed = switch_state;
+ 800168c:	4a13      	ldr	r2, [pc, #76]	@ (80016dc <EXTI9_5_IRQHandler+0xd8>)
+ 800168e:	79bb      	ldrb	r3, [r7, #6]
+ 8001690:	7013      	strb	r3, [r2, #0]
+
+        // If limit switch 4 is pressed
+        if (limit_switch4_pressed) {
+ 8001692:	4b12      	ldr	r3, [pc, #72]	@ (80016dc <EXTI9_5_IRQHandler+0xd8>)
+ 8001694:	781b      	ldrb	r3, [r3, #0]
+ 8001696:	b2db      	uxtb	r3, r3
+ 8001698:	2b00      	cmp	r3, #0
+ 800169a:	d00e      	beq.n	80016ba <EXTI9_5_IRQHandler+0xb6>
+            // Check if this button corresponds to current yellow LED
+            if (current_yellow_led == 3) {
+ 800169c:	4b0c      	ldr	r3, [pc, #48]	@ (80016d0 <EXTI9_5_IRQHandler+0xcc>)
+ 800169e:	781b      	ldrb	r3, [r3, #0]
+ 80016a0:	b2db      	uxtb	r3, r3
+ 80016a2:	2b03      	cmp	r3, #3
+ 80016a4:	d103      	bne.n	80016ae <EXTI9_5_IRQHandler+0xaa>
+                USART1_SendString("GOLD");
+ 80016a6:	480b      	ldr	r0, [pc, #44]	@ (80016d4 <EXTI9_5_IRQHandler+0xd0>)
+ 80016a8:	f000 f9fc 	bl	8001aa4 <USART1_SendString>
+ 80016ac:	e002      	b.n	80016b4 <EXTI9_5_IRQHandler+0xb0>
+            } else {
+                USART1_SendString("KABOOM");
+ 80016ae:	480a      	ldr	r0, [pc, #40]	@ (80016d8 <EXTI9_5_IRQHandler+0xd4>)
+ 80016b0:	f000 f9f8 	bl	8001aa4 <USART1_SendString>
+            }
+            start_circular_flash();
+ 80016b4:	f000 f814 	bl	80016e0 <start_circular_flash>
+        } else {
+            // When released, stop circular flashing
+            stop_circular_flash();
+        }
+    }
+}
+ 80016b8:	e001      	b.n	80016be <EXTI9_5_IRQHandler+0xba>
+            stop_circular_flash();
+ 80016ba:	f000 f8c1 	bl	8001840 <stop_circular_flash>
+}
+ 80016be:	bf00      	nop
+ 80016c0:	3708      	adds	r7, #8
+ 80016c2:	46bd      	mov	sp, r7
+ 80016c4:	bd80      	pop	{r7, pc}
+ 80016c6:	bf00      	nop
+ 80016c8:	40010400 	.word	0x40010400
+ 80016cc:	20000052 	.word	0x20000052
+ 80016d0:	20000068 	.word	0x20000068
+ 80016d4:	08001bb0 	.word	0x08001bb0
+ 80016d8:	08001bb8 	.word	0x08001bb8
+ 80016dc:	20000055 	.word	0x20000055
+
+080016e0 <start_circular_flash>:
+
+
+// Start the circular flash pattern
+void start_circular_flash(void) {
+ 80016e0:	b580      	push	{r7, lr}
+ 80016e2:	af00      	add	r7, sp, #0
+    if (!circular_flash_active) {
+ 80016e4:	4b35      	ldr	r3, [pc, #212]	@ (80017bc <start_circular_flash+0xdc>)
+ 80016e6:	781b      	ldrb	r3, [r3, #0]
+ 80016e8:	b2db      	uxtb	r3, r3
+ 80016ea:	2b00      	cmp	r3, #0
+ 80016ec:	d164      	bne.n	80017b8 <start_circular_flash+0xd8>
+        circular_flash_active = 1;
+ 80016ee:	4b33      	ldr	r3, [pc, #204]	@ (80017bc <start_circular_flash+0xdc>)
+ 80016f0:	2201      	movs	r2, #1
+ 80016f2:	701a      	strb	r2, [r3, #0]
+        circular_flash_step = 0;  // Start with RGB1
+ 80016f4:	4b32      	ldr	r3, [pc, #200]	@ (80017c0 <start_circular_flash+0xe0>)
+ 80016f6:	2200      	movs	r2, #0
+ 80016f8:	701a      	strb	r2, [r3, #0]
+        circular_flash_state = 1; // Start with flash ON
+ 80016fa:	4b32      	ldr	r3, [pc, #200]	@ (80017c4 <start_circular_flash+0xe4>)
+ 80016fc:	2201      	movs	r2, #1
+ 80016fe:	701a      	strb	r2, [r3, #0]
+
+        // STOP the color cycling timer to prevent interference
+        TIM16->CR1 &= ~TIM_CR1_CEN;
+ 8001700:	4b31      	ldr	r3, [pc, #196]	@ (80017c8 <start_circular_flash+0xe8>)
+ 8001702:	681b      	ldr	r3, [r3, #0]
+ 8001704:	4a30      	ldr	r2, [pc, #192]	@ (80017c8 <start_circular_flash+0xe8>)
+ 8001706:	f023 0301 	bic.w	r3, r3, #1
+ 800170a:	6013      	str	r3, [r2, #0]
+
+        // Turn off all individual flashing
+        flash_active = 0;
+ 800170c:	4b2f      	ldr	r3, [pc, #188]	@ (80017cc <start_circular_flash+0xec>)
+ 800170e:	2200      	movs	r2, #0
+ 8001710:	701a      	strb	r2, [r3, #0]
+        flash2_active = 0;
+ 8001712:	4b2f      	ldr	r3, [pc, #188]	@ (80017d0 <start_circular_flash+0xf0>)
+ 8001714:	2200      	movs	r2, #0
+ 8001716:	701a      	strb	r2, [r3, #0]
+        flash3_active = 0;
+ 8001718:	4b2e      	ldr	r3, [pc, #184]	@ (80017d4 <start_circular_flash+0xf4>)
+ 800171a:	2200      	movs	r2, #0
+ 800171c:	701a      	strb	r2, [r3, #0]
+        flash4_active = 0;
+ 800171e:	4b2e      	ldr	r3, [pc, #184]	@ (80017d8 <start_circular_flash+0xf8>)
+ 8001720:	2200      	movs	r2, #0
+ 8001722:	701a      	strb	r2, [r3, #0]
+
+        // Store current colors before turning off
+        original_red = red_value;
+ 8001724:	4b2d      	ldr	r3, [pc, #180]	@ (80017dc <start_circular_flash+0xfc>)
+ 8001726:	781a      	ldrb	r2, [r3, #0]
+ 8001728:	4b2d      	ldr	r3, [pc, #180]	@ (80017e0 <start_circular_flash+0x100>)
+ 800172a:	701a      	strb	r2, [r3, #0]
+        original_green = green_value;
+ 800172c:	4b2d      	ldr	r3, [pc, #180]	@ (80017e4 <start_circular_flash+0x104>)
+ 800172e:	781a      	ldrb	r2, [r3, #0]
+ 8001730:	4b2d      	ldr	r3, [pc, #180]	@ (80017e8 <start_circular_flash+0x108>)
+ 8001732:	701a      	strb	r2, [r3, #0]
+        original_blue = blue_value;
+ 8001734:	4b2d      	ldr	r3, [pc, #180]	@ (80017ec <start_circular_flash+0x10c>)
+ 8001736:	781a      	ldrb	r2, [r3, #0]
+ 8001738:	4b2d      	ldr	r3, [pc, #180]	@ (80017f0 <start_circular_flash+0x110>)
+ 800173a:	701a      	strb	r2, [r3, #0]
+        original_red2 = red2_value;
+ 800173c:	4b2d      	ldr	r3, [pc, #180]	@ (80017f4 <start_circular_flash+0x114>)
+ 800173e:	781a      	ldrb	r2, [r3, #0]
+ 8001740:	4b2d      	ldr	r3, [pc, #180]	@ (80017f8 <start_circular_flash+0x118>)
+ 8001742:	701a      	strb	r2, [r3, #0]
+        original_green2 = green2_value;
+ 8001744:	4b2d      	ldr	r3, [pc, #180]	@ (80017fc <start_circular_flash+0x11c>)
+ 8001746:	781a      	ldrb	r2, [r3, #0]
+ 8001748:	4b2d      	ldr	r3, [pc, #180]	@ (8001800 <start_circular_flash+0x120>)
+ 800174a:	701a      	strb	r2, [r3, #0]
+        original_blue2 = blue2_value;
+ 800174c:	4b2d      	ldr	r3, [pc, #180]	@ (8001804 <start_circular_flash+0x124>)
+ 800174e:	781a      	ldrb	r2, [r3, #0]
+ 8001750:	4b2d      	ldr	r3, [pc, #180]	@ (8001808 <start_circular_flash+0x128>)
+ 8001752:	701a      	strb	r2, [r3, #0]
+        original_red3 = red3_value;
+ 8001754:	4b2d      	ldr	r3, [pc, #180]	@ (800180c <start_circular_flash+0x12c>)
+ 8001756:	781a      	ldrb	r2, [r3, #0]
+ 8001758:	4b2d      	ldr	r3, [pc, #180]	@ (8001810 <start_circular_flash+0x130>)
+ 800175a:	701a      	strb	r2, [r3, #0]
+        original_green3 = green3_value;
+ 800175c:	4b2d      	ldr	r3, [pc, #180]	@ (8001814 <start_circular_flash+0x134>)
+ 800175e:	781a      	ldrb	r2, [r3, #0]
+ 8001760:	4b2d      	ldr	r3, [pc, #180]	@ (8001818 <start_circular_flash+0x138>)
+ 8001762:	701a      	strb	r2, [r3, #0]
+        original_blue3 = blue3_value;
+ 8001764:	4b2d      	ldr	r3, [pc, #180]	@ (800181c <start_circular_flash+0x13c>)
+ 8001766:	781a      	ldrb	r2, [r3, #0]
+ 8001768:	4b2d      	ldr	r3, [pc, #180]	@ (8001820 <start_circular_flash+0x140>)
+ 800176a:	701a      	strb	r2, [r3, #0]
+        original_red4 = red4_value;
+ 800176c:	4b2d      	ldr	r3, [pc, #180]	@ (8001824 <start_circular_flash+0x144>)
+ 800176e:	781a      	ldrb	r2, [r3, #0]
+ 8001770:	4b2d      	ldr	r3, [pc, #180]	@ (8001828 <start_circular_flash+0x148>)
+ 8001772:	701a      	strb	r2, [r3, #0]
+        original_green4 = green4_value;
+ 8001774:	4b2d      	ldr	r3, [pc, #180]	@ (800182c <start_circular_flash+0x14c>)
+ 8001776:	781a      	ldrb	r2, [r3, #0]
+ 8001778:	4b2d      	ldr	r3, [pc, #180]	@ (8001830 <start_circular_flash+0x150>)
+ 800177a:	701a      	strb	r2, [r3, #0]
+        original_blue4 = blue4_value;
+ 800177c:	4b2d      	ldr	r3, [pc, #180]	@ (8001834 <start_circular_flash+0x154>)
+ 800177e:	781a      	ldrb	r2, [r3, #0]
+ 8001780:	4b2d      	ldr	r3, [pc, #180]	@ (8001838 <start_circular_flash+0x158>)
+ 8001782:	701a      	strb	r2, [r3, #0]
+
+        // Set all LEDs to off initially
+        set_rgb_ccr(0, 0, 0);
+ 8001784:	2200      	movs	r2, #0
+ 8001786:	2100      	movs	r1, #0
+ 8001788:	2000      	movs	r0, #0
+ 800178a:	f7ff fa6b 	bl	8000c64 <set_rgb_ccr>
+        set_rgb2_ccr(0, 0, 0);
+ 800178e:	2200      	movs	r2, #0
+ 8001790:	2100      	movs	r1, #0
+ 8001792:	2000      	movs	r0, #0
+ 8001794:	f7ff fa90 	bl	8000cb8 <set_rgb2_ccr>
+        set_rgb3_ccr(0, 0, 0);
+ 8001798:	2200      	movs	r2, #0
+ 800179a:	2100      	movs	r1, #0
+ 800179c:	2000      	movs	r0, #0
+ 800179e:	f7ff fab5 	bl	8000d0c <set_rgb3_ccr>
+        set_rgb4_ccr(0, 0, 0);
+ 80017a2:	2200      	movs	r2, #0
+ 80017a4:	2100      	movs	r1, #0
+ 80017a6:	2000      	movs	r0, #0
+ 80017a8:	f7ff fada 	bl	8000d60 <set_rgb4_ccr>
+
+        // Enable the flash timer
+        TIM17->CR1 |= TIM_CR1_CEN;
+ 80017ac:	4b23      	ldr	r3, [pc, #140]	@ (800183c <start_circular_flash+0x15c>)
+ 80017ae:	681b      	ldr	r3, [r3, #0]
+ 80017b0:	4a22      	ldr	r2, [pc, #136]	@ (800183c <start_circular_flash+0x15c>)
+ 80017b2:	f043 0301 	orr.w	r3, r3, #1
+ 80017b6:	6013      	str	r3, [r2, #0]
+    }
+}
+ 80017b8:	bf00      	nop
+ 80017ba:	bd80      	pop	{r7, pc}
+ 80017bc:	20000064 	.word	0x20000064
+ 80017c0:	20000065 	.word	0x20000065
+ 80017c4:	20000066 	.word	0x20000066
+ 80017c8:	40014400 	.word	0x40014400
+ 80017cc:	2000004f 	.word	0x2000004f
+ 80017d0:	20000051 	.word	0x20000051
+ 80017d4:	20000054 	.word	0x20000054
+ 80017d8:	20000057 	.word	0x20000057
+ 80017dc:	2000003c 	.word	0x2000003c
+ 80017e0:	20000058 	.word	0x20000058
+ 80017e4:	2000003d 	.word	0x2000003d
+ 80017e8:	20000059 	.word	0x20000059
+ 80017ec:	2000003e 	.word	0x2000003e
+ 80017f0:	2000005a 	.word	0x2000005a
+ 80017f4:	2000003f 	.word	0x2000003f
+ 80017f8:	2000005b 	.word	0x2000005b
+ 80017fc:	20000040 	.word	0x20000040
+ 8001800:	2000005c 	.word	0x2000005c
+ 8001804:	20000041 	.word	0x20000041
+ 8001808:	2000005d 	.word	0x2000005d
+ 800180c:	20000042 	.word	0x20000042
+ 8001810:	2000005e 	.word	0x2000005e
+ 8001814:	20000043 	.word	0x20000043
+ 8001818:	2000005f 	.word	0x2000005f
+ 800181c:	20000044 	.word	0x20000044
+ 8001820:	20000060 	.word	0x20000060
+ 8001824:	20000045 	.word	0x20000045
+ 8001828:	20000061 	.word	0x20000061
+ 800182c:	20000046 	.word	0x20000046
+ 8001830:	20000062 	.word	0x20000062
+ 8001834:	20000047 	.word	0x20000047
+ 8001838:	20000063 	.word	0x20000063
+ 800183c:	40014800 	.word	0x40014800
+
+08001840 <stop_circular_flash>:
+
+// Stop the circular flash pattern
+void stop_circular_flash(void) {
+ 8001840:	b580      	push	{r7, lr}
+ 8001842:	af00      	add	r7, sp, #0
+    if (circular_flash_active) {
+ 8001844:	4b1c      	ldr	r3, [pc, #112]	@ (80018b8 <stop_circular_flash+0x78>)
+ 8001846:	781b      	ldrb	r3, [r3, #0]
+ 8001848:	b2db      	uxtb	r3, r3
+ 800184a:	2b00      	cmp	r3, #0
+ 800184c:	d032      	beq.n	80018b4 <stop_circular_flash+0x74>
+        circular_flash_active = 0;
+ 800184e:	4b1a      	ldr	r3, [pc, #104]	@ (80018b8 <stop_circular_flash+0x78>)
+ 8001850:	2200      	movs	r2, #0
+ 8001852:	701a      	strb	r2, [r3, #0]
+
+        // Disable the flash timer first
+        TIM17->CR1 &= ~TIM_CR1_CEN;
+ 8001854:	4b19      	ldr	r3, [pc, #100]	@ (80018bc <stop_circular_flash+0x7c>)
+ 8001856:	681b      	ldr	r3, [r3, #0]
+ 8001858:	4a18      	ldr	r2, [pc, #96]	@ (80018bc <stop_circular_flash+0x7c>)
+ 800185a:	f023 0301 	bic.w	r3, r3, #1
+ 800185e:	6013      	str	r3, [r2, #0]
+
+        // Restore all LEDs to their normal cycling colors
+        set_rgb_ccr(original_red, original_green, original_blue);
+ 8001860:	4b17      	ldr	r3, [pc, #92]	@ (80018c0 <stop_circular_flash+0x80>)
+ 8001862:	781b      	ldrb	r3, [r3, #0]
+ 8001864:	4a17      	ldr	r2, [pc, #92]	@ (80018c4 <stop_circular_flash+0x84>)
+ 8001866:	7811      	ldrb	r1, [r2, #0]
+ 8001868:	4a17      	ldr	r2, [pc, #92]	@ (80018c8 <stop_circular_flash+0x88>)
+ 800186a:	7812      	ldrb	r2, [r2, #0]
+ 800186c:	4618      	mov	r0, r3
+ 800186e:	f7ff f9f9 	bl	8000c64 <set_rgb_ccr>
+        set_rgb2_ccr(original_red2, original_green2, original_blue2);
+ 8001872:	4b16      	ldr	r3, [pc, #88]	@ (80018cc <stop_circular_flash+0x8c>)
+ 8001874:	781b      	ldrb	r3, [r3, #0]
+ 8001876:	4a16      	ldr	r2, [pc, #88]	@ (80018d0 <stop_circular_flash+0x90>)
+ 8001878:	7811      	ldrb	r1, [r2, #0]
+ 800187a:	4a16      	ldr	r2, [pc, #88]	@ (80018d4 <stop_circular_flash+0x94>)
+ 800187c:	7812      	ldrb	r2, [r2, #0]
+ 800187e:	4618      	mov	r0, r3
+ 8001880:	f7ff fa1a 	bl	8000cb8 <set_rgb2_ccr>
+        set_rgb3_ccr(original_red3, original_green3, original_blue3);
+ 8001884:	4b14      	ldr	r3, [pc, #80]	@ (80018d8 <stop_circular_flash+0x98>)
+ 8001886:	781b      	ldrb	r3, [r3, #0]
+ 8001888:	4a14      	ldr	r2, [pc, #80]	@ (80018dc <stop_circular_flash+0x9c>)
+ 800188a:	7811      	ldrb	r1, [r2, #0]
+ 800188c:	4a14      	ldr	r2, [pc, #80]	@ (80018e0 <stop_circular_flash+0xa0>)
+ 800188e:	7812      	ldrb	r2, [r2, #0]
+ 8001890:	4618      	mov	r0, r3
+ 8001892:	f7ff fa3b 	bl	8000d0c <set_rgb3_ccr>
+        set_rgb4_ccr(original_red4, original_green4, original_blue4);
+ 8001896:	4b13      	ldr	r3, [pc, #76]	@ (80018e4 <stop_circular_flash+0xa4>)
+ 8001898:	781b      	ldrb	r3, [r3, #0]
+ 800189a:	4a13      	ldr	r2, [pc, #76]	@ (80018e8 <stop_circular_flash+0xa8>)
+ 800189c:	7811      	ldrb	r1, [r2, #0]
+ 800189e:	4a13      	ldr	r2, [pc, #76]	@ (80018ec <stop_circular_flash+0xac>)
+ 80018a0:	7812      	ldrb	r2, [r2, #0]
+ 80018a2:	4618      	mov	r0, r3
+ 80018a4:	f7ff fa5c 	bl	8000d60 <set_rgb4_ccr>
+
+        // RESTART the color cycling timer
+        TIM16->CR1 |= TIM_CR1_CEN;
+ 80018a8:	4b11      	ldr	r3, [pc, #68]	@ (80018f0 <stop_circular_flash+0xb0>)
+ 80018aa:	681b      	ldr	r3, [r3, #0]
+ 80018ac:	4a10      	ldr	r2, [pc, #64]	@ (80018f0 <stop_circular_flash+0xb0>)
+ 80018ae:	f043 0301 	orr.w	r3, r3, #1
+ 80018b2:	6013      	str	r3, [r2, #0]
+    }
+}
+ 80018b4:	bf00      	nop
+ 80018b6:	bd80      	pop	{r7, pc}
+ 80018b8:	20000064 	.word	0x20000064
+ 80018bc:	40014800 	.word	0x40014800
+ 80018c0:	20000058 	.word	0x20000058
+ 80018c4:	20000059 	.word	0x20000059
+ 80018c8:	2000005a 	.word	0x2000005a
+ 80018cc:	2000005b 	.word	0x2000005b
+ 80018d0:	2000005c 	.word	0x2000005c
+ 80018d4:	2000005d 	.word	0x2000005d
+ 80018d8:	2000005e 	.word	0x2000005e
+ 80018dc:	2000005f 	.word	0x2000005f
+ 80018e0:	20000060 	.word	0x20000060
+ 80018e4:	20000061 	.word	0x20000061
+ 80018e8:	20000062 	.word	0x20000062
+ 80018ec:	20000063 	.word	0x20000063
+ 80018f0:	40014400 	.word	0x40014400
+
+080018f4 <circular_flash_callback>:
+
+// Circular flash callback function
+void circular_flash_callback(void) {
+ 80018f4:	b580      	push	{r7, lr}
+ 80018f6:	af00      	add	r7, sp, #0
+    if (circular_flash_active) {
+ 80018f8:	4b38      	ldr	r3, [pc, #224]	@ (80019dc <circular_flash_callback+0xe8>)
+ 80018fa:	781b      	ldrb	r3, [r3, #0]
+ 80018fc:	b2db      	uxtb	r3, r3
+ 80018fe:	2b00      	cmp	r3, #0
+ 8001900:	d069      	beq.n	80019d6 <circular_flash_callback+0xe2>
+        // Always turn off all LEDs first
+        set_rgb_ccr(0, 0, 0);
+ 8001902:	2200      	movs	r2, #0
+ 8001904:	2100      	movs	r1, #0
+ 8001906:	2000      	movs	r0, #0
+ 8001908:	f7ff f9ac 	bl	8000c64 <set_rgb_ccr>
+        set_rgb2_ccr(0, 0, 0);
+ 800190c:	2200      	movs	r2, #0
+ 800190e:	2100      	movs	r1, #0
+ 8001910:	2000      	movs	r0, #0
+ 8001912:	f7ff f9d1 	bl	8000cb8 <set_rgb2_ccr>
+        set_rgb3_ccr(0, 0, 0);
+ 8001916:	2200      	movs	r2, #0
+ 8001918:	2100      	movs	r1, #0
+ 800191a:	2000      	movs	r0, #0
+ 800191c:	f7ff f9f6 	bl	8000d0c <set_rgb3_ccr>
+        set_rgb4_ccr(0, 0, 0);
+ 8001920:	2200      	movs	r2, #0
+ 8001922:	2100      	movs	r1, #0
+ 8001924:	2000      	movs	r0, #0
+ 8001926:	f7ff fa1b 	bl	8000d60 <set_rgb4_ccr>
+
+        if (circular_flash_state) {
+ 800192a:	4b2d      	ldr	r3, [pc, #180]	@ (80019e0 <circular_flash_callback+0xec>)
+ 800192c:	781b      	ldrb	r3, [r3, #0]
+ 800192e:	b2db      	uxtb	r3, r3
+ 8001930:	2b00      	cmp	r3, #0
+ 8001932:	d045      	beq.n	80019c0 <circular_flash_callback+0xcc>
+            // Flash ON state - light up ONLY the current LED in sequence
+            switch (circular_flash_step) {
+ 8001934:	4b2b      	ldr	r3, [pc, #172]	@ (80019e4 <circular_flash_callback+0xf0>)
+ 8001936:	781b      	ldrb	r3, [r3, #0]
+ 8001938:	b2db      	uxtb	r3, r3
+ 800193a:	2b03      	cmp	r3, #3
+ 800193c:	d832      	bhi.n	80019a4 <circular_flash_callback+0xb0>
+ 800193e:	a201      	add	r2, pc, #4	@ (adr r2, 8001944 <circular_flash_callback+0x50>)
+ 8001940:	f852 f023 	ldr.w	pc, [r2, r3, lsl #2]
+ 8001944:	08001955 	.word	0x08001955
+ 8001948:	08001969 	.word	0x08001969
+ 800194c:	0800197d 	.word	0x0800197d
+ 8001950:	08001991 	.word	0x08001991
+                case 0: // Only RGB1
+                    set_rgb_ccr(circular_colors[0][0], circular_colors[0][1], circular_colors[0][2]);
+ 8001954:	4b24      	ldr	r3, [pc, #144]	@ (80019e8 <circular_flash_callback+0xf4>)
+ 8001956:	781b      	ldrb	r3, [r3, #0]
+ 8001958:	4a23      	ldr	r2, [pc, #140]	@ (80019e8 <circular_flash_callback+0xf4>)
+ 800195a:	7851      	ldrb	r1, [r2, #1]
+ 800195c:	4a22      	ldr	r2, [pc, #136]	@ (80019e8 <circular_flash_callback+0xf4>)
+ 800195e:	7892      	ldrb	r2, [r2, #2]
+ 8001960:	4618      	mov	r0, r3
+ 8001962:	f7ff f97f 	bl	8000c64 <set_rgb_ccr>
+                    break;
+ 8001966:	e01d      	b.n	80019a4 <circular_flash_callback+0xb0>
+                case 1: // Only RGB2
+                    set_rgb2_ccr(circular_colors[1][0], circular_colors[1][1], circular_colors[1][2]);
+ 8001968:	4b1f      	ldr	r3, [pc, #124]	@ (80019e8 <circular_flash_callback+0xf4>)
+ 800196a:	78db      	ldrb	r3, [r3, #3]
+ 800196c:	4a1e      	ldr	r2, [pc, #120]	@ (80019e8 <circular_flash_callback+0xf4>)
+ 800196e:	7911      	ldrb	r1, [r2, #4]
+ 8001970:	4a1d      	ldr	r2, [pc, #116]	@ (80019e8 <circular_flash_callback+0xf4>)
+ 8001972:	7952      	ldrb	r2, [r2, #5]
+ 8001974:	4618      	mov	r0, r3
+ 8001976:	f7ff f99f 	bl	8000cb8 <set_rgb2_ccr>
+                    break;
+ 800197a:	e013      	b.n	80019a4 <circular_flash_callback+0xb0>
+                case 2: // Only RGB3
+                    set_rgb3_ccr(circular_colors[2][0], circular_colors[2][1], circular_colors[2][2]);
+ 800197c:	4b1a      	ldr	r3, [pc, #104]	@ (80019e8 <circular_flash_callback+0xf4>)
+ 800197e:	799b      	ldrb	r3, [r3, #6]
+ 8001980:	4a19      	ldr	r2, [pc, #100]	@ (80019e8 <circular_flash_callback+0xf4>)
+ 8001982:	79d1      	ldrb	r1, [r2, #7]
+ 8001984:	4a18      	ldr	r2, [pc, #96]	@ (80019e8 <circular_flash_callback+0xf4>)
+ 8001986:	7a12      	ldrb	r2, [r2, #8]
+ 8001988:	4618      	mov	r0, r3
+ 800198a:	f7ff f9bf 	bl	8000d0c <set_rgb3_ccr>
+                    break;
+ 800198e:	e009      	b.n	80019a4 <circular_flash_callback+0xb0>
+                case 3: // Only RGB4
+                    set_rgb4_ccr(circular_colors[3][0], circular_colors[3][1], circular_colors[3][2]);
+ 8001990:	4b15      	ldr	r3, [pc, #84]	@ (80019e8 <circular_flash_callback+0xf4>)
+ 8001992:	7a5b      	ldrb	r3, [r3, #9]
+ 8001994:	4a14      	ldr	r2, [pc, #80]	@ (80019e8 <circular_flash_callback+0xf4>)
+ 8001996:	7a91      	ldrb	r1, [r2, #10]
+ 8001998:	4a13      	ldr	r2, [pc, #76]	@ (80019e8 <circular_flash_callback+0xf4>)
+ 800199a:	7ad2      	ldrb	r2, [r2, #11]
+ 800199c:	4618      	mov	r0, r3
+ 800199e:	f7ff f9df 	bl	8000d60 <set_rgb4_ccr>
+                    break;
+ 80019a2:	bf00      	nop
+            }
+
+            // Move to next LED in sequence
+            circular_flash_step = (circular_flash_step + 1) % 4;
+ 80019a4:	4b0f      	ldr	r3, [pc, #60]	@ (80019e4 <circular_flash_callback+0xf0>)
+ 80019a6:	781b      	ldrb	r3, [r3, #0]
+ 80019a8:	b2db      	uxtb	r3, r3
+ 80019aa:	3301      	adds	r3, #1
+ 80019ac:	425a      	negs	r2, r3
+ 80019ae:	f003 0303 	and.w	r3, r3, #3
+ 80019b2:	f002 0203 	and.w	r2, r2, #3
+ 80019b6:	bf58      	it	pl
+ 80019b8:	4253      	negpl	r3, r2
+ 80019ba:	b2da      	uxtb	r2, r3
+ 80019bc:	4b09      	ldr	r3, [pc, #36]	@ (80019e4 <circular_flash_callback+0xf0>)
+ 80019be:	701a      	strb	r2, [r3, #0]
+        }
+        // If circular_flash_state is 0 (OFF), all LEDs stay off (already set above)
+
+        // Toggle flash state
+        circular_flash_state = !circular_flash_state;
+ 80019c0:	4b07      	ldr	r3, [pc, #28]	@ (80019e0 <circular_flash_callback+0xec>)
+ 80019c2:	781b      	ldrb	r3, [r3, #0]
+ 80019c4:	b2db      	uxtb	r3, r3
+ 80019c6:	2b00      	cmp	r3, #0
+ 80019c8:	bf0c      	ite	eq
+ 80019ca:	2301      	moveq	r3, #1
+ 80019cc:	2300      	movne	r3, #0
+ 80019ce:	b2db      	uxtb	r3, r3
+ 80019d0:	461a      	mov	r2, r3
+ 80019d2:	4b03      	ldr	r3, [pc, #12]	@ (80019e0 <circular_flash_callback+0xec>)
+ 80019d4:	701a      	strb	r2, [r3, #0]
+    }
+}
+ 80019d6:	bf00      	nop
+ 80019d8:	bd80      	pop	{r7, pc}
+ 80019da:	bf00      	nop
+ 80019dc:	20000064 	.word	0x20000064
+ 80019e0:	20000066 	.word	0x20000066
+ 80019e4:	20000065 	.word	0x20000065
+ 80019e8:	2000000c 	.word	0x2000000c
+
+080019ec <enableUSART1>:
+
+void enableUSART1()
+{
+ 80019ec:	b480      	push	{r7}
+ 80019ee:	b083      	sub	sp, #12
+ 80019f0:	af00      	add	r7, sp, #0
+    // Enable GPIO C clock (already enabled for RGB1, but ensure it's there)
+    RCC->AHBENR |= RCC_AHBENR_GPIOCEN;
+ 80019f2:	4b1d      	ldr	r3, [pc, #116]	@ (8001a68 <enableUSART1+0x7c>)
+ 80019f4:	695b      	ldr	r3, [r3, #20]
+ 80019f6:	4a1c      	ldr	r2, [pc, #112]	@ (8001a68 <enableUSART1+0x7c>)
+ 80019f8:	f443 2300 	orr.w	r3, r3, #524288	@ 0x80000
+ 80019fc:	6153      	str	r3, [r2, #20]
+
+    // Set GPIO C pins 4&5 to use UART as alternate function
+    // Save current MODER settings for other pins
+    uint32_t temp_moder = GPIOC->MODER;
+ 80019fe:	4b1b      	ldr	r3, [pc, #108]	@ (8001a6c <enableUSART1+0x80>)
+ 8001a00:	681b      	ldr	r3, [r3, #0]
+ 8001a02:	607b      	str	r3, [r7, #4]
+    temp_moder &= ~(GPIO_MODER_MODER4 | GPIO_MODER_MODER5); // Clear PC4, PC5
+ 8001a04:	687b      	ldr	r3, [r7, #4]
+ 8001a06:	f423 6370 	bic.w	r3, r3, #3840	@ 0xf00
+ 8001a0a:	607b      	str	r3, [r7, #4]
+    temp_moder |= (GPIO_MODER_MODER4_1 | GPIO_MODER_MODER5_1); // Set to AF mode
+ 8001a0c:	687b      	ldr	r3, [r7, #4]
+ 8001a0e:	f443 6320 	orr.w	r3, r3, #2560	@ 0xa00
+ 8001a12:	607b      	str	r3, [r7, #4]
+    GPIOC->MODER = temp_moder;
+ 8001a14:	4a15      	ldr	r2, [pc, #84]	@ (8001a6c <enableUSART1+0x80>)
+ 8001a16:	687b      	ldr	r3, [r7, #4]
+ 8001a18:	6013      	str	r3, [r2, #0]
+
+    // Set alternate function for PC4 (TX) and PC5 (RX)
+    GPIOC->AFR[0] &= ~(GPIO_AFRL_AFRL4 | GPIO_AFRL_AFRL5); // Clear
+ 8001a1a:	4b14      	ldr	r3, [pc, #80]	@ (8001a6c <enableUSART1+0x80>)
+ 8001a1c:	6a1b      	ldr	r3, [r3, #32]
+ 8001a1e:	4a13      	ldr	r2, [pc, #76]	@ (8001a6c <enableUSART1+0x80>)
+ 8001a20:	f423 037f 	bic.w	r3, r3, #16711680	@ 0xff0000
+ 8001a24:	6213      	str	r3, [r2, #32]
+    GPIOC->AFR[0] |= (0x7 << (4 * 4)) | (0x7 << (4 * 5)); // AF7 for USART1
+ 8001a26:	4b11      	ldr	r3, [pc, #68]	@ (8001a6c <enableUSART1+0x80>)
+ 8001a28:	6a1b      	ldr	r3, [r3, #32]
+ 8001a2a:	4a10      	ldr	r2, [pc, #64]	@ (8001a6c <enableUSART1+0x80>)
+ 8001a2c:	f443 03ee 	orr.w	r3, r3, #7798784	@ 0x770000
+ 8001a30:	6213      	str	r3, [r2, #32]
+
+    // Set high speed
+    GPIOC->OSPEEDR |= (GPIO_OSPEEDER_OSPEEDR4 | GPIO_OSPEEDER_OSPEEDR5);
+ 8001a32:	4b0e      	ldr	r3, [pc, #56]	@ (8001a6c <enableUSART1+0x80>)
+ 8001a34:	689b      	ldr	r3, [r3, #8]
+ 8001a36:	4a0d      	ldr	r2, [pc, #52]	@ (8001a6c <enableUSART1+0x80>)
+ 8001a38:	f443 6370 	orr.w	r3, r3, #3840	@ 0xf00
+ 8001a3c:	6093      	str	r3, [r2, #8]
+
+    // Set the baud rate and ready USART 1 for transmit
+    USART1->BRR = BAUDRATE; // Baud rate = 115200
+ 8001a3e:	4b0c      	ldr	r3, [pc, #48]	@ (8001a70 <enableUSART1+0x84>)
+ 8001a40:	2246      	movs	r2, #70	@ 0x46
+ 8001a42:	60da      	str	r2, [r3, #12]
+    USART1->CR1 |= USART_CR1_TE; // Enable transmitter
+ 8001a44:	4b0a      	ldr	r3, [pc, #40]	@ (8001a70 <enableUSART1+0x84>)
+ 8001a46:	681b      	ldr	r3, [r3, #0]
+ 8001a48:	4a09      	ldr	r2, [pc, #36]	@ (8001a70 <enableUSART1+0x84>)
+ 8001a4a:	f043 0308 	orr.w	r3, r3, #8
+ 8001a4e:	6013      	str	r3, [r2, #0]
+    USART1->CR1 |= USART_CR1_UE; // Enable USART
+ 8001a50:	4b07      	ldr	r3, [pc, #28]	@ (8001a70 <enableUSART1+0x84>)
+ 8001a52:	681b      	ldr	r3, [r3, #0]
+ 8001a54:	4a06      	ldr	r2, [pc, #24]	@ (8001a70 <enableUSART1+0x84>)
+ 8001a56:	f043 0301 	orr.w	r3, r3, #1
+ 8001a5a:	6013      	str	r3, [r2, #0]
+}
+ 8001a5c:	bf00      	nop
+ 8001a5e:	370c      	adds	r7, #12
+ 8001a60:	46bd      	mov	sp, r7
+ 8001a62:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 8001a66:	4770      	bx	lr
+ 8001a68:	40021000 	.word	0x40021000
+ 8001a6c:	48000800 	.word	0x48000800
+ 8001a70:	40013800 	.word	0x40013800
+
+08001a74 <USART1_SendChar>:
+
+// Function to send a single character
+void USART1_SendChar(unsigned char c)
+{
+ 8001a74:	b480      	push	{r7}
+ 8001a76:	b083      	sub	sp, #12
+ 8001a78:	af00      	add	r7, sp, #0
+ 8001a7a:	4603      	mov	r3, r0
+ 8001a7c:	71fb      	strb	r3, [r7, #7]
+    // Wait until the transmit data register is empty
+    while(!(USART1->ISR & USART_ISR_TXE));
+ 8001a7e:	bf00      	nop
+ 8001a80:	4b07      	ldr	r3, [pc, #28]	@ (8001aa0 <USART1_SendChar+0x2c>)
+ 8001a82:	69db      	ldr	r3, [r3, #28]
+ 8001a84:	f003 0380 	and.w	r3, r3, #128	@ 0x80
+ 8001a88:	2b00      	cmp	r3, #0
+ 8001a8a:	d0f9      	beq.n	8001a80 <USART1_SendChar+0xc>
+
+    // Write the character to the transmit data register
+    USART1->TDR = c;
+ 8001a8c:	4b04      	ldr	r3, [pc, #16]	@ (8001aa0 <USART1_SendChar+0x2c>)
+ 8001a8e:	79fa      	ldrb	r2, [r7, #7]
+ 8001a90:	b292      	uxth	r2, r2
+ 8001a92:	851a      	strh	r2, [r3, #40]	@ 0x28
+}
+ 8001a94:	bf00      	nop
+ 8001a96:	370c      	adds	r7, #12
+ 8001a98:	46bd      	mov	sp, r7
+ 8001a9a:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 8001a9e:	4770      	bx	lr
+ 8001aa0:	40013800 	.word	0x40013800
+
+08001aa4 <USART1_SendString>:
+
+// Function to send a string
+void USART1_SendString(const char* str)
+{
+ 8001aa4:	b580      	push	{r7, lr}
+ 8001aa6:	b082      	sub	sp, #8
+ 8001aa8:	af00      	add	r7, sp, #0
+ 8001aaa:	6078      	str	r0, [r7, #4]
+    while(*str)
+ 8001aac:	e006      	b.n	8001abc <USART1_SendString+0x18>
+    {
+        USART1_SendChar(*str++);
+ 8001aae:	687b      	ldr	r3, [r7, #4]
+ 8001ab0:	1c5a      	adds	r2, r3, #1
+ 8001ab2:	607a      	str	r2, [r7, #4]
+ 8001ab4:	781b      	ldrb	r3, [r3, #0]
+ 8001ab6:	4618      	mov	r0, r3
+ 8001ab8:	f7ff ffdc 	bl	8001a74 <USART1_SendChar>
+    while(*str)
+ 8001abc:	687b      	ldr	r3, [r7, #4]
+ 8001abe:	781b      	ldrb	r3, [r3, #0]
+ 8001ac0:	2b00      	cmp	r3, #0
+ 8001ac2:	d1f4      	bne.n	8001aae <USART1_SendString+0xa>
+    }
+
+    // Send carriage return and line feed for proper line ending in terminal
+    USART1_SendChar('\r');
+ 8001ac4:	200d      	movs	r0, #13
+ 8001ac6:	f7ff ffd5 	bl	8001a74 <USART1_SendChar>
+    USART1_SendChar('\n');
+ 8001aca:	200a      	movs	r0, #10
+ 8001acc:	f7ff ffd2 	bl	8001a74 <USART1_SendChar>
+}
+ 8001ad0:	bf00      	nop
+ 8001ad2:	3708      	adds	r7, #8
+ 8001ad4:	46bd      	mov	sp, r7
+ 8001ad6:	bd80      	pop	{r7, pc}
+
+08001ad8 <main>:
+
+/**
+ * @brief Main function
+ * @retval int
+ */
+int main(void) {
+ 8001ad8:	b580      	push	{r7, lr}
+ 8001ada:	af00      	add	r7, sp, #0
+    // Enable peripheral clocks for GPIO and Timers
+    enable_clocks();
+ 8001adc:	f7fe fc04 	bl	80002e8 <enable_clocks>
+
+    // Initialize board and RGB LED pins
+    initialise_board();
+ 8001ae0:	f7fe fc4e 	bl	8000380 <initialise_board>
+
+    // Initialize timer with a 1000ms period for color cycling
+    // Each color in the rainbow sequence will display for 1 second
+    timer_init(1000, set_rgb_color);
+ 8001ae4:	4904      	ldr	r1, [pc, #16]	@ (8001af8 <main+0x20>)
+ 8001ae6:	f44f 707a 	mov.w	r0, #1000	@ 0x3e8
+ 8001aea:	f7ff f877 	bl	8000bdc <timer_init>
+
+
+    // Start all timers (color cycling and PWM generation)
+    enable_timer();
+ 8001aee:	f7ff fc7f 	bl	80013f0 <enable_timer>
+
+    // Main loop
+    while(1) {
+ 8001af2:	bf00      	nop
+ 8001af4:	e7fd      	b.n	8001af2 <main+0x1a>
+ 8001af6:	bf00      	nop
+ 8001af8:	08000db5 	.word	0x08000db5
+
+08001afc <Reset_Handler>:
+
+  .section .text.Reset_Handler
+  .weak Reset_Handler
+  .type Reset_Handler, %function
+Reset_Handler:
+  ldr   r0, =_estack
+ 8001afc:	480d      	ldr	r0, [pc, #52]	@ (8001b34 <LoopForever+0x2>)
+  mov   sp, r0          /* set stack pointer */
+ 8001afe:	4685      	mov	sp, r0
+/* Call the clock system initialization function.*/
+  bl  SystemInit
+ 8001b00:	f3af 8000 	nop.w
+
+/* Copy the data segment initializers from flash to SRAM */
+  ldr r0, =_sdata
+ 8001b04:	480c      	ldr	r0, [pc, #48]	@ (8001b38 <LoopForever+0x6>)
+  ldr r1, =_edata
+ 8001b06:	490d      	ldr	r1, [pc, #52]	@ (8001b3c <LoopForever+0xa>)
+  ldr r2, =_sidata
+ 8001b08:	4a0d      	ldr	r2, [pc, #52]	@ (8001b40 <LoopForever+0xe>)
+  movs r3, #0
+ 8001b0a:	2300      	movs	r3, #0
+  b LoopCopyDataInit
+ 8001b0c:	e002      	b.n	8001b14 <LoopCopyDataInit>
+
+08001b0e <CopyDataInit>:
+
+CopyDataInit:
+  ldr r4, [r2, r3]
+ 8001b0e:	58d4      	ldr	r4, [r2, r3]
+  str r4, [r0, r3]
+ 8001b10:	50c4      	str	r4, [r0, r3]
+  adds r3, r3, #4
+ 8001b12:	3304      	adds	r3, #4
+
+08001b14 <LoopCopyDataInit>:
+
+LoopCopyDataInit:
+  adds r4, r0, r3
+ 8001b14:	18c4      	adds	r4, r0, r3
+  cmp r4, r1
+ 8001b16:	428c      	cmp	r4, r1
+  bcc CopyDataInit
+ 8001b18:	d3f9      	bcc.n	8001b0e <CopyDataInit>
+
+/* Zero fill the bss segment. */
+  ldr r2, =_sbss
+ 8001b1a:	4a0a      	ldr	r2, [pc, #40]	@ (8001b44 <LoopForever+0x12>)
+  ldr r4, =_ebss
+ 8001b1c:	4c0a      	ldr	r4, [pc, #40]	@ (8001b48 <LoopForever+0x16>)
+  movs r3, #0
+ 8001b1e:	2300      	movs	r3, #0
+  b LoopFillZerobss
+ 8001b20:	e001      	b.n	8001b26 <LoopFillZerobss>
+
+08001b22 <FillZerobss>:
+
+FillZerobss:
+  str  r3, [r2]
+ 8001b22:	6013      	str	r3, [r2, #0]
+  adds r2, r2, #4
+ 8001b24:	3204      	adds	r2, #4
+
+08001b26 <LoopFillZerobss>:
+
+LoopFillZerobss:
+  cmp r2, r4
+ 8001b26:	42a2      	cmp	r2, r4
+  bcc FillZerobss
+ 8001b28:	d3fb      	bcc.n	8001b22 <FillZerobss>
+
+/* Call static constructors */
+  bl __libc_init_array
+ 8001b2a:	f000 f811 	bl	8001b50 <__libc_init_array>
+/* Call the application's entry point.*/
+  bl main
+ 8001b2e:	f7ff ffd3 	bl	8001ad8 <main>
+
+08001b32 <LoopForever>:
+
+LoopForever:
+  b LoopForever
+ 8001b32:	e7fe      	b.n	8001b32 <LoopForever>
+  ldr   r0, =_estack
+ 8001b34:	2000a000 	.word	0x2000a000
+  ldr r0, =_sdata
+ 8001b38:	20000000 	.word	0x20000000
+  ldr r1, =_edata
+ 8001b3c:	20000018 	.word	0x20000018
+  ldr r2, =_sidata
+ 8001b40:	08001bc8 	.word	0x08001bc8
+  ldr r2, =_sbss
+ 8001b44:	20000018 	.word	0x20000018
+  ldr r4, =_ebss
+ 8001b48:	2000006c 	.word	0x2000006c
+
+08001b4c <ADC1_2_IRQHandler>:
+ * @retval : None
+*/
+  .section .text.Default_Handler,"ax",%progbits
+Default_Handler:
+Infinite_Loop:
+  b Infinite_Loop
+ 8001b4c:	e7fe      	b.n	8001b4c <ADC1_2_IRQHandler>
+	...
+
+08001b50 <__libc_init_array>:
+ 8001b50:	b570      	push	{r4, r5, r6, lr}
+ 8001b52:	4d0d      	ldr	r5, [pc, #52]	@ (8001b88 <__libc_init_array+0x38>)
+ 8001b54:	4c0d      	ldr	r4, [pc, #52]	@ (8001b8c <__libc_init_array+0x3c>)
+ 8001b56:	1b64      	subs	r4, r4, r5
+ 8001b58:	10a4      	asrs	r4, r4, #2
+ 8001b5a:	2600      	movs	r6, #0
+ 8001b5c:	42a6      	cmp	r6, r4
+ 8001b5e:	d109      	bne.n	8001b74 <__libc_init_array+0x24>
+ 8001b60:	4d0b      	ldr	r5, [pc, #44]	@ (8001b90 <__libc_init_array+0x40>)
+ 8001b62:	4c0c      	ldr	r4, [pc, #48]	@ (8001b94 <__libc_init_array+0x44>)
+ 8001b64:	f000 f818 	bl	8001b98 <_init>
+ 8001b68:	1b64      	subs	r4, r4, r5
+ 8001b6a:	10a4      	asrs	r4, r4, #2
+ 8001b6c:	2600      	movs	r6, #0
+ 8001b6e:	42a6      	cmp	r6, r4
+ 8001b70:	d105      	bne.n	8001b7e <__libc_init_array+0x2e>
+ 8001b72:	bd70      	pop	{r4, r5, r6, pc}
+ 8001b74:	f855 3b04 	ldr.w	r3, [r5], #4
+ 8001b78:	4798      	blx	r3
+ 8001b7a:	3601      	adds	r6, #1
+ 8001b7c:	e7ee      	b.n	8001b5c <__libc_init_array+0xc>
+ 8001b7e:	f855 3b04 	ldr.w	r3, [r5], #4
+ 8001b82:	4798      	blx	r3
+ 8001b84:	3601      	adds	r6, #1
+ 8001b86:	e7f2      	b.n	8001b6e <__libc_init_array+0x1e>
+ 8001b88:	08001bc0 	.word	0x08001bc0
+ 8001b8c:	08001bc0 	.word	0x08001bc0
+ 8001b90:	08001bc0 	.word	0x08001bc0
+ 8001b94:	08001bc4 	.word	0x08001bc4
+
+08001b98 <_init>:
+ 8001b98:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 8001b9a:	bf00      	nop
+ 8001b9c:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 8001b9e:	bc08      	pop	{r3}
+ 8001ba0:	469e      	mov	lr, r3
+ 8001ba2:	4770      	bx	lr
+
+08001ba4 <_fini>:
+ 8001ba4:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 8001ba6:	bf00      	nop
+ 8001ba8:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 8001baa:	bc08      	pop	{r3}
+ 8001bac:	469e      	mov	lr, r3
+ 8001bae:	4770      	bx	lr
