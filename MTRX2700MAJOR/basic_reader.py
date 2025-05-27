@@ -2,6 +2,8 @@
 
 import serial
 import struct
+import time
+
 
 # Configuration
 PORT1       = '/dev/cu.usbmodem11303'  # ← your port
@@ -29,6 +31,7 @@ def read_packet(ser):
     return msg_type, payload
 
 def main():
+    time.sleep(0.5)  # Give STM32 time to finish boot
     print("Listening for packets…")
     with serial.Serial(PORT2, BAUD, timeout=1) as ser:
         while True:
@@ -50,11 +53,14 @@ def main():
                 print(f"[BUTTON] Timestamp = {timestamp} ms")
             
             elif msg_type == MORSE_MESSAGE and len(payload) >= 2:
-                # Assume the last byte is the morseComplete flag, rest is morse string
                 morse_str_bytes = payload[:-1]
-                morse_str = morse_str_bytes.decode('ascii', errors='ignore')  # or 'utf-8' if needed
                 morse_complete = payload[-1]
-                print(f"{morse_str}")
+                try:
+                    morse_str = morse_str_bytes.decode('ascii', errors='replace')
+                    print(f"{morse_str}")
+                except Exception as e:
+                    print("Decode error:", e)
+
 
                 if morse_complete == 1:
                     ser.write(b'\x01')

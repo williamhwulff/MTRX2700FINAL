@@ -1,0 +1,5 @@
+../Core/Src/memory.c:4:7:arrAlloc	24	static
+../Core/Src/memory.c:13:8:matrixAlloc	32	static
+../Core/Src/memory.c:26:7:arrRealloc	32	static
+../Core/Src/memory.c:35:8:matrixRealloc	32	static
+../Core/Src/memory.c:48:6:freeMatrix	24	static

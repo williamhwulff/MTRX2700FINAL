@@ -1,0 +1,3 @@
+../Core/Src/servo.c:11:6:setupGPIOPinsTim8	1
+../Core/Src/servo.c:21:6:setupTim8Pwm	1
+../Core/Src/servo.c:49:6:servoAngle	5
