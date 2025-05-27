@@ -10,7 +10,7 @@
     <br />
     Embark on a thrilling to claim Blackbeard's Eternal Life Potion
     <br />
-    <a href="https://github.com/williamhwulff/MTRX2700FINAL">View Demo</a>
+    <a href="https://youtube.com/shorts/Wdw9NRGKtaY?feature=share">View Demo</a>
   </p>
 </div>
 
@@ -51,8 +51,6 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-
-[![Pirates Treasure Hunt][product-screenshot]](https://example.com)
 
 **Ahoy, matey!** Welcome to the ultimate Pirates of the Caribbean treasure hunt experience! This interactive mechatronic adventure combines the thrill of pirate lore with cutting-edge embedded systems technology. Players must navigate through four challenging stages, each testing different skills - from musical timing to cryptographic decoding and precision control.
 
