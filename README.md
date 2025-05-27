@@ -344,24 +344,24 @@ src/
 
 ### 🔑 Key Features per Module
 
-#### Stage 1: Pirates Jingle
+#### Stage 1: Pirates Jingle - Kelian 
 - **Real-time Audio Analysis**: FFT-based rhythm detection
 - **Timing Precision**: Microsecond-level button press evaluation  
 - **Adaptive Difficulty**: Configurable tolerance for timing accuracy
 - **Failure Recovery**: Multiple attempt system with audio feedback
 
-#### Stage 2: Morse Code Riddle
+#### Stage 2: Morse Code Riddle - William
 - **Multi-layered Encryption**: Progressive difficulty riddle system
 - **Serial Protocol**: Robust UART communication with error checking
 - **Pattern Matching**: Efficient string comparison algorithms
 - **Progress Tracking**: Save state between riddle attempts
 
-#### Stage 3: Minefield & Treasure
+#### Stage 3: Minefield & Treasure - Audrey
 - **LED Orchestration**: Dynamic visual effects and status indicators
 - **Pressure Sensing**: Limit Switch used to initiate LED flashes
 - **Final Automation**: Choreographed treasure chest opening sequence
 
-#### Pan-Tilt Motion Control  
+#### Pan-Tilt Motion Control  - Jiaming and Willem
 - **Gyroscope Integration**: 3-axis motion vector processing
 - **Servo Coordination**: Synchronized dual-axis positioning
 - **Motion Filtering**: Kalman filter for smooth, responsive control
