@@ -92,7 +92,7 @@ This adventure is powered by:
 <!-- THE TREASURE HUNT ADVENTURE -->
 ## 🏴‍☠️ The Treasure Hunt Adventure
 
-### Stage 1: Pirates Jingle 🎵
+### Stage 1: Pirates Jingle - Kelian
 > *"The seas be callin', but first ye must prove yer rhythm!"*
 
 **The Challenge**: As the iconic Pirates of the Caribbean theme song plays through a speaker, adventurers must tap a button in perfect synchronization with the melody. Miss the rhythm, and ye be walkin' the plank!
@@ -107,7 +107,7 @@ This adventure is powered by:
 
 ---
 
-### Stage 2: Jack Sparrow's Riddle 🔐
+### Stage 2: Jack Sparrow's Riddle - William
 > *"Captain Sparrow's secrets be hidden in dots and dashes, savvy?"*
 
 **The Challenge**: Decipher encrypted Morse code messages transmitted through the system. Each dot and dash translates to binary (0s and 1s), which adventurers must decode and input via serial communication.
@@ -123,7 +123,7 @@ This adventure is powered by:
 
 ---
 
-### Stage 3: Dead Man's Mine Field ⚡
+### Stage 3: Dead Man's Mine Field - Audrey, Willem and Jiaming 
 > *"Navigate these cursed waters, or be blown to Davy Jones' locker!"*
 
 **The Challenge**: Control a marble through a treacherous minefield using the STM32 board as a motion controller. Tilt and rotate the board to guide the marble into the correct hole while avoiding the mines!
@@ -139,7 +139,7 @@ This adventure is powered by:
 
 ---
 
-### Final Stage: Blackbeard's Treasure 💰
+### Final Stage: Blackbeard's Treasure - Everyone
 > *"The treasure be within reach, but Blackbeard's final trap awaits!"*
 
 **The Reward**: Upon successfully landing the marble in the correct hole, a limit switch detects the marble's presence and triggers the final servo mechanism. The legendary treasure chest opens to reveal **Blackbeard's Eternal Life Potion**!
@@ -341,32 +341,6 @@ src/
     ├── morse_code_reference/       # Riddle solutions and patterns
     └── calibration_procedures/     # Setup and testing guides
 ```
-
-### 🔑 Key Features per Module
-
-#### Stage 1: Pirates Jingle - Kelian 
-- **Real-time Audio Analysis**: FFT-based rhythm detection
-- **Timing Precision**: Microsecond-level button press evaluation  
-- **Adaptive Difficulty**: Configurable tolerance for timing accuracy
-- **Failure Recovery**: Multiple attempt system with audio feedback
-
-#### Stage 2: Morse Code Riddle - William
-- **Multi-layered Encryption**: Progressive difficulty riddle system
-- **Serial Protocol**: Robust UART communication with error checking
-- **Pattern Matching**: Efficient string comparison algorithms
-- **Progress Tracking**: Save state between riddle attempts
-
-#### Stage 3: Minefield & Treasure - Audrey
-- **LED Orchestration**: Dynamic visual effects and status indicators
-- **Pressure Sensing**: Limit Switch used to initiate LED flashes
-- **Final Automation**: Choreographed treasure chest opening sequence
-
-#### Pan-Tilt Motion Control  - Jiaming and Willem
-- **Gyroscope Integration**: 3-axis motion vector processing
-- **Servo Coordination**: Synchronized dual-axis positioning
-- **Motion Filtering**: Kalman filter for smooth, responsive control
-- **Safety Limits**: Mechanical constraint protection
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- MARKDOWN LINKS & IMAGES -->
