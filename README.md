@@ -369,14 +369,16 @@ src/
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+<!-- MARKDOWN LINKS & IMAGES -->
+[product-screenshot]: images/pirate_treasure_hunt.png
+
+[STM32.com]: https://img.shields.io/badge/STM32-03234B?style=for-the-badge&logo=stmicroelectronics&logoColor=white
+[STM32-url]: https://www.st.com/en/microcontrollers-microprocessors/stm32-32-bit-arm-cortex-mcus.html
+[C.com]: https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white
+[C-url]: https://en.wikipedia.org/wiki/C_(programming_language)
+
 <!-- CONTACT -->
 ## Contact
-
-**🏴‍☠️ The Crew:**
-- **Captain** [Your Name] - [your.email@uni.sydney.edu.au]
-- **First Mate** [Team Member 2] - [email2@uni.sydney.edu.au]  
-- **Navigator** [Team Member 3] - [email3@uni.sydney.edu.au]
-- **Engineer** [Team Member 4] - [email4@uni.sydney.edu.au]
 
 **⚓ Course Information:**
 - **Subject**: MTRX2700 Mechatronics 2
