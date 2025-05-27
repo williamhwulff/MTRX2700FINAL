@@ -10,7 +10,7 @@
     <br />
     Embark on a thrilling to claim Blackbeard's Eternal Life Potion
     <br />
-    <a href="https://github.com/williamhwulff/MTRX2700FINAL">View Demo</a>
+    <a href="https://youtube.com/shorts/Wdw9NRGKtaY?feature=share">View Demo</a>
   </p>
 </div>
 
@@ -51,8 +51,6 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-
-[![Pirates Treasure Hunt][product-screenshot]](https://example.com)
 
 **Ahoy, matey!** Welcome to the ultimate Pirates of the Caribbean treasure hunt experience! This interactive mechatronic adventure combines the thrill of pirate lore with cutting-edge embedded systems technology. Players must navigate through four challenging stages, each testing different skills - from musical timing to cryptographic decoding and precision control.
 
@@ -226,7 +224,7 @@ To set up this legendary treasure hunt experience:
 └─────────────────────────────────────────────────────────────────┘
 
 ┌──────────────┐    GPIO    ┌──────────────┐    GPIO    ┌──────────────┐
-│   BOARD #1   │ ────────→  │   BOARD #2   │ ────────→  │   BOARD #3   │
+│   BOARD #1   │ <───────>  │   BOARD #2   │ <───────>  │   BOARD #3   │
 │              │   Signal   │              │   Signal   │              │
 │ Pirates      │            │ Morse Code   │            │ Minefield    │
 │ Jingle       │            │ Riddle       │            │ Control      │
@@ -241,7 +239,7 @@ To set up this legendary treasure hunt experience:
     🎵 Audio                   💻 Serial                   🎯 Marble
     🔘 Button                  🔐 Morse                   💎 Treasure
        │                           │                           │
-       └─────────── TREASURE UNLOCKED ──────────────────────────┘
+       └─────────── TREASURE UNLOCKED ─────────────────────────┘
 
                          ┌──────────────┐
                          │   BOARD #4   │  <- Independent System
@@ -371,14 +369,16 @@ src/
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+<!-- MARKDOWN LINKS & IMAGES -->
+[product-screenshot]: images/pirate_treasure_hunt.png
+
+[STM32.com]: https://img.shields.io/badge/STM32-03234B?style=for-the-badge&logo=stmicroelectronics&logoColor=white
+[STM32-url]: https://www.st.com/en/microcontrollers-microprocessors/stm32-32-bit-arm-cortex-mcus.html
+[C.com]: https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white
+[C-url]: https://en.wikipedia.org/wiki/C_(programming_language)
+
 <!-- CONTACT -->
 ## Contact
-
-**🏴‍☠️ The Crew:**
-- **Captain** [Your Name] - [your.email@uni.sydney.edu.au]
-- **First Mate** [Team Member 2] - [email2@uni.sydney.edu.au]  
-- **Navigator** [Team Member 3] - [email3@uni.sydney.edu.au]
-- **Engineer** [Team Member 4] - [email4@uni.sydney.edu.au]
 
 **⚓ Course Information:**
 - **Subject**: MTRX2700 Mechatronics 2
@@ -386,46 +386,6 @@ src/
 - **Captain of Studies**: Dr. Stephany Berrio
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
-
-We tip our tricorn hats to these fine institutions and inspirations:
-
-### 🎓 Academic Support
-* **University of Sydney Engineering Faculty** - Providing the ship and supplies
-* **Khit and Micahel** - Technical expertise, equipment and our navigational guides
-* **Dr. Stephany Berrio & Stewart Worrall** - For being Tron Masters
-
-### ⚡ Technical Resources
-* **STMicroelectronics** - For the STM32 microcontrollers
-* **Pirates of the Caribbean Soundtrack** - Hans Zimmer's epic compositions
-* **Morse Code Historical Society** - Cryptographic inspiration
-* **Open Source Embedded Community** - Sensor drivers and examples
-
-### 🏴‍☠️ Creative Inspiration
-- *Pirates of the Caribbean* film series - Theme and atmosphere
-- Classic treasure hunt adventures and escape room designs
-- *Monkey Island* game series - Puzzle design inspiration  
-- Real pirate history and maritime lore
-
-> *"The code is more what you'd call 'guidelines' than actual rules!"*
-> - Captain Barbossa (and our debugging philosophy)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
----
-
-<div align="center">
-  <strong>🏴‍☠️ May fair winds fill your sails, and may your code compile on the first try! ⚓</strong>
-</div>
-
-<!-- MARKDOWN LINKS & IMAGES -->
-[product-screenshot]: images/pirate_treasure_hunt.png
-[STM32.com]: https://img.shields.io/badge/STM32-03234B?style=for-the-badge&logo=stmicroelectronics&logoColor=white
-[STM32-url]: https://www.st.com/en/microcontrollers-microprocessors/stm32-32-bit-arm-cortex-mcus.html
-[C.com]: https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white
-[C-url]: https://en.wikipedia.org/wiki/C_(programming_language)
 
 ## Pirates Jingle
 
