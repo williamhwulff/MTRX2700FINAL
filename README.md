@@ -385,46 +385,6 @@ src/
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
-
-We tip our tricorn hats to these fine institutions and inspirations:
-
-### 🎓 Academic Support
-* **University of Sydney Engineering Faculty** - Providing the ship and supplies
-* **Khit and Micahel** - Technical expertise, equipment and our navigational guides
-* **Dr. Stephany Berrio & Stewart Worrall** - For being Tron Masters
-
-### ⚡ Technical Resources
-* **STMicroelectronics** - For the STM32 microcontrollers
-* **Pirates of the Caribbean Soundtrack** - Hans Zimmer's epic compositions
-* **Morse Code Historical Society** - Cryptographic inspiration
-* **Open Source Embedded Community** - Sensor drivers and examples
-
-### 🏴‍☠️ Creative Inspiration
-- *Pirates of the Caribbean* film series - Theme and atmosphere
-- Classic treasure hunt adventures and escape room designs
-- *Monkey Island* game series - Puzzle design inspiration  
-- Real pirate history and maritime lore
-
-> *"The code is more what you'd call 'guidelines' than actual rules!"*
-> - Captain Barbossa (and our debugging philosophy)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
----
-
-<div align="center">
-  <strong>🏴‍☠️ May fair winds fill your sails, and may your code compile on the first try! ⚓</strong>
-</div>
-
-<!-- MARKDOWN LINKS & IMAGES -->
-[product-screenshot]: images/pirate_treasure_hunt.png
-[STM32.com]: https://img.shields.io/badge/STM32-03234B?style=for-the-badge&logo=stmicroelectronics&logoColor=white
-[STM32-url]: https://www.st.com/en/microcontrollers-microprocessors/stm32-32-bit-arm-cortex-mcus.html
-[C.com]: https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white
-[C-url]: https://en.wikipedia.org/wiki/C_(programming_language)
-
 ## Pirates Jingle
 
 ### 🔧 Technical Implementation
